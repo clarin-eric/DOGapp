@@ -7,7 +7,7 @@ from os.path import normpath
 
 from setuptools import setup
 
-INSTALL_REQUIRES = ['Django==3.2.3']
+INSTALL_REQUIRES = ['Django==3.2.3', 'doglib==0.1.0']
 
 chdir(normpath(join(abspath(__file__), pardir)))
 setup(
@@ -16,14 +16,14 @@ setup(
         "root": "..",
     },
     setup_requires=['setuptools_scm'],
-    packages=['DOG_API'],
+    packages=['dog_api'],
     include_package_data=True,
     install_requires=INSTALL_REQUIRES,
     license='GPLv3',
     description='CLARIN Digital Object Gate, a Django application. ',
     long_description='See README.md',
     url='',
-    author=['Michał Gawor'],
+    author=['Michal Gawor'],
     author_email=['michal@clarin.eu'],
     zip_safe=True,
     classifiers=[

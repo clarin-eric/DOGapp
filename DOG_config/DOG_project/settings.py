@@ -10,23 +10,42 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
+from os.path import abspath
+from os.path import dirname
+from os.path import join
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+from DOG_project import __name__ as app_name
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3&kgdc@yoff5ybvt%@6(83w_9wx71k)un@mw$90azba5i+oxmx'
-
+SECRET_KEY = 'testkey123456789'
+## Secure cookies have to be turned off in development mode, assuming there is
+## no reverse proxy with X-Forwarded-Proto=https or https://tools.ietf.org/html/rfc7239.
+DEBUG = True # TODO: templatize
+SESSION_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_HTTPONLY = True
+PIWIK_WEBSITE_ID = "1000"
+PROJECT_DIR = abspath(dirname(__file__))
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'django']
+TEMPLATE_DEBUG = DEBUG
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+MEDIA_ROOT = ''
+STATIC_URL = '/static/'
+STATIC_ROOT = join(PROJECT_DIR,
+                   '../../centre-registry-app/centre_registry/assets')
 
-ALLOWED_HOSTS = []
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+ROOT_URLCONF = app_name + '.urls'
 
+TEMPLATE_LOADERS = ('django.template.loaders.app_directories.Loader', )
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'dog_api'
 ]
 
 MIDDLEWARE = [
@@ -63,29 +83,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
-]
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
 
