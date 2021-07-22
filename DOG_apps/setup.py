@@ -16,7 +16,7 @@ setup(
         "root": "..",
     },
     packages=['dog_api'],
-    setup_requires=['setuptools_scm']
+    setup_requires=['setuptools_scm'],
     include_package_data=True,
     install_requires=INSTALL_REQUIRES,
     license='GPLv3',
