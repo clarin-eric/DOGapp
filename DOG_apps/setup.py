@@ -7,7 +7,7 @@ from os.path import normpath
 
 from setuptools import setup
 
-INSTALL_REQUIRES = ['Django==3.2.3', 'doglib==0.1.0']
+INSTALL_REQUIRES = ['Django==3.2.3']
 
 chdir(normpath(join(abspath(__file__), pardir)))
 setup(
@@ -15,8 +15,8 @@ setup(
     use_scm_version={
         "root": "..",
     },
-    setup_requires=['setuptools_scm'],
     packages=['dog_api'],
+    setup_requires=['setuptools_scm']
     include_package_data=True,
     install_requires=INSTALL_REQUIRES,
     license='GPLv3',
