@@ -8,12 +8,16 @@ from os.path import normpath
 from setuptools import setup
 
 
-INSTALL_REQUIRES = ['DOG_apps']
+INSTALL_REQUIRES = ['dog_apps']
 chdir(normpath(join(abspath(__file__), pardir)))
 setup(
-    name='DOG_config',
+    name='dog_config',
+    use_scm_version={
+        "root": "..",
+        "fallback_version": "2.3.1.dev0"
+    },
     setup_requires=['setuptools_scm'],
-    packages=['DOG_project'],
+    packages=['dog_project'],
     include_package_data=True,
     install_requires=INSTALL_REQUIRES,
     license='GPLv3',

@@ -14,7 +14,7 @@ from os.path import abspath
 from os.path import dirname
 from os.path import join
 
-from DOG_project import __name__ as app_name
+from dog_project import __name__ as app_name
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,7 +38,7 @@ DEBUG = True
 MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
-                   '../../centre-registry-app/centre_registry/assets')
+                   '../../dog_apps/dog_api/assets')
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dog_api'
+    'dog_api.apps.DogApiConf',
 ]
 
 MIDDLEWARE = [
@@ -67,8 +67,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-ROOT_URLCONF = 'DOG_project.urls'
 
 TEMPLATES = [
     {
@@ -103,8 +101,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

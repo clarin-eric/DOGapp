@@ -1,6 +1,6 @@
+import dog_api
 from django.apps import AppConfig
 
-from DOG_apps import dog_api
 
 class DogApiConf(AppConfig):
     name = dog_api.__name__

@@ -11,12 +11,13 @@ INSTALL_REQUIRES = ['Django==3.2.3']
 
 chdir(normpath(join(abspath(__file__), pardir)))
 setup(
-    name='DOG_apps',
+    name='dog_apps',
     use_scm_version={
         "root": "..",
+        "fallback_version": "2.3.2.dev1"
     },
-    packages=['dog_api'],
     setup_requires=['setuptools_scm'],
+    packages=['dog_api'],
     include_package_data=True,
     install_requires=INSTALL_REQUIRES,
     license='GPLv3',
