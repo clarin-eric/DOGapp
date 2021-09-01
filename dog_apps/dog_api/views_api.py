@@ -8,9 +8,9 @@ from .models import dog
 @api_view()
 def get_fetch(request):
     if request.method == 'GET':
-        # pid_candidate = request.query_params.get('pid', '')
-        # fetch_result = dog.fetch(pid_candidate)
-        return Response({})
+        pid_candidate = request.query_params.get('pid', '')
+        fetch_result = dog.fetch(pid_candidate)
+        return Response(fetch_result)
     else:
         return Response({"Error:" "Requests other than GET not supported"}, status=status)
 
