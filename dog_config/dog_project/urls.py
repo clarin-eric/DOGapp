@@ -19,10 +19,9 @@ from rest_framework.routers import DefaultRouter
 
 from dog_api.views_api import get_fetch, get_sniff
 
-router = DefaultRouter()
-router.register(r'sniff/<path:pid>/', get_sniff, basename='sniff')
-router.register(r'fetch/<path:pid>/', get_fetch, basename='fetch')
+
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('sniff/', get_sniff, name='sniff'),
+    path('fetch/', get_fetch, name='fetch')
 ]
