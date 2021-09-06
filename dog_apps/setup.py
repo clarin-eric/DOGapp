@@ -7,14 +7,14 @@ from os.path import normpath
 
 from setuptools import setup
 
-INSTALL_REQUIRES = ['Django==3.2.3']
+INSTALL_REQUIRES = ['Django==3.2.7']
 
 chdir(normpath(join(abspath(__file__), pardir)))
 setup(
     name='dog_apps',
     use_scm_version={
         "root": "..",
-        "fallback_version": "2.3.2.dev1"
+        "fallback_version": "2.3.7.dev1"
     },
     setup_requires=['setuptools_scm'],
     packages=['dog_api'],
