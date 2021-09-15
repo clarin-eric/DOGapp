@@ -8,6 +8,7 @@ from os.path import normpath
 from setuptools import setup
 
 INSTALL_REQUIRES = ['Django==3.2.7']
+TEST_REQUIRES = ['djangorestframework=3.12.2']
 
 chdir(normpath(join(abspath(__file__), pardir)))
 setup(
