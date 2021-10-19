@@ -12,7 +12,10 @@ def get_fetch(request):
     if pid_candidate is None:
         raise ParseError(detail="Missing query parameter 'pid'", code=400)
     fetch_result = dog.fetch(pid_candidate)
-    return Response(fetch_result)
+    if fetch_result:
+        return Response(fetch_result, content_type='application/json', status=200)
+    else:
+        return Response("PID is either not correct or has been not recognised", status=400)
 
 
 @api_view(['GET'])
@@ -21,4 +24,7 @@ def get_sniff(request):
     if pid_candidate is None:
         raise ParseError(detail="Missing query parameter 'pid'", code=400)
     sniff_result = dog.sniff(pid_candidate)
-    return Response(sniff_result)
+    if sniff_result:
+        return Response(sniff_result, content_type='application/json', status=200)
+    else:
+        return Response("PID is either not correct or has been not recognised", status=400)
