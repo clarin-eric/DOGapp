@@ -14,7 +14,7 @@ setup(
     name='dog_config',
     use_scm_version={
         "root": "..",
-        "fallback_version": "2.3.1.dev0"
+        "fallback_version": ""
     },
     setup_requires=['setuptools_scm'],
     packages=['dog_project'],
