@@ -12,7 +12,9 @@ def get_fetch(request):
     if pid_candidate is None:
         return Response("Missing query parameter 'pid'", status=400)
     fetch_result = dog.fetch(pid_candidate)
-    if fetch_result:
+
+    # empty dict evals to 'not None' reference, cast to bool explicitly
+    if bool(fetch_result):
         return Response(fetch_result, content_type='application/json', status=200)
     else:
         return Response("PID is either not correct or has been not recognised", status=400)
@@ -24,7 +26,8 @@ def get_sniff(request):
     if pid_candidate is None:
         return Response("Missing query parameter 'pid'", status=400)
     sniff_result = dog.sniff(pid_candidate)
-    if sniff_result:
+    # empty dict/str evals to 'not None' reference, cast to bool explicitly
+    if bool(sniff_result):
         return Response(sniff_result, content_type='application/json', status=200)
     else:
         return Response("PID is either not correct or has been not recognised", status=400)
