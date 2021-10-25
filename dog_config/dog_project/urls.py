@@ -17,11 +17,12 @@ from django.conf.urls import include, url
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from dog_api.views_api import get_fetch, get_sniff
-
+from dog_api.views_api import get_fetch, post_fetch_bulk, get_sniff, post_sniff_bulk
 
 
 urlpatterns = [
     path('sniff/', get_sniff, name='sniff'),
-    path('fetch/', get_fetch, name='fetch')
+    path('fetch/', get_fetch, name='fetch'),
+    path('sniff_bulk/', post_sniff_bulk, name='bulk sniff'),
+    path('fetch_bulk/', post_fetch_bulk, name='bulk fetch')
 ]
