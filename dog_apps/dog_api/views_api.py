@@ -33,7 +33,7 @@ def get_sniff(request):
 
 
 @api_view(['POST'])
-def get_sniff_bulk(request):
+def post_sniff_bulk(request):
     pid_candidates = request.data.get('pids')
     if hasattr(pid_candidates, '__iter__'):
         return Response([dog.sniff(pid_candidate) for pid_candidate in pid_candidates], status=200)
@@ -42,7 +42,7 @@ def get_sniff_bulk(request):
 
 
 @api_view(['POST'])
-def get_fetch_bulk(request):
+def post_fetch_bulk(request):
     pid_candidates = request.data.get('pids')
     if hasattr(pid_candidates, '__iter__'):
         return Response([dog.fetch(pid_candidate) for pid_candidate in pid_candidates], status=200)
