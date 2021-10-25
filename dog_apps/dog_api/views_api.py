@@ -38,7 +38,8 @@ def post_sniff_bulk(request):
     if hasattr(pid_candidates, '__iter__'):
         return Response([dog.sniff(pid_candidate) for pid_candidate in pid_candidates], status=200)
     else:
-        return Response("Bulk sniff requires parameter 'pids' with iterable yielding PIDs", status=400)
+        return Response(f"Bulk sniff requires parameter 'pids' with iterable yielding PIDs {type(pid_candidates)}, "
+                        f"{pid_candidates}", status=400)
 
 
 @api_view(['POST'])
