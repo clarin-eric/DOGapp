@@ -5,9 +5,9 @@ defaults:
         shell: bash
 jobs:
   build:
+    runs-on: ubuntu-latest
     env:
       DOGLIB_VERSION = 1.0.0-rc4
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
