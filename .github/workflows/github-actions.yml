@@ -5,6 +5,8 @@ defaults:
         shell: bash
 jobs:
   build:
+    env:
+      DOGLIB_VERSION = 1.0.0-rc4
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,7 +19,9 @@ jobs:
       - run: python -V 
 
       - name: Install DOGlib
-        run: pip install -e git://github.com/clarin-eric/DOGlib.git@1.0.0-rc4#egg=doglib -r requirements.txt
+        run: |
+          git clone --depth 1 --branch 1.0.0-rc4 https://github.com/clarin-eric/DOGlib.git
+          pip install ./DOGlib -r ./DOGlib/requirements.txt      
       - name: Install DOG applications
         run: |
           pip install ./dog_apps -r requirements.txt
