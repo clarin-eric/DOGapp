@@ -16,7 +16,7 @@ jobs:
           python-version: 3.9
       
       - name: Install DOGlib
-        run: python -m pip install git+https://github.com/clarin-eric/DOGlib.git@1.0.0-rc4
+        run: pip install -e git://github.com/clarin-eric/DOGlib.git@1.0.0-rc4
       - name: Install DOG applications
         run: |
           dog_apps
