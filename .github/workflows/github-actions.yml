@@ -17,10 +17,10 @@ jobs:
       - run: python -V 
 
       - name: Install DOGlib
-        run: pip install -e git://github.com/clarin-eric/DOGlib.git@1.0.0-rc4#egg=doglib
+        run: pip install -e git://github.com/clarin-eric/DOGlib.git@1.0.0-rc4#egg=doglib -r requirements.txt
       - name: Install DOG applications
         run: |
-          pip install ./dog_apps
+          pip install ./dog_apps -r requirements.txt
       - name: Run Django server
         run: |
           python dog_config/manage.py runserver
