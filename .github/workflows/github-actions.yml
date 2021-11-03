@@ -1,0 +1,29 @@
+name: Digital Object Gate Django webservices CI Workflow
+on: [push, tag]
+defaults:
+    run:
+        shell: bash
+        working-directory: client
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SETTINGS_MODULE = ${{_DJANGO_SETTINGS_MODULE}} 
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set Python 
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run:  |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run Django server
+        run: |
+          python dog_config/manage.py runserver
+      - name: Save OpenAPI schema
+        run: |
+          curl https://localhost:8000/openapi > openapi.json
+          cat openapi.json
+
