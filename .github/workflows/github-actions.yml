@@ -20,7 +20,7 @@ jobs:
 
       - name: Install DOGlib
         run: |
-          git clone --depth 1 --branch ${{ DOGLIB_VERSION }} https://github.com/clarin-eric/DOGlib.git
+          git clone --depth 1 --branch ${{ env.DOGLIB_VERSION }} https://github.com/clarin-eric/DOGlib.git
           pip install ./DOGlib -r ./DOGlib/requirements.txt      
       - name: Install DOG applications
         run: |
