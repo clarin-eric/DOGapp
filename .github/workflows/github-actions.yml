@@ -1,5 +1,5 @@
 name: Digital Object Gate Django webservices CI Workflow
-on: [push, tag]
+on: [push]
 defaults:
     run:
         shell: bash
