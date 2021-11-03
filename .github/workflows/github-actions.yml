@@ -8,14 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Set Python 
         uses: actions/setup-python@v1
         with:
           python-version: 3.9
       - name: Install dependencies
         run:  |
-          apt install git python3-pip
           python -m pip install --upgrade pip
           git install git+https://github.com/clarin-eric/DOGlib.git -r requirements.txt
           python -m pip install ./dog_apps
