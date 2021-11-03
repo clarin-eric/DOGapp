@@ -16,8 +16,6 @@ jobs:
           python-version: 3.9
       - name: Install dependencies
         run:  |
-          python -m pip install --upgrade pip
-          git install git+https://github.com/clarin-eric/DOGlib.git -r requirements.txt
           python -m pip install ./dog_apps
       - name: Run Django server
         run: |
