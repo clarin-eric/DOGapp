@@ -3,21 +3,18 @@ on: [push]
 defaults:
     run:
         shell: bash
-        working-directory: client
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Set Python 
+      - name: Setup python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
       
-      - run: |
-          python -V 
-          pip --help | cat
+      - run: python -V 
 
       - name: Install DOGlib
         run: pip install -e git://github.com/clarin-eric/DOGlib.git@1.0.0-rc4#egg=doglib
