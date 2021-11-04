@@ -34,7 +34,7 @@ jobs:
           sleep 10
           ps
           sudo ss -tulpn | grep LISTEN
-          curl 127.0.0.1:8000/sniff
-          curl 127.0.0.1:8000/openapi > openapi.json
+          curl -L 127.0.0.1:8000/sniff
+          curl -L 127.0.0.1:8000/openapi > openapi.json
           cat openapi.json
 
