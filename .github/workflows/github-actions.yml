@@ -28,6 +28,7 @@ jobs:
         run: |
           pip install djangorestframework
           pip install pyyml
+          pip install uritemplate
           pip install ./dog_apps
       - name: Run Django server and dump OpenAPI schems
         run: |
