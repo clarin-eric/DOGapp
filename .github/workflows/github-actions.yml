@@ -26,7 +26,7 @@ jobs:
           pip install ./DOGlib -r ./DOGlib/requirements.txt      
       - name: Install DOG applications
         run: |
-          pip install ./dog_apps -r requirements.txt
+          pip install ./dog_apps
       - name: Run Django server
         run: |
           python dog_config/manage.py runserver
