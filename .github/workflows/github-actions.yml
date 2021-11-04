@@ -30,6 +30,7 @@ jobs:
       - name: Run Django server and dump OpenAPI schems
         run: |
           screen -m -d python dog_config/manage.py runserver 127.0.0.1:8000
+          sleep 10
           sudo ss -tulpn | grep LISTEN
           curl 127.0.0.1:8000/sniff
           curl 127.0.0.1:8000/openapi > openapi.json
