@@ -27,6 +27,7 @@ jobs:
       - name: Install DOG applications
         run: |
           pip install djangorestframework
+          pip install pyyml
           pip install ./dog_apps
       - name: Run Django server and dump OpenAPI schems
         run: |
