@@ -27,11 +27,9 @@ jobs:
       - name: Install DOG applications
         run: |
           pip install ./dog_apps
-      - name: Run Django server
+      - name: Run Django server and dump OpenAPI schems
         run: |
           screen -d -m python dog_config/manage.py runserver localhost:8000
-      - name: Save OpenAPI schema
-        run: |
           curl localhost:8000/openapi > openapi.json
           cat openapi.json
 
