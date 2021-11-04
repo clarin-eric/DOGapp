@@ -21,7 +21,7 @@ jobs:
 
       - name: Install DOGlib
         run: |
-          sudo apt-get install libxml2-dev libxslt-dev libssl-dev libcurl14-openssl-dev
+          sudo apt-get install libxml2-dev libxslt-dev libssl-dev libcurl4-openssl-dev
           git clone --depth 1 --branch ${{ env.DOGLIB_VERSION }} https://github.com/clarin-eric/DOGlib.git
           pip install ./DOGlib -r ./DOGlib/requirements.txt      
       - name: Install DOG applications
