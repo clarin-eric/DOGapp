@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOGLIB_VERSION: 1.0.0-rc6
+      PYCURL_SSL_LIBRARY: openssl
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
