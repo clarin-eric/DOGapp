@@ -1,0 +1,78 @@
+openapi: 3.0.2
+info:
+  title: Digital Object Gate
+  version: ''
+  description: REST API providing Digital Object Gate's functionalities
+paths:
+  /sniff/:
+    get:
+      operationId: listget_sniffs
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - sniff
+  /fetch/:
+    get:
+      operationId: listget_fetchs
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - fetch
+  /sniff_bulk/:
+    post:
+      operationId: createpost_sniff_bulk
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - sniff-bulk
+  /fetch_bulk/:
+    post:
+      operationId: createpost_fetch_bulk
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - fetch-bulk
