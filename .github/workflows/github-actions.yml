@@ -36,4 +36,12 @@ jobs:
           sleep 10
           curl -L 127.0.0.1:8000/openapi > openapi.json
           cat openapi.json
+      - name: Push generated schemas
+        run: |
+          git config --global user.name "DOG-github-actions[bot]"
+          git config --global user.email "DigitalObjectGate[bot]@users"
+          git add -A
+          git commit -m "CI push OpenAPI schemas"
+          git push
+          
 
