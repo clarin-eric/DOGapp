@@ -34,6 +34,6 @@ jobs:
         run: |
           screen -m -d python dog_config/manage.py runserver 127.0.0.1:8000
           sleep 10
-          curl -L 127.0.0.1:8000/openapi -H "Accept: application/json" > openapi.json
+          curl -L 127.0.0.1:8000/openapi > openapi.json
           cat openapi.json
 
