@@ -1,6 +1,7 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.exceptions import MethodNotAllowed, ParseError
+from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from typing import List, Union
 
@@ -33,6 +34,7 @@ def get_sniff(request):
 
 
 @api_view(['POST'])
+@renderer_classes([JSONRenderer])
 def post_sniff_bulk(request):
     pid_candidates = request.data.get('pids')
     if hasattr(pid_candidates, '__iter__'):
