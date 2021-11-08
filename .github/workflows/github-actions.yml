@@ -40,7 +40,7 @@ jobs:
         run: |
           git config --global user.name "DOG-github-actions[bot]"
           git config --global user.email "DigitalObjectGate[bot]@users"
-          git add openapi.json
+          git add -u
           git commit -m "CI push OpenAPI schemas"
           git push
           
