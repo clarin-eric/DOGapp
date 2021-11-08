@@ -9,6 +9,7 @@ from .models import dog
 
 
 @api_view(['GET'])
+@renderer_classes([JSONRenderer])
 def get_fetch(request):
     pid_candidate = request.query_params.get('pid')
     if pid_candidate is None:
@@ -22,6 +23,7 @@ def get_fetch(request):
 
 
 @api_view(['GET'])
+@renderer_classes([JSONRenderer])
 def get_sniff(request):
     pid_candidate = request.query_params.get('pid')
     if pid_candidate is None:
@@ -44,6 +46,7 @@ def post_sniff_bulk(request):
 
 
 @api_view(['POST'])
+@renderer_classes([JSONRenderer])
 def post_fetch_bulk(request):
     pid_candidates = request.data.get('pids')
     if hasattr(pid_candidates, '__iter__'):
