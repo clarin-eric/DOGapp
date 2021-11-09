@@ -10,12 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from os.path import abspath
-from os.path import dirname
-from os.path import join
+from os.path import abspath, dirname, join
 
 from dog_project import __name__ as app_name
 
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -39,6 +38,7 @@ MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
                    '../../dog_apps/dog_api/assets')
+STATICFILES_DIRS = (join(BASE_DIR, 'static'))
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
