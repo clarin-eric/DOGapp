@@ -38,7 +38,7 @@ MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
                    '../../dog_apps/dog_api/assets')
-STATICFILES_DIRS = (join(BASE_DIR, 'static'))
+STATICFILES_DIRS = (join(BASE_DIR, 'DOGapp/static'))
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
