@@ -14,7 +14,7 @@ from os.path import abspath, dirname, join
 
 from dog_project import __name__ as app_name
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = dirname(dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/

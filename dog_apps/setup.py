@@ -15,7 +15,7 @@ setup(
     name='dog_apps',
     use_scm_version={
         "root": "..",
-        "fallback_version": "1.0.1-dev0"
+        "fallback_version": "1.1.0-dev0"
     },
     setup_requires=['setuptools_scm'],
     packages=['dog_api'],

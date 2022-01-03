@@ -26,5 +26,5 @@ urlpatterns = [
     path('fetch/', get_fetch, name='fetch'),
     path('sniff_bulk/', post_sniff_bulk, name='bulk sniff'),
     path('fetch_bulk/', post_fetch_bulk, name='bulk fetch'),
-    path('openapi/', get_schema_view(title="Digital Object Gate", description="REST API providing Digital Object Gate's functionalities"), name='openapi-schema')
+    path('openapi/', get_schema_view(title="Digital Object Gate", description="Digital Object Gate's schema"), name='openapi-schema')
 ]
