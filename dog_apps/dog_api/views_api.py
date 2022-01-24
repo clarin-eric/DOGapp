@@ -1,151 +1,90 @@
-from rest_framework import status
-from rest_framework.decorators import api_view, renderer_classes, schema
-from rest_framework.exceptions import MethodNotAllowed, ParseError
-from rest_framework.renderers import JSONRenderer
+"""
+
+Note, that @api_view decorator must follow @swagger_auto_schema to enable different schemas to be served for different methods
+"""
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.schemas.openapi import AutoSchema
-from typing import List, Union
-import yaml
+from rest_framework.request import Request
+from typing import List
 
 from .models import dog
 
 
-class AutoDocstringSchema(AutoSchema):
+def parse_pid_queryparam(request: Request) -> List[str]:
     """
-    Auto OpenAPI schema generator parsing Python docstrings
-
-    Source:
-    https://igeorgiev.eu/python/misc/python-django-rest-framework-openapi-documentation/
+    Parses queryparameters from direct API call (PHP-like format ?param=val1&param=val2) and via Swagger UI (?param=val1,val2)
     """
-    @property
-    def documentation(self):
-        if not hasattr(self, '_documentation'):
-            try:
-                self._documentation = yaml.safe_load(self.view.__doc__)
-            except yaml.scanner.ScannerError:
-                self._documentation = {}
-        return self._documentation
-
-    def get_components(self, path, method):
-        components = super().get_components(path, method)
-        doc_components = self.documentation.get('components', {})
-        components.update(doc_components)
-        return components
-
-    def get_operation(self, path, method):
-        operation = super().get_operation( path, method)
-        doc_operation = self.documentation.get(method.lower(), {})
-        operation.update(doc_operation)
-        return operation
+    query_pid_candidates = request.GET.getlist('pid')
+    pid_candidates = []
+    # Swagger UI returns a 1 element list with comma separated values of parameter, e.g. ["string,string,string"]
+    for pid_candidate in query_pid_candidates:
+        pid_candidates.extend(pid_candidate.split(','))
+    return pid_candidates
 
 
+pid_queryparam: openapi.Parameter = openapi.Parameter(name='pid',
+                                                      in_=openapi.IN_QUERY,
+                                                      description='Persistent identifier to a collection',
+                                                      type=openapi.TYPE_ARRAY,
+                                                      items=openapi.Items(type=openapi.TYPE_STRING))
+
+
+# TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
+@swagger_auto_schema(method="get", manual_parameters=[pid_queryparam])
+@permission_classes([AllowAny])
 @api_view(['GET'])
-@schema(AutoDocstringSchema())
-def get_fetch(request):
+def fetch(request: Request) -> Response:
     """
-    get:
-        description: Fetches referenced resources from collection's PID
-        summary: Fetch referenced resources
-        parameters:
-          - name: pid
-            description: PID referencing a collection
-            schema:
-                type: string
-        responses:
-            200:
-                description: Resources fetched successfully
-                content: 'application/json': {"ref_files": string, "description": string, "license": string}
+    Call to doglib.fetch(), supports PID and list of PIDs in formats:
+    ?pid=<pid1>&pid=<pid2>&pid=<pid3>
+    ?pid=<pid1>,<pid2>,<pid3>
+
+    Returns [{<pid>: {fetch_results}}]
     """
-    pid_candidate = request.query_params.get('pid')
-    if pid_candidate is None:
-        return Response("Missing query parameter 'pid'", status=400)
-    fetch_result = dog.fetch(pid_candidate)
-    # empty dict evals to 'not None' reference, cast to bool explicitly
-    if fetch_result:
-        return Response(fetch_result, status=200)
+    pids = parse_pid_queryparam(request)
+    fetch_results = {pid: dog.fetch(pid) for pid in pids}
+    if fetch_results:
+        return Response(fetch_results, status=200)
     else:
-        return Response("PID is either not correct or has been not recognised", status=400)
+        return Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)
 
 
+# TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
+@swagger_auto_schema(method="get", manual_parameters=[pid_queryparam])
+@permission_classes([AllowAny])
 @api_view(['GET'])
-@schema(AutoDocstringSchema())
-def get_sniff(request):
+def identify(request: Request) -> Response:
     """
-    get:
-        description: Check whether collection's host is a registered repository
-        summary: Is registered repository
-        parameters:
-          - name: pid
-            description: PID referencing a collection
-            schema:
-                type: string
-        responses:
-            200:
-                description: Resources fetched successfully
-                content: 'application/json': {"name": string, "host_name": string, "host_netloc": string}
-    """
-    pid_candidate = request.query_params.get('pid')
-    if pid_candidate is None:
-        return Response("Missing query parameter 'pid'", status=400)
-    sniff_result = dog.sniff(pid_candidate)
-    if sniff_result:
-        return Response(sniff_result, status=200)
-    else:
-        return Response("PID is either not correct or has been not recognised", status=400)
+    Call to doglib.fetch(), supports PID and list of PIDs in formats:
+    ?pid=<pid1>&pid=<pid2>&pid=<pid3>
+    ?pid=<pid1>,<pid2>,<pid3>
 
-
-@api_view(['GET'])
-@schema(AutoDocstringSchema())
-def get_identify_collection(request):
+    Returns [{<pid>: {identify_result}}]
     """
-    get:
-        description: Identify title of the collection and PID to itself.
-        summary: Is registered repository
-        parameters:
-          - name: pid
-            description: PID referencing a collection
-            schema:
-                type: string
-        responses:
-            200:
-                description: Resources fetched successfully
-                content: 'application/json': {"collection_title": string, "reverse_pid": string}
-    """
-    pid_candidate = request.query_params.get('pid')
-    if pid_candidate is None:
-        return Response("Missing query parameter 'pid'", status=400)
-    identify_result = dog.identify(pid_candidate)
+    pids = parse_pid_queryparam(request)
+    identify_result = {pid: dog.identify(pid) for pid in pids}
     if identify_result:
         return Response(identify_result, status=200)
     else:
-        return Response("PID is either not correct or has been not recognised", status=400)
+        return Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)
 
 
-@api_view(['POST'])
-@schema(AutoDocstringSchema())
-def post_sniff_bulk(request):
-    pid_candidates = request.data.get('pids')
-    if hasattr(pid_candidates, '__iter__'):
-        return Response([dog.sniff(pid_candidate) for pid_candidate in pid_candidates], status=200)
+# TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
+@swagger_auto_schema(method="get", manual_parameters=[pid_queryparam])
+@permission_classes([AllowAny])
+@api_view(['GET'])
+def sniff(request: Request) -> Response:
+    """
+    Call to doglib.sniff(), supports list of parameters in format ?pid=<pid1>&pid=<pid2>&pid=<pid3>
+
+    Returns [{<pid>: {sniff_result}}]
+    """
+    pids = parse_pid_queryparam(request)
+    sniff_result = {pid: dog.identify(pid) for pid in pids}
+    if sniff_result:
+        return Response(sniff_result, status=200)
     else:
-        return Response("Missing data 'pids', it should contain a list of PIDs to identify", status=400)
-
-
-@api_view(['POST'])
-@schema(AutoDocstringSchema())
-def post_fetch_bulk(request):
-    pid_candidates = request.data.get('pids')
-    if hasattr(pid_candidates, '__iter__'):
-        return Response([dog.fetch(pid_candidate) for pid_candidate in pid_candidates], status=200)
-    else:
-        return Response("Missing data 'pids', it should contain a list of PIDs", status=400)
-
-
-@api_view(['POST'])
-@schema(AutoDocstringSchema())
-def post_identify_bulk(request):
-    pid_candidates = request.data.get('pids')
-    if hasattr(pid_candidates, '__iter__'):
-        return Response([dog.identify_(pid_candidate) for pid_candidate in pid_candidates], status=200)
-    else:
-        return Response("Missing data 'pids', it should contain a list of PIDs", status=400)
+        return Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)

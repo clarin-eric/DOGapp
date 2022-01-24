@@ -13,18 +13,34 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
-from django.urls import path
-from rest_framework.routers import DefaultRouter
-from rest_framework.schemas import get_schema_view
 
-from dog_api.views_api import get_fetch, post_fetch_bulk, get_sniff, post_sniff_bulk
+from django.urls import path, re_path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework.permissions import AllowAny
+
+from dog_api.views_api import fetch, identify, sniff
+
+#TODO serve as static file
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Snippets API",
+      default_version='v1',
+      description="Test description",
+      terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="michal@clarin.eu"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+   permission_classes=(AllowAny,),
+)
 
 
 urlpatterns = [
-    path('sniff/', get_sniff, name='sniff'),
-    path('fetch/', get_fetch, name='fetch'),
-    path('sniff_bulk/', post_sniff_bulk, name='bulk sniff'),
-    path('fetch_bulk/', post_fetch_bulk, name='bulk fetch'),
-    path('openapi/', get_schema_view(title="Digital Object Gate", description="Digital Object Gate's schema"), name='openapi-schema')
+    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('fetch/', fetch, name='fetch'),
+    path('identify/', identify, name='identify'),
+    path('sniff/', sniff, name='sniff'),
 ]
