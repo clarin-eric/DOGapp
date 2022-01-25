@@ -21,7 +21,8 @@ from rest_framework.permissions import AllowAny
 
 from dog_api.views_api import fetch, identify, sniff
 
-#TODO serve as static file
+
+# TODO serve as static file
 schema_view = get_schema_view(
    openapi.Info(
       title="Snippets API",

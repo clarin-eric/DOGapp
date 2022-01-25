@@ -7,8 +7,8 @@ from os.path import normpath
 
 from setuptools import setup
 
-INSTALL_REQUIRES = ['Django==3.2.7']
-TEST_REQUIRES = ['djangorestframework=3.12.2']
+INSTALL_REQUIRES = ['Django==3.2.7', 'djangorestframework==3.12.2', "django-cors-headers==3.11.0", "pyyaml==6.0", "drf-yasg==1.20.0", "uritemplate==4.1.1" ]
+
 
 chdir(normpath(join(abspath(__file__), pardir)))
 setup(
@@ -25,7 +25,7 @@ setup(
     description='CLARIN Digital Object Gate, a Django application. ',
     long_description='See README.md',
     url='',
-    author=['Michal Gawor'],
+    author=['Michał Gawor'],
     author_email=['michal@clarin.eu'],
     zip_safe=True,
     classifiers=[
