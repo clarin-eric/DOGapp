@@ -80,6 +80,7 @@ SWAGGER_SETTINGS = {
             'type': 'basic'
         }
     },
+    'DEFAULT_INFO': app_name + '.urls.openapi_info',
 }
 
 MIDDLEWARE = [

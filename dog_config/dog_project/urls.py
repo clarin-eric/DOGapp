@@ -21,21 +21,17 @@ from rest_framework.permissions import AllowAny
 
 from dog_api.views_api import fetch, identify, sniff
 
-
+openapi_info = openapi.Info(title="Snippets API",
+                            default_version='v1',
+                            description="Test description",
+                            terms_of_service="https://www.google.com/policies/terms/",
+                            contact=openapi.Contact(email="michal@clarin.eu"),
+                            license=openapi.License(name="GPLv3"))
 # TODO serve as static file
-schema_view = get_schema_view(
-   openapi.Info(
-      title="Snippets API",
-      default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="michal@clarin.eu"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(AllowAny,),
+schema_view = get_schema_view(openapi_info,
+                              public=True,
+                              permission_classes=(AllowAny,),
 )
-
 
 urlpatterns = [
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),

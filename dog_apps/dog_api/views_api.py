@@ -2,7 +2,6 @@
 
 Note, that @api_view decorator must follow @swagger_auto_schema to enable different schemas to be served for different methods
 """
-from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -11,11 +10,13 @@ from rest_framework.request import Request
 from typing import List
 
 from .models import dog
+from .schemas import fetch_response_schema, identify_response_schema, pid_queryparam, sniff_response_schema
 
 
 def parse_pid_queryparam(request: Request) -> List[str]:
     """
-    Parses queryparameters from direct API call (PHP-like format ?param=val1&param=val2) and via Swagger UI (?param=val1,val2)
+    Parses queryparameters from direct API call (PHP-like format ?param[]=val1&param[]=val2, both with and without [])
+    and via Swagger UI (?param=val1,val2)
     """
     query_pid_candidates = request.GET.getlist('pid')
     pid_candidates = []
@@ -25,15 +26,10 @@ def parse_pid_queryparam(request: Request) -> List[str]:
     return pid_candidates
 
 
-pid_queryparam: openapi.Parameter = openapi.Parameter(name='pid',
-                                                      in_=openapi.IN_QUERY,
-                                                      description='Persistent identifier to a collection',
-                                                      type=openapi.TYPE_ARRAY,
-                                                      items=openapi.Items(type=openapi.TYPE_STRING))
-
-
-# TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
-@swagger_auto_schema(method="get", manual_parameters=[pid_queryparam])
+@swagger_auto_schema(method="get",
+                     manual_parameters=[pid_queryparam],
+                     responses={200: fetch_response_schema,
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def fetch(request: Request) -> Response:
@@ -53,7 +49,10 @@ def fetch(request: Request) -> Response:
 
 
 # TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
-@swagger_auto_schema(method="get", manual_parameters=[pid_queryparam])
+@swagger_auto_schema(method="get",
+                     manual_parameters=[pid_queryparam],
+                     responses={200: identify_response_schema,
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def identify(request: Request) -> Response:
@@ -73,7 +72,10 @@ def identify(request: Request) -> Response:
 
 
 # TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
-@swagger_auto_schema(method="get", manual_parameters=[pid_queryparam])
+@swagger_auto_schema(method="get",
+                     manual_parameters=[pid_queryparam],
+                     responses={200: sniff_response_schema,
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def sniff(request: Request) -> Response:
