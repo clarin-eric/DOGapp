@@ -48,7 +48,6 @@ def fetch(request: Request) -> Response:
         return Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)
 
 
-# TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
                      responses={200: identify_response_schema,
@@ -71,7 +70,6 @@ def identify(request: Request) -> Response:
         return Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)
 
 
-# TODO, explicit declaration of Response format (drf_yasg unable to infer from modelless serializers)
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
                      responses={200: sniff_response_schema,
