@@ -32,7 +32,7 @@ jobs:
         run: |
           screen -m -d python dog_config/manage.py runserver 127.0.0.1:8000
           sleep 10
-          curl -L 127.0.0.1:8000/openapi > openapi.json
+          curl -L 127.0.0.1:8000/swagger.json > openapi.json
           cat openapi.json
       - name: Push generated schemas
         run: |
