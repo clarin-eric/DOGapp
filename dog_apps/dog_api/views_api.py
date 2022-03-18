@@ -10,7 +10,8 @@ from rest_framework.request import Request
 from typing import List
 
 from .models import dog
-from .schemas import fetch_response_schema, identify_response_schema, pid_queryparam, sniff_response_schema
+from .schemas import fetch_response_schema, identify_response_schema, is_collection_response_schema, pid_queryparam, \
+    sniff_response_schema
 
 
 def parse_pid_queryparam(request: Request) -> List[str]:
@@ -72,6 +73,26 @@ def identify(request: Request) -> Response:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
+                     responses={200: is_collection_response_schema,
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
+@permission_classes([AllowAny])
+@api_view(['GET'])
+def is_collection(request: Request) -> Response:
+    """
+    Call to doglib.is_collection(), supports list of parameters in format ?pid=<pid1>&pid=<pid2>&pid=<pid3>
+
+    Returns [{<pid>: {bool}}]
+    """
+    pids = parse_pid_queryparam(request)
+    is_collection_result = {pid: dog.is_collection(pid) for pid in pids}
+    if is_collection_result:
+        return Response(is_collection_result, status=200)
+    else:
+        return Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)
+
+
+@swagger_auto_schema(method="get",
+                     manual_parameters=[pid_queryparam],
                      responses={200: sniff_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
@@ -83,7 +104,7 @@ def sniff(request: Request) -> Response:
     Returns [{<pid>: {sniff_result}}]
     """
     pids = parse_pid_queryparam(request)
-    sniff_result = {pid: dog.identify(pid) for pid in pids}
+    sniff_result = {pid: dog.sniff(pid) for pid in pids}
     if sniff_result:
         return Response(sniff_result, status=200)
     else:

@@ -15,7 +15,7 @@ setup(
     name='dog_apps',
     use_scm_version={
         "root": "..",
-        "fallback_version": "1.1.0-dev0"
+        "fallback_version": "1.1.0.dev0"
     },
     setup_requires=['setuptools_scm'],
     packages=['dog_api'],
@@ -25,8 +25,8 @@ setup(
     description='CLARIN Digital Object Gate, a Django application. ',
     long_description='See README.md',
     url='',
-    author=['Michał Gawor'],
-    author_email=['michal@clarin.eu'],
+    author='Michał Gawor',
+    author_email='michal@clarin.eu',
     zip_safe=True,
     classifiers=[
         'Environment :: Web Environment',
