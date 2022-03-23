@@ -7,7 +7,7 @@ from os.path import normpath
 
 from setuptools import setup
 
-INSTALL_REQUIRES = ['Django==3.2.7', 'djangorestframework==3.12.2', "django-cors-headers==3.11.0", "pyyaml==6.0", "drf-yasg==1.20.0", "uritemplate==4.1.1" ]
+INSTALL_REQUIRES = ['Django>=4.0.3', 'djangorestframework>=3.13.1', "django-cors-headers>=3.11.0", "pyyaml>=6.0", "drf-yasg>=1.20.0", "uritemplate>=4.1.1" ]
 
 
 chdir(normpath(join(abspath(__file__), pardir)))
