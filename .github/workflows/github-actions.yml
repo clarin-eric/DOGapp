@@ -28,7 +28,7 @@ jobs:
         run: |
           pip install djangorestframework
           pip install ./dog_apps
-      - name: Run Django server and dump OpenAPI schems
+      - name: Run Django server and try to access swagger page
         run: |
           screen -m -d python dog_config/manage.py runserver 127.0.0.1:8000
           sleep 10
