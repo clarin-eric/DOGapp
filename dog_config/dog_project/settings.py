@@ -23,6 +23,7 @@ BASE_DIR = dirname(dirname(__file__))
 SECRET_KEY ='testsecret087B*#bAIUSd'
 ## Secure cookies have to be turned off in development mode, assuming there is
 ## no reverse proxy with X-Forwarded-Proto=https or https://tools.ietf.org/html/rfc7239.
+ADMIN_ENABLED = False
 DEBUG = True # TODO: templatize
 SESSION_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_HTTPONLY = True
