@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: 3.8
       
-      - run: python -V 
+      - run: apt-get update 
 
       - name: Install DOGlib
         run: |
