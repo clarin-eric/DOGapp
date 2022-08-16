@@ -36,10 +36,10 @@ def parse_pid_queryparam(request: Request) -> List[str]:
 def fetch(request: Request) -> Response:
     """
     Call to doglib.fetch(), supports PID and list of PIDs in formats:
-    ?pid=<pid1>&pid=<pid2>&pid=<pid3>
-    ?pid=<pid1>,<pid2>,<pid3>
+    ?pid=val1&pid=val2&pid=val3
+    ?pid=val1,val2,val3
 
-    Returns [{<pid>: {fetch_results}}]
+    Returns [{pid: {fetch_results}}]
     """
     pids = parse_pid_queryparam(request)
     fetch_results = {pid: dog.fetch(pid) for pid in pids}
@@ -57,11 +57,11 @@ def fetch(request: Request) -> Response:
 @api_view(['GET'])
 def identify(request: Request) -> Response:
     """
-    Call to doglib.fetch(), supports PID and list of PIDs in formats:
-    ?pid=<pid1>&pid=<pid2>&pid=<pid3>
-    ?pid=<pid1>,<pid2>,<pid3>
+    Call to doglib.identify(), supports PID and list of PIDs in formats:
+    ?pid=val1&pid=val2&pid=val3
+    ?pid=val1,val2,val3
 
-    Returns [{<pid>: {identify_result}}]
+    Returns [{pid: {identify_result}}]
     """
     pids = parse_pid_queryparam(request)
     identify_result = {pid: dog.identify(pid) for pid in pids}
@@ -81,7 +81,7 @@ def is_collection(request: Request) -> Response:
     """
     Call to doglib.is_collection(), supports list of parameters in format ?pid=<pid1>&pid=<pid2>&pid=<pid3>
 
-    Returns [{<pid>: {bool}}]
+    Returns [{pid: {bool}}]
     """
     pids = parse_pid_queryparam(request)
     is_collection_result = {pid: dog.is_collection(pid) for pid in pids}
@@ -101,7 +101,7 @@ def sniff(request: Request) -> Response:
     """
     Call to doglib.sniff(), supports list of parameters in format ?pid=<pid1>&pid=<pid2>&pid=<pid3>
 
-    Returns [{<pid>: {sniff_result}}]
+    Returns [{pid: {sniff_result}}]
     """
     pids = parse_pid_queryparam(request)
     sniff_result = {pid: dog.sniff(pid) for pid in pids}
