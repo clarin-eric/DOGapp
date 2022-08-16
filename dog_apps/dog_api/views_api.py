@@ -29,6 +29,9 @@ def parse_pid_queryparam(request: Request) -> List[str]:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
+                     operation_description="Call to doglib.fetch(), supports PID and list of PIDs in formats:"
+                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
+                                           "?pid=val1,val2,val3",
                      responses={200: fetch_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
@@ -51,6 +54,9 @@ def fetch(request: Request) -> Response:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
+                     operation_description="Call to doglib.identify(), supports PID and list of PIDs in formats:"
+                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
+                                           "?pid=val1,val2,val3",
                      responses={200: identify_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
@@ -61,7 +67,7 @@ def identify(request: Request) -> Response:
     ?pid=val1&pid=val2&pid=val3
     ?pid=val1,val2,val3
 
-    Returns [{pid: {identify_result}}]
+    Returns [{pid: <identify_result>}]
     """
     pids = parse_pid_queryparam(request)
     identify_result = {pid: dog.identify(pid) for pid in pids}
@@ -73,15 +79,20 @@ def identify(request: Request) -> Response:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
+                     operation_description="Call to doglib.is_collection(), supports PID and list of PIDs in formats:"
+                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
+                                           "?pid=val1,val2,val3",
                      responses={200: is_collection_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def is_collection(request: Request) -> Response:
     """
-    Call to doglib.is_collection(), supports list of parameters in format ?pid=<pid1>&pid=<pid2>&pid=<pid3>
+    Call to doglib.is_collection(), supports list of parameters in formats:
+    ?pid=<val1>&pid=<val2>&pid=<val3>
+    ?pid=<val1>,<val2>,<val3>
 
-    Returns [{pid: {bool}}]
+    Returns [{pid: bool}]
     """
     pids = parse_pid_queryparam(request)
     is_collection_result = {pid: dog.is_collection(pid) for pid in pids}
@@ -93,15 +104,20 @@ def is_collection(request: Request) -> Response:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
+                     operation_description="Call to doglib.sniff(), supports PID and list of PIDs in formats:"
+                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
+                                           "?pid=val1,val2,val3",
                      responses={200: sniff_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def sniff(request: Request) -> Response:
     """
-    Call to doglib.sniff(), supports list of parameters in format ?pid=<pid1>&pid=<pid2>&pid=<pid3>
+    Call to doglib.sniff(), supports list of parameters in formats:
+    ?pid=<val1>&pid=<val2>&pid=<val3>
+    ?pid=<val1>,<val2>,<val3>
 
-    Returns [{pid: {sniff_result}}]
+    Returns [{pid: <sniff_result>}]
     """
     pids = parse_pid_queryparam(request)
     sniff_result = {pid: dog.sniff(pid) for pid in pids}
