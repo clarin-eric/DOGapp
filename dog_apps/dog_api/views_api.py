@@ -20,10 +20,8 @@ def parse_pid_queryparam(request: Request) -> List[str]:
     and via Swagger UI (?param=val1,val2)
     """
     query_pid_candidates = request.GET.getlist('pid')
-    pid_candidates = []
     # Swagger UI returns a 1 element list with comma separated values of parameter, e.g. ["string,string,string"]
-    for pid_candidate in query_pid_candidates:
-        pid_candidates.extend(pid_candidate.split(','))
+    pid_candidates = [pid_candidate.split(',') for pid_candidate in query_pid_candidates]
     return pid_candidates
 
 
@@ -63,7 +61,7 @@ def fetch(request: Request) -> Response:
 @api_view(['GET'])
 def identify(request: Request) -> Response:
     """
-    Call to doglib.identify(), supports PID and list of PIDs in formats:
+    Identifies PID (VLO request):
     ?pid=val1&pid=val2&pid=val3
     ?pid=val1,val2,val3
 
@@ -88,7 +86,7 @@ def identify(request: Request) -> Response:
 @api_view(['GET'])
 def is_collection(request: Request) -> Response:
     """
-    Call to doglib.is_collection(), supports list of parameters in formats:
+    Checks whether PID points to a collection:
     ?pid=<val1>&pid=<val2>&pid=<val3>
     ?pid=<val1>,<val2>,<val3>
 
@@ -113,7 +111,7 @@ def is_collection(request: Request) -> Response:
 @api_view(['GET'])
 def sniff(request: Request) -> Response:
     """
-    Call to doglib.sniff(), supports list of parameters in formats:
+    Checks whether PID points to resources in registered repository:
     ?pid=<val1>&pid=<val2>&pid=<val3>
     ?pid=<val1>,<val2>,<val3>
 
