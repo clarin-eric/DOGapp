@@ -27,16 +27,14 @@ def parse_pid_queryparam(request: Request) -> List[str]:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
-                     operation_description="Call to doglib.fetch(), supports PID and list of PIDs in formats:"
-                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
-                                           "?pid=val1,val2,val3",
+                     operation_description="Fetches all PIDs referenced in the metadata",
                      responses={200: fetch_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def fetch(request: Request) -> Response:
     """
-    Call to doglib.fetch(), supports PID and list of PIDs in formats:
+    Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats:
     ?pid=val1&pid=val2&pid=val3
     ?pid=val1,val2,val3
 
@@ -52,9 +50,7 @@ def fetch(request: Request) -> Response:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
-                     operation_description="Call to doglib.identify(), supports PID and list of PIDs in formats:"
-                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
-                                           "?pid=val1,val2,val3",
+                     operation_description="Identifies PID",
                      responses={200: identify_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
@@ -77,9 +73,7 @@ def identify(request: Request) -> Response:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
-                     operation_description="Call to doglib.is_collection(), supports PID and list of PIDs in formats:"
-                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
-                                           "?pid=val1,val2,val3",
+                     operation_description="Checks whether PID points to a collection",
                      responses={200: is_collection_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
@@ -102,9 +96,7 @@ def is_collection(request: Request) -> Response:
 
 @swagger_auto_schema(method="get",
                      manual_parameters=[pid_queryparam],
-                     operation_description="Call to doglib.sniff(), supports PID and list of PIDs in formats:"
-                                           "\n\t?pid=val1&pid=val2&pid=val3\n\t"
-                                           "?pid=val1,val2,val3",
+                     operation_description="Checks whether PID points to resources in registered repository",
                      responses={200: sniff_response_schema,
                                 400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
 @permission_classes([AllowAny])
