@@ -1,6 +1,6 @@
 """
-
-Note, that @api_view decorator must follow @swagger_auto_schema to enable different schemas to be served for different methods
+Note, that @api_view decorator must follow @swagger_auto_schema to enable different schemas to be served for different
+methods
 """
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import api_view, permission_classes
@@ -21,7 +21,7 @@ def parse_pid_queryparam(request: Request) -> List[str]:
     """
     query_pid_candidates = request.GET.getlist('pid')
     # Swagger UI returns a 1 element list with comma separated values of parameter, e.g. ["string,string,string"]
-    pid_candidates = [pid_candidate.split(',') for pid_candidate in query_pid_candidates]
+    pid_candidates = [pid for pid_candidate in query_pid_candidates for pid in pid_candidate.split(',')]
     return pid_candidates
 
 
@@ -29,7 +29,8 @@ def parse_pid_queryparam(request: Request) -> List[str]:
                      manual_parameters=[pid_queryparam],
                      operation_description="Fetches all PIDs referenced in the metadata",
                      responses={200: fetch_response_schema,
-                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"}
+                     )
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def fetch(request: Request) -> Response:
@@ -52,7 +53,8 @@ def fetch(request: Request) -> Response:
                      manual_parameters=[pid_queryparam],
                      operation_description="Identifies PID",
                      responses={200: identify_response_schema,
-                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"}
+                     )
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def identify(request: Request) -> Response:
@@ -75,7 +77,8 @@ def identify(request: Request) -> Response:
                      manual_parameters=[pid_queryparam],
                      operation_description="Checks whether PID points to a collection",
                      responses={200: is_collection_response_schema,
-                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"}
+                     )
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def is_collection(request: Request) -> Response:
@@ -98,7 +101,8 @@ def is_collection(request: Request) -> Response:
                      manual_parameters=[pid_queryparam],
                      operation_description="Checks whether PID points to resources in registered repository",
                      responses={200: sniff_response_schema,
-                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"})
+                                400: "Persistent Identifier(s) {pids} is either not correct or has been not recognised"}
+                     )
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def sniff(request: Request) -> Response:

@@ -1,11 +1,16 @@
 # DOGapp
-DOGapp is a Django application providing REST API for DOGlib functionalities
+DOGapp is a Django application providing REST API for [DOGlib](https://github.com/clarin-eric/DOGlib) functionalities. 
+Its goal is to provide fair access to CLARIN resources from the metadata
 
 ## API
-`/sniff/?pid`, where pid is a PID-like string. Accepts URL, HDL, DOI. Returns PID's host information.
+PID's can be passed as parameters to URL query in following formats:
+>?pid=val1&pid=val2&pid=val3 \
+>?pid=val1,val2,val3
 
-`/fetch/?pid`, where pid is a PID-like string. Accepts URL, HDL and DOI. Resolves the collection and returns collection of all referenced resources. 
+`/sniff/?pid`, Checks whether PID points to resources in registered repository.
 
-Both calls come as well in a bulk form. In order to process multiple PIDs at the same time use POST and pass a list of PIDs in data under a key `pids`, e.g. using Curl:
+`/fetch/?pid`, Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats: \
 
-`curl --insecure -X POST https://localhost:8000/fetch_bulk/ -d '{"pids":["https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3698", "http://hdl.handle.net/1839/00-0000-0000-0018-A640-9"]}' -H "Content-Type: application/json
+`/identify/?pid`, identifies PID (VLO request):\
+
+`/swagger.json`, provides OpenApi 2.0 specification of the API
