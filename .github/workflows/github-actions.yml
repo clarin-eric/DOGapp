@@ -28,7 +28,7 @@ jobs:
       - name: Install DOG applications
         run: |
           pip install djangorestframework
-          pip install ./dog-apps
+          pip install ./dog-api
       - name: Run Django server and try to access swagger page
         run: |
           screen -m -d python dog_config/manage.py runserver 127.0.0.1:8000
