@@ -9,8 +9,8 @@ PID's can be passed as parameters to URL query in following formats:
 
 `/sniff/?pid`, Checks whether PID points to resources in registered repository.
 
-`/fetch/?pid`, Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats: \
+`/fetch/?pid`, Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats.
 
-`/identify/?pid`, identifies PID (VLO request):\
+`/identify/?pid`, identifies PID (VLO request).
 
-`/swagger.json`, provides OpenApi 2.0 specification of the API
+`/swagger.json`, provides OpenApi 2.0 specification of the API.
