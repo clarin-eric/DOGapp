@@ -20,6 +20,9 @@ dependencies = [
     "pyyaml>=6.0",
     "uritemplate>=4.1.1",
 ]
+packages = [
+    { include = "dog_project"},
+]
 authors = [
     { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
 ]
