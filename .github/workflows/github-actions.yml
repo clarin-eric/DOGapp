@@ -30,8 +30,6 @@ jobs:
         run: |
           pip install djangorestframework
           pip install ./dog-api
-      - name: Run Django server and try to access swagger page
+      - name: Test app
         run: |
-          screen -d -m python dog-config/manage.py runserver 127.0.0.1:8000
-          sleep 10
-          curl -f -L 127.0.0.1:8000/swagger.json
+          python dog-config/manage.py test
