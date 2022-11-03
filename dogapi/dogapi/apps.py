@@ -1,9 +1,9 @@
-import dog_api
+import dogapi
 from django.apps import AppConfig
 
 
 class DogApiConf(AppConfig):
-    name = dog_api.__name__
+    name = dogapi.__name__
     verbose_name = 'DOG API module'
 
 
