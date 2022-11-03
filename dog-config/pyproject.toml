@@ -2,7 +2,7 @@
 requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
 [project]
 name = "dog-config"
-version = "1.0.0"
+version = "1.0.0-rc9"
 description = "Django web application providing Digital Object Gates functionality"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -20,9 +20,10 @@ dependencies = [
     "pyyaml>=6.0",
     "uritemplate>=4.1.1",
 ]
-packages = [
-    { include = "dog_project"},
-]
 authors = [
     { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
 ]
+
+[tool.setuptools.packages.find]
+where = ["dog_project"]
+include = ["*"]
