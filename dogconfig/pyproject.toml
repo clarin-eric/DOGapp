@@ -1,8 +1,8 @@
 [build-system]
 requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
 [project]
-name = "dog-config"
-version = "1.0.0-rc9"
+name = "dogconfig"
+version = "1.0.0-dev0"
 description = "Django web application providing Digital Object Gates functionality"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -15,7 +15,7 @@ dependencies = [
     "Django>=4.1.1",
     "django-cors-headers>=3.1.13",
     "djangorestframework>=3.14.0",
-    "dog-api>=1.0.0",
+    "dogapi>=1.0.0",
     "drf-yasg>=1.21.4",
     "pyyaml>=6.0",
     "uritemplate>=4.1.1",
@@ -25,5 +25,5 @@ authors = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["dog_project"]
+where = ["dogproject"]
 include = ["*"]

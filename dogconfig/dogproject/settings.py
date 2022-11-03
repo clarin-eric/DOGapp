@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from os.path import abspath, dirname, join
 
-from dog_project import __name__ as app_name
+from dogconfig.dogproject import __name__ as app_name
 
 BASE_DIR = dirname(dirname(__file__))
 
@@ -38,7 +38,7 @@ DEBUG = True
 MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
-                   '../../dog-api/dog_api/assets')
+                   '../../dogapi/dogapi/assets')
 STATICFILES_DIRS = (join(BASE_DIR, 'DOGapp/static'))
 
 STATICFILES_FINDERS = (

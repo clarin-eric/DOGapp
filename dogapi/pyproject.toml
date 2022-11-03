@@ -1,7 +1,7 @@
 [build-system]
 requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
 [project]
-name = "dog-api"
+name = "dogapi"
 version = "1.0.0"
 description = "Django API views serving Digital Object Gate functionalities"
 classifiers = [
@@ -16,3 +16,6 @@ dependencies = [
 authors = [
     { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
 ]
+[tool.setuptools.packages.find]
+where = ["dogapi"]
+include = ["*"]
