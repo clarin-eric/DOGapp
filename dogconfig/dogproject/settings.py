@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'dog_api.apps.DogApiConf',
+    'dogapi.apps.DogApiConf',
     'doglib',
     'drf_yasg',
     'rest_framework',
