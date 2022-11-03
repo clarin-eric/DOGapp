@@ -33,7 +33,7 @@ jobs:
           pip install djangorestframework
           pip install django-rest-swagger
           pip install drf-yasg
-          pip install ./dog-api
+          pip install ./dogapi
       - name: Test app
         run: |
-          python dog-config/manage.py test
+          python dogconfig/manage.py test
