@@ -55,12 +55,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd party
     'corsheaders',
-    'dogapi.apps.DogApiConf',
-    'doglib',
     'drf_yasg',
     'rest_framework',
     'rest_framework_swagger',
+
+    # local
+    'dogapi.apps.DogApiConf',
+    'doglib',
 ]
 
 REST_FRAMEWORK = {
