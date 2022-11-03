@@ -19,7 +19,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
-from dog_api.views_api import fetch, identify, sniff
+from dogapi.views_api import fetch, identify, sniff
 
 openapi_info = openapi.Info(title="Snippets API",
                             default_version='v1',
