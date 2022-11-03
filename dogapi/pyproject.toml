@@ -16,3 +16,6 @@ dependencies = [
 authors = [
     { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
 ]
+[tool.setuptools.packages.find]
+where = ["dogapi"]
+include = ["*"]
