@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from os.path import abspath, dirname, join
 
-from dogconfig.dogproject import __name__ as app_name
+from dogproject import __name__ as app_name
 
 BASE_DIR = dirname(dirname(__file__))
 
