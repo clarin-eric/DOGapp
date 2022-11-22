@@ -36,4 +36,4 @@ jobs:
           pip install ./dogapi
       - name: Test app
         run: |
-          python dogconfig/manage.py test
+          python runtests.py
