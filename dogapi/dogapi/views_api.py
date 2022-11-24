@@ -33,7 +33,7 @@ def fetch(request: Request) -> Response:
     :param request: Django REST Framework request instance
     :type request: rest_framework.response.Request
 
-    :return: Django REST Framework response instance containing list of dicts in format [{pid: <doglib_fetch_results>}]
+    :return: Django REST Framework response instance containing list of dicts in format [{pid: <fetch_result>}]
     :rtype: rest_framework.response.Response
     """
     ret: Response
@@ -67,7 +67,7 @@ def identify(request: Request) -> Response:
     :param request: Django REST Framework request instance
     :type request: rest_framework.response.Request
 
-    :return: Django REST Framework response instance containing list of dicts in format [{pid: <doglib_identify_result>}]
+    :return: Django REST Framework response instance containing list of dicts in format [{pid: <identify_result>}]
     :rtype: rest_framework.response.Response
     """
     ret: Response
@@ -102,7 +102,7 @@ def is_collection(request: Request) -> Response:
     :param request: Django REST Framework request instance
     :type request: rest_framework.response.Request
 
-    :return: Django REST Framework response instance containing list of dicts in format [{pid: <is_collection>]
+    :return: Django REST Framework response instance containing list of dicts in format [{pid: <is_collection_result>]
     :rtype: rest_framework.response.Response
     """
     ret: Response
@@ -133,7 +133,11 @@ def sniff(request: Request) -> Response:
     ?pid=<val1>&pid=<val2>&pid=<val3>
     ?pid=<val1>,<val2>,<val3>
 
-    Returns [{pid: <sniff_result>}]
+    :param request: Django REST Framework request instance
+    :type request: rest_framework.response.Request
+
+    :return: Django REST Framework response instance containing list of dicts in format [{pid: <sniff_result>]
+    :rtype: rest_framework.response.Response
     """
     ret: Response
     try:
