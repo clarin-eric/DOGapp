@@ -14,6 +14,7 @@ if __name__ == "__main__":
                 'rest_framework.renderers.BrowsableAPIRenderer',
             ],
         },
+        ROOT_URLCONF="dogproject" + '.urls',
         INSTALLED_APPS=[
             "django.contrib.auth",
             "django.contrib.contenttypes",

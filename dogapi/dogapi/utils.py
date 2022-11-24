@@ -36,13 +36,12 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
     :return: list of parameter values parsed from request
     :rtype: List[str]
     """
-    query_pid_candidates: List[str] = request.query_params.getlist(f'{param_name}')
-
+    query_pid_candidates: List[str] = request.GET.getlist(f'{param_name}')
     # check if pid parameter passed
-    if query_pid_candidates is None:
+    if not query_pid_candidates:
         # try parsing PHP-like (param[]=val1&param[]=val2 format for queryparam list
-        query_pid_candidates = request.query_params.getlist(f'{param_name}[]')
-        if query_pid_candidates is None:
+        query_pid_candidates = request.GET.getlist(f'{param_name}[]')
+        if not query_pid_candidates:
             raise QueryparamParsingError(param_name)
 
     # Swagger UI returns a 1 element list with comma separated values of parameter, e.g. ["string,string,string"]
