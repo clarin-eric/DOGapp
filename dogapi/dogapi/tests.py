@@ -2,7 +2,7 @@ from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 import unittest
 
-from dogapi.utils import parse_pid_queryparam
+from dogapi.utils import parse_queryparam
 
 
 class TestQueryParamParsing(unittest.TestCase):
