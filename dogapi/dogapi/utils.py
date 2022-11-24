@@ -36,12 +36,12 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
     :return: list of parameter values parsed from request
     :rtype: List[str]
     """
-    query_pid_candidates = request.GET.getlist(f'{param_name}')
+    query_pid_candidates = request.query_params.getlist(f'{param_name}')
 
     # check if pid parameter passed
     if query_pid_candidates is None:
         # try parsing PHP-like format for queryparam list
-        query_pid_candidates = request.GET.getlist(f'{param_name}[]')
+        query_pid_candidates = request.query_params.getlist(f'{param_name}[]')
         if query_pid_candidates is None:
             raise QueryparamParsingError(param_name)
 
