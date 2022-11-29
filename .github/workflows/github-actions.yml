@@ -38,4 +38,6 @@ jobs:
       - name: Test app
         run: |
           python ./runtests.py
-          nohup python ./dogconfig/manage.py runserver
+          screen -m -d python ./dogconfig/manage.py runserver 127.0.0.1:8000
+
+
