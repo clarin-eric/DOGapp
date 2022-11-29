@@ -40,5 +40,5 @@ jobs:
           python ./runtests.py
           screen -m -d python ./dogconfig/manage.py runserver 127.0.0.1:8000
           sleep 5
-          [ $(curl -LI http://google.com -o /dev/null -w '%{http_code}\n' -s) != "200" ] && exit 6
+        [ $(curl -LI 127.0.0.1:8000 -o /dev/null -w '%{http_code}\n' -s) != "200" ] && exit 6
 
