@@ -20,6 +20,9 @@ class QueryparamParsingError(Exception):
     def __str__(self):
         return f'{self.message}: {self.param_name}'
 
+    def __dict__(self):
+        return {self.__str__()}
+
 
 def parse_queryparam(request: Request, param_name: str) -> List[str]:
     """
