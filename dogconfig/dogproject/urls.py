@@ -20,24 +20,25 @@ from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
 from dogapi.views_api import fetch, identify, sniff
+from dogui.views import form_pid, sniff_result
 
-openapi_info = openapi.Info(title="Snippets API",
-                            default_version='v1',
-                            description="Test description",
-                            terms_of_service="https://www.google.com/policies/terms/",
+openapi_info = openapi.Info(title="DOG API",
+                            default_version='v2',
+                            description="Digital Object Gate API",
+                            terms_of_service="",
                             contact=openapi.Contact(email="michal@clarin.eu"),
                             license=openapi.License(name="GPLv3"))
 # TODO serve as static file
 schema_view = get_schema_view(openapi_info,
                               public=True,
-                              permission_classes=(AllowAny,),
-)
+                              permission_classes=[AllowAny]
+                              )
 
 urlpatterns = [
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('fetch/', fetch, name='fetch'),
-    path('identify/', identify, name='identify'),
-    path('sniff/', sniff, name='sniff'),
+    path('api/fetch/', fetch, name='fetch'),
+    path('api/identify/', identify, name='identify'),
+    path('api/sniff/', sniff, name='sniff'),
 ]
