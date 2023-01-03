@@ -46,7 +46,9 @@ STATICFILES_FINDERS = (
 )
 ROOT_URLCONF = app_name + '.urls'
 
-TEMPLATE_LOADERS = ('django.template.loaders.app_directories.Loader', )
+#
+NETLOC = "localhost:8000"
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,9 +63,16 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
 
-    # local
-    'dogapi.apps.DogApiConf',
+    # CLARIN internal dependency
     'doglib',
+
+    # local
+    # Labels have to be unique, package and module have same names by default, override with django app config
+    #'dogapi.apps.DogApiConf',
+    #'dogui.apps.DogUIConf'
+    'dogapi',
+    'dogui'
+
 ]
 
 REST_FRAMEWORK = {
@@ -99,11 +108,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+TEMPLATE_LOADERS = ('django.template.loaders.app_directories.Loader', )
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
         'APP_DIRS': True,
+        'DIRS': [join(BASE_DIR, 'templates'),
+                 join(BASE_DIR, './../dogui/dogui/templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -114,6 +125,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 
 # Internationalization

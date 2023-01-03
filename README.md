@@ -1,5 +1,5 @@
 # DOGapp
-DOGapp is a Django application providing REST API for [DOGlib](https://github.com/clarin-eric/DOGlib) functionalities. 
+DOGapp is a Django application exposing REST API for [DOGlib](https://github.com/clarin-eric/DOGlib) functionalities. 
 Its goal is to provide fair access to CLARIN resources from the metadata
 
 ## API

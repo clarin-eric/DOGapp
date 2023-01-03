@@ -1,6 +1,8 @@
 from rest_framework.request import Request
 from typing import List
 
+from doglib.pid import pid_factory
+
 
 class QueryparamParsingError(Exception):
     """

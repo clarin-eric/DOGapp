@@ -20,7 +20,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
 from dogapi.views_api import fetch, identify, sniff
-from dogui.views import form_pid, sniff_result
+from dogui.views import home, sniff_result
 
 openapi_info = openapi.Info(title="DOG API",
                             default_version='v2',
@@ -41,4 +41,5 @@ urlpatterns = [
     path('api/fetch/', fetch, name='fetch'),
     path('api/identify/', identify, name='identify'),
     path('api/sniff/', sniff, name='sniff'),
+    path('', home, name='main'),
 ]
