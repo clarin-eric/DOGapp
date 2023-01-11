@@ -1,4 +1,4 @@
-"""
+z"""
 ASGI config for DOG-apps project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.

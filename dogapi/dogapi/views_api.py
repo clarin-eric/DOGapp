@@ -11,8 +11,8 @@ from typing import List
 
 
 from .models import dog
-from .schemas import fetch_response_schema, identify_response_schema, is_collection_response_schema, pid_queryparam, \
-    sniff_response_schema
+from .schemas import fetch_response_schema, identify_response_schema, is_collection_response_schema, \
+    is_pid_response_schema, pid_queryparam, sniff_response_schema
 from .utils import parse_queryparam, QueryparamParsingError
 
 
@@ -150,4 +150,23 @@ def sniff(request: Request) -> Response:
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
 
+    return ret
+
+
+@swagger_auto_schema(method="get",
+                     manual_parameters=[pid_queryparam],
+                     operation_description="Checks whether string is PID acceptable by DOG",
+                     responses={200: is_pid_response_schema,
+                                400: "PID candidate(s) {pids} is either not correct or has been not recognised"}
+                     )
+@permission_classes([AllowAny])
+@api_view(['GET'])
+def is_pid(request: Request) -> Response:
+    ret: Response
+    try:
+        pids = parse_queryparam(request, "pid")
+        pid_result = {pid: True if dog.is_pid(pid) is not None else False for pid in pids}
+        ret = Response(pid_result, status=200)
+    except QueryparamParsingError as err:
+        ret = Response(err, status=400)
     return ret

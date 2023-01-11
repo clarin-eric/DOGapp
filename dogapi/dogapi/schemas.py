@@ -70,3 +70,14 @@ sniff_response_schema: openapi.Schema = openapi.Schema(
                               })
     }
 )
+
+is_pid_response_schema = openapi.Schema = openapi.Schema(
+    title="Is pid response schema",
+    description="Is string DOG acceptable PID",
+    type=openapi.TYPE_OBJECT,
+    required=["pid"],
+    properties={
+        "pid": openapi.Schema(type=openapi.TYPE_BOOLEAN,
+                              description="Is pid acceptable by DOG")
+    }
+)
