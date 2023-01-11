@@ -1,0 +1,15 @@
+{% extends 'UI/_.html' %}
+{% block title %} - Sniff test {% endblock title %}
+{% block content %}
+    {% block pid_form %}
+        {%  if form %}
+            {% include 'UI/_form_pid.html' with form=form %}
+        {% endif %}
+    {% endblock pid_form %}
+    {% block sniff_result %}
+        {% if sniff_response %}
+            {{ sniff_response.items }}
+            {% include 'UI/_sniff.html' with sniff_response=sniff_response %}
+        {% endif %}
+    {% endblock sniff_result %}
+{% endblock content %}

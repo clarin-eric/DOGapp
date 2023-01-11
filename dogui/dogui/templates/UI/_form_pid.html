@@ -1,0 +1,13 @@
+<div id="input_text">
+    <form method="GET" id="pid_form" action="/">
+        <label for="pid_candidate">Persistent Identifier</label>
+        {{ form }}
+        <button type="submit">Sniff Persistent Identifier</button>
+    </form>
+</div>
+<div id="input_radio">
+    {% for functionality in functionalities %}
+        <input type="radio" name="radiosearch" onclick="document.pid_form.action='/'{{ functionality.0 }};"
+                {% if functionality.1 == 'sniff' %} checked="checked"/>  {% endif %} {{ functionality.1 }}
+    {% endfor %}
+</div>

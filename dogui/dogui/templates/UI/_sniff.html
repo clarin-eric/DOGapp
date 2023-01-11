@@ -1,0 +1,5 @@
+{% block sniff_result %}
+    {% for pid, sniff_res in sniff_response.items %}
+        {{ pid }}: <a href={{ sniff_res.host_netloc }}>{{ sniff_res.name }}</a>
+    {% endfor %}
+{% endblock %}
