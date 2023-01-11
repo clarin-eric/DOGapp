@@ -7,7 +7,11 @@
 </div>
 <div id="input_radio">
     {% for functionality in functionalities %}
-        <input type="radio" name="radiosearch" onclick="document.pid_form.action='/'{{ functionality.0 }};"
+        <input type="radio" name="radiosearch" id="radiosearch_{{ functionality.0 }}" onclick="document.pid_form.action='/'{{ functionality.0 }};"
                 {% if functionality.1 == 'sniff' %} checked="checked"/>  {% endif %} {{ functionality.1 }}
+        <label for="radiosearch_{{ functionality.0 }}">{{ functionality.1 }}</label>
     {% endfor %}
+<span class = "class1">
+<a href ="" onclick="loadthepopup();" name ="radiosearch">Change Theme</a>
+</span>
 </div>
