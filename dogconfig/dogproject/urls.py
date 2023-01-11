@@ -1,13 +1,13 @@
 """DOG web application URL Configuration
 """
 
-from django.urls import path, re_path
+from django.urls import include, path, re_path
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
 from dogapi.views_api import fetch, identify, is_pid, sniff
-from dogui.views import home, sniff_result
+from dogui.views_ui import home
 
 openapi_info = openapi.Info(title="DOG API",
                             default_version='v2',
@@ -30,4 +30,5 @@ urlpatterns = [
     path('api/sniff/', sniff, name='sniff'),
     path('api/ispid/', is_pid, name='is pid'),
     path('', home, name='main'),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]

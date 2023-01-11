@@ -9,10 +9,8 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-from django.utils.log import DEFAULT_LOGGING
-
 from os.path import abspath, dirname, join
-from sys import stdout
+import sys
 import logging.config
 from dogproject import __name__ as app_name
 
@@ -26,6 +24,7 @@ SECRET_KEY ='testsecret087B*#bAIUSd'
 ## Secure cookies have to be turned off in development mode, assuming there is
 ## no reverse proxy with X-Forwarded-Proto=https or https://tools.ietf.org/html/rfc7239.
 ADMIN_ENABLED = False
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # TODO: templatize
 SESSION_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_HTTPONLY = True
@@ -35,8 +34,6 @@ PIWIK_WEBSITE_ID = "1000"
 PROJECT_DIR = abspath(dirname(__file__))
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'django']
 TEMPLATE_DEBUG = DEBUG
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
@@ -49,8 +46,12 @@ STATICFILES_FINDERS = (
 ROOT_URLCONF = app_name + '.urls'
 
 #
-NETLOC = "localhost:8000"
-
+NETLOC = "127.0.0.1:8000"
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,6 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party
+    'debug_toolbar',
     'corsheaders',
     'drf_yasg',
     'rest_framework',
@@ -100,6 +102,7 @@ SWAGGER_SETTINGS = {
 }
 
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -108,6 +111,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 TEMPLATE_LOADERS = ('django.template.loaders.app_directories.Loader', )
@@ -132,39 +136,22 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'console': {
+        'console_handler': {
             'class': 'logging.StreamHandler',
         },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR + 'debug.log',
-        },
+    },
+    'root': {
+        'level': 'DEBUG',
     },
     'loggers': {
+        # More info on '' (unnamed) loggers at the end of this comment
         '': {
-            'handlers': ['console', 'file'],
             'level': 'DEBUG',
-        },
-        'root': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-        },
-        'dogui': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'dogui.views_ui': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
-            'propagate': True,
+            'handlers': ['console_handler'],
         },
     },
 }
-
 logging.config.dictConfig(LOGGING)
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
