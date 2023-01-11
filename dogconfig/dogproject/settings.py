@@ -132,25 +132,33 @@ TEMPLATES = [
     },
 ]
 
+from debug_toolbar.panels.logging import collector
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
     'handlers': {
-        'console_handler': {
-            'class': 'logging.StreamHandler',
+        # existing handlers
+        'djdt_log': {
+            'level': 'DEBUG',
+            'class': 'debug_toolbar.panels.logging.ThreadTrackingHandler',
+            'collector': collector,
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        }
     },
     'root': {
         'level': 'DEBUG',
+        'handlers': ['djdt_log', 'console'],
     },
     'loggers': {
-        # More info on '' (unnamed) loggers at the end of this comment
         '': {
             'level': 'DEBUG',
-            'handlers': ['console_handler'],
-        },
-    },
+            'handlers': ['console'],
+        }
+    }
 }
+
 logging.config.dictConfig(LOGGING)
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
