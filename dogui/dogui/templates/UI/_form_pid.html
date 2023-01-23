@@ -1,17 +1,7 @@
 <div id="input_text">
     <form method="GET" id="pid_form" action="/">
-        <label for="pid_candidate">Persistent Identifier</label>
+        <label for="pid_candidate"></label>
         {{ form }}
-        <button type="submit">Sniff Persistent Identifier</button>
+        <button type="submit">Go!</button>
     </form>
-</div>
-<div id="input_radio">
-    {% for functionality in functionalities %}
-        <input type="radio" name="radiosearch" id="radiosearch_{{ functionality.0 }}" onclick="document.pid_form.action='/'{{ functionality.0 }};"
-                {% if functionality.1 == 'sniff' %} checked="checked"/>  {% endif %} {{ functionality.1 }}
-        <label for="radiosearch_{{ functionality.0 }}">{{ functionality.1 }}</label>
-    {% endfor %}
-<span class = "class1">
-<a href ="" onclick="loadthepopup();" name ="radiosearch">Change Theme</a>
-</span>
 </div>

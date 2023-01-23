@@ -27,8 +27,8 @@ fetch_response_schema: openapi.Schema = openapi.Schema(
                                           properties={
                                               "resource_type": openapi.Schema(
                                                   type=openapi.TYPE_STRING,
-                                                  description="Type of the referenced resource"
-                                                  # example="LandingPage"
+                                                  description="Type of the referenced resource",
+                                                  example="LandingPage"
                                                   ),
                                               "pid": openapi.Schema(
                                                   type=openapi.TYPE_ARRAY,
@@ -37,8 +37,8 @@ fetch_response_schema: openapi.Schema = openapi.Schema(
                                                   items=openapi.Schema(
                                                       type=openapi.TYPE_STRING,
                                                       description="Persistent identifier to the \
-                                                                  referenced resource of a given type"
-                                                      # example="http://hdl.handle.net/11022/1009-0000-0000-DD18-D"
+                                                                  referenced resource of a given type",
+                                                      example="http://hdl.handle.net/11022/1009-0000-0000-DD18-D"
                                                   )
                                               )
                                           }
@@ -46,17 +46,18 @@ fetch_response_schema: openapi.Schema = openapi.Schema(
                                   ),
                                   "description": openapi.Schema(
                                       type=openapi.TYPE_STRING,
-                                      description="Collection's description"
-                                      # example="wizard-of-oz session"
+                                      description="Collection's description",
+                                      example="wizard-of-oz session"
                                   ),
                                   "license": openapi.Schema(
                                       type=openapi.TYPE_STRING,
-                                      description="Collection's license"
-                                      # example="GPLv3"
+                                      description="Collection's license",
+                                      example="GPLv3"
                                   )
                               })
     }
 )
+
 
 identify_response_schema: openapi.Schema = openapi.Schema(
     title='Identify response schema',
