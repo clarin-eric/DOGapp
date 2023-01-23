@@ -2,10 +2,9 @@
 {% block title %} - Sniff test {% endblock title %}
 {% block content %}
     {% block pid_form %}
-        {% if form %}
+        {%  if pid_form %}
             {% include 'UI/_form_pid.html' with form=form %}
         {% endif %}
     {% endblock pid_form %}
-    {% block result %}
-    {% endblock result %}
+    {% block result %}{% endblock result %}
 {% endblock content %}
