@@ -3,7 +3,7 @@
 {% block content %}
     {% block pid_form %}
         {%  if pid_form %}
-            {% include 'UI/_form_pid.html' with form=form %}
+            {% include 'UI/_form_pid.html' with form=pid_form %}
         {% endif %}
     {% endblock pid_form %}
     {% block result %}{% endblock result %}

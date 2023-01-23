@@ -26,7 +26,6 @@ def home(request: HttpRequest) -> HttpResponse:
     # else:
     context: RequestContext = RequestContext(request)
     pid_form: PIDForm() = PIDForm(request.GET)
-    context.push({"pid_form": pid_form})
     logger.debug(f"{pid_form.is_valid()}")
     if pid_form.is_valid():
         context.push({"pid_form": pid_form})
@@ -45,9 +44,3 @@ def home(request: HttpRequest) -> HttpResponse:
         pid_form: PIDForm = PIDForm(initial={'functionality_field': 'sniff'})
         context.push({"pid_form": pid_form})
         return render(request, "UI/_home.html", context.flatten())
-
-
-# def sniff_result(request, pid_candidate: str) -> HttpResponse:
-#     response = request.GET(API_NETLOC + f'sniff/?pid={pid_candidate}')
-#     context: RequestContext = RequestContext(request, response.json())
-#     return render(request, "UI/_sniff_result.html", {'pid': pid_candidate})
