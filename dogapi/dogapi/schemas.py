@@ -58,7 +58,6 @@ fetch_response_schema: openapi.Schema = openapi.Schema(
     }
 )
 
-
 identify_response_schema: openapi.Schema = openapi.Schema(
     title='Identify response schema',
     description='Identify collection with its title and description',
@@ -92,11 +91,14 @@ sniff_response_schema: openapi.Schema = openapi.Schema(
                               required=["name", "host_name", "host_netloc"],
                               properties={
                                   "name": openapi.Schema(type=openapi.TYPE_STRING,
-                                                         description="Name of the repository"),
+                                                         description="Name of the repository",
+                                                         example="http://hdl.handle.net/11022/1009-0000-0000-DD18-D"),
                                   "host_name": openapi.Schema(type=openapi.TYPE_STRING,
-                                                              description="Name of the hosting service used by a repository"),
+                                                              description="Name of the hosting service used by a repository",
+                                                              example="Bayerisches Archiv für Sprachsignale"),
                                   "host_netloc": openapi.Schema(type=openapi.TYPE_STRING,
-                                                                description="Base URL to the repository")
+                                                                description="Base URL to the repository",
+                                                                example="https://clarin.phonetik.uni-muenchen.de/BASRepository/")
                               })
     }
 )

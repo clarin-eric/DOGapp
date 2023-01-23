@@ -9,9 +9,10 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-from os.path import abspath, dirname, join
-import sys
+from debug_toolbar.panels.logging import collector
 import logging.config
+from os.path import abspath, dirname, join
+
 from dogproject import __name__ as app_name
 
 BASE_DIR = dirname(dirname(__file__))
@@ -46,7 +47,7 @@ STATICFILES_FINDERS = (
 ROOT_URLCONF = app_name + '.urls'
 
 #
-NETLOC = "127.0.0.1:8000"
+API_NETLOC = "http://127.0.0.1:8000/api"
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
@@ -71,9 +72,6 @@ INSTALLED_APPS = [
     'doglib',
 
     # local
-    # Labels have to be unique, package and module have same names by default, override with django app config
-    #'dogapi.apps.DogApiConf',
-    #'dogui.apps.DogUIConf'
     'dogapi',
     'dogui'
 
@@ -102,7 +100,6 @@ SWAGGER_SETTINGS = {
 }
 
 MIDDLEWARE = [
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -132,7 +129,6 @@ TEMPLATES = [
     },
 ]
 
-from debug_toolbar.panels.logging import collector
 LOGGING = {
     'version': 1,
     'handlers': {
