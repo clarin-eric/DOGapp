@@ -1,0 +1,27 @@
+{% extends 'UI/_home.html' %}
+{% block result %}
+    <form method="GET" action="/">
+        <div class='table-reponsive'>
+            <table id='all_centres' class='datatables-table stripe order-column row-border'>
+                <thead>
+                    <tr>
+                        <th>PID</th>
+                        <th>Is DOG parsable</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pid, ispid_res in ispid_response.items %}
+                        <tr>
+                            <td>{{ pid }}</td>
+                            <td>{{ ispid_res }}</td>
+                            <td><input type="checkbox" name="pid_field" value="{{ pid }}"></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" name="functionality_field" value="sniff">Sniff selected</button>
+            <button type="submit" name="functionality_field" value="fetch">Fetch selected</button>
+        </div>
+    </form>
+{% endblock result%}

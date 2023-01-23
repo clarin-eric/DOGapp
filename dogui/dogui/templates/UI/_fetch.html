@@ -1,0 +1,44 @@
+{% extends 'UI/_home.html' %}
+{% block result %}
+    <div class='table-reponsive'>
+        <table id='fetch_result_table'
+               class='datatables-table stripe order-column row-border'>
+            <thead>
+                <tr>
+                    <th>PID</th>
+                    <th>License</th>
+                    <th>Description</th>
+                    <th colspan="2">Referenced Resources</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pid, fetch_res in fetch_response.items %}
+                    <tr>
+                        <td>{{ pid }}</td>
+                        {% if fetch_res %}
+                            <td>{{ fetch_res.license }}</td>
+                            <td>{{ fetch_res.description }}</td>
+                            <td><table id="fetch_result_table_nested">
+                            {% for ref_files in fetch_res.ref_files %}
+                                <tr>
+                                <td>{{ ref_files.resource_type }}</td>
+                                <td>
+                                {% for ref_pid in ref_files.pid %}
+                                    <a href="{{ ref_pid }}">{{ ref_pid }}</a>
+                                {% endfor %}
+                                </td>
+                                </tr>
+                            {% endfor %}
+                            </table></td>
+                        {% else %}
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock result%}
