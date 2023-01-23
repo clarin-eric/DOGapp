@@ -4,28 +4,56 @@ from drf_yasg import openapi
 pid_queryparam: openapi.Parameter = openapi.Parameter(
     name='pid',
     in_=openapi.IN_QUERY,
-    description='Persistent identifier to a collection',
+    description='Persistent identifier/s to a collection',
     type=openapi.TYPE_ARRAY,
     items=openapi.Items(type=openapi.TYPE_STRING))
 
+
 fetch_response_schema: openapi.Schema = openapi.Schema(
     title="Fetch response schema",
-    description="Parse referenced PID's",
+    description="Dictionary of PID's and their respective fetch() call result",
     type=openapi.TYPE_OBJECT,
     required=["pid"],
     properties={
-        "pid": openapi.Schema(type=openapi.TYPE_OBJECT,
-                              required=["ref_files", "description", "license"],
-                              properties={
-                                  "ref_files": openapi.Schema(type=openapi.TYPE_ARRAY,
-                                                              description="Referenced PIDs in collection metadata",
-                                                              items=openapi.Schema(type=openapi.TYPE_STRING,
-                                                                                   description="Referenced PID")),
-                                  "description": openapi.Schema(type=openapi.TYPE_STRING,
-                                                                description="Collection's description"),
-                                  "license": openapi.Schema(type=openapi.TYPE_STRING,
-                                                            description="Collection's license")
-                              })
+        "pid": openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=["ref_files", "description", "license"],
+            description="Persistent Identifier in form of URL, DOI or HDL",
+            properties={
+                "ref_files": openapi.Schema(
+                    type=openapi.TYPE_ARRAY,
+                    description="List of referenced resources grouped by type",
+                    items=openapi.Schema(
+                        type=openapi.TYPE_OBJECT,
+                        description="Referenced PID",
+                        required=["resource_type", "pid"],
+                        properties={
+                            "resource_type": openapi.Schema(
+                                type=openapi.TYPE_STRING,
+                                description="Type of the referenced resource",
+                                # example="LandingPage"
+                            ),
+                            "pid": openapi.Schema(
+                                type=openapi.TYPE_ARRAY,
+                                description="List of persistent identifier to the referenced resources",
+                                items=openapi.Schema(
+                                    type=openapi.TYPE_STRING,
+                                    description="Persistent identifier to referenced resource of a given type",
+                                    # example="http://hdl.handle.net/11022/1009-0000-0000-DD18-D"
+                                ))
+                            })),
+                "description": openapi.Schema(
+                    type=openapi.TYPE_STRING,
+                    description="Collection's description",
+                    # example="wizard-of-oz session"
+                ),
+                "license": openapi.Schema(
+                    type=openapi.TYPE_STRING,
+                    description="Collection's license",
+                    # example="GPLv3"
+                )
+            }
+        )
     }
 )
 
