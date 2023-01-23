@@ -24,19 +24,27 @@ def home(request: HttpRequest) -> HttpResponse:
     #     else:
     #         print(form.errors)
     # else:
-    form = PIDForm(request.GET)
     context: RequestContext = RequestContext(request)
-    context.push({"form": form})
-    logger.debug("BEFORE VALID")
-    if form.is_valid():
-        logger.debug("IS VALID")
-        pids: List[str] = form.cleaned_data["pid"]
-        sniff_response = requests.get('http://' + API_NETLOC + f'/sniff/?pid={",".join(pids)}')
-        logger.debug(str(sniff_response))
-        logger.debug(str(sniff_response.json()))
-        context.push({"sniff_response": sniff_response.json()})
+    pid_form: PIDForm() = PIDForm(request.GET)
+    context.push({"pid_form": pid_form})
+    logger.debug(f"{pid_form.is_valid()}")
+    if pid_form.is_valid():
+        context.push({"pid_form": pid_form})
+        functionality = pid_form.cleaned_data['functionality_field']
+        pids = pid_form.cleaned_data['pid_field']
+        logger.debug(f'{pids}')
+        api_url = 'http://' + API_NETLOC + f'/{functionality}/?pid={",".join(pids)}'
+        logger.debug(api_url)
 
-    return render(request, "UI/_home.html", context.flatten())
+        api_response = requests.get(api_url)
+        logger.debug(f'{api_response}')
+        context.push({f"{functionality}_response": api_response.json()})
+
+        return render(request, f"UI/_{functionality}.html", context.flatten())
+    else:
+        pid_form: PIDForm = PIDForm(initial={'functionality_field': 'sniff'})
+        context.push({"pid_form": pid_form})
+        return render(request, "UI/_home.html", context.flatten())
 
 
 # def sniff_result(request, pid_candidate: str) -> HttpResponse:
