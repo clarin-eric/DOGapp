@@ -1,4 +1,3 @@
-import django.conf
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
@@ -14,10 +13,8 @@ API_NETLOC = settings.API_NETLOC
 
 
 def home(request: HttpRequest) -> HttpResponse:
-    logger = logging.getLogger(__name__)
     context: RequestContext = RequestContext(request)
     pid_form: PIDForm() = PIDForm(request.GET)
-    logger.debug(f"{pid_form.is_valid()}")
     if pid_form.is_valid():
         context.push({"pid_form": pid_form})
         functionality = pid_form.cleaned_data['functionality_field']

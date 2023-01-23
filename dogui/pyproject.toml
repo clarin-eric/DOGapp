@@ -2,7 +2,7 @@
 requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
 [project]
 name = "dogui"
-version = "1.0.0-dev0"
+version = "1.0.0-dev2"
 description = "Django UI templates for Digital Object Gate API consumption"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -11,8 +11,8 @@ classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
 dependencies = [
-    "doglib>=1.0.0",
-    "dogapi>=1.0.0.dev0",
+    "doglib>=1.0.2",
+    "dogapi>=1.0.0.dev2",
 ]
 authors = [
     { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
