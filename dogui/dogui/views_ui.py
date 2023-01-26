@@ -8,8 +8,6 @@ import requests
 
 from .forms import PIDForm
 
-print(settings.LOGGING)
-
 logging.config.dictConfig(settings.LOGGING)
 API_NETLOC = settings.API_NETLOC
 
