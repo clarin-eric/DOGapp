@@ -21,6 +21,9 @@ if __name__ == "__main__":
             "django.contrib.sites",
             "dogapi",
         ],
+        LOGGING={
+            "version": 1,
+        }
     )
     django.setup()
     TestRunner = get_runner(settings)
