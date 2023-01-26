@@ -34,6 +34,7 @@ jobs:
           pip install django-rest-swagger
           pip install drf-yasg
           pip install ./dogapi
+          pip install ./dogui
           pip install ./dogconfig
       - name: Test app
         run: |
