@@ -23,7 +23,8 @@ if __name__ == "__main__":
         ],
         LOGGING={
             "version": 1,
-        }
+        },
+        API_NETLOC="http://127.0.0.1:8000/api"
     )
     django.setup()
     TestRunner = get_runner(settings)
