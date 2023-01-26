@@ -32,6 +32,7 @@ jobs:
           pip install django-cors-headers
           pip install djangorestframework
           pip install django-rest-swagger
+          pip install django-debug-toolbar
           pip install drf-yasg
           pip install ./dogapi
           pip install ./dogui
