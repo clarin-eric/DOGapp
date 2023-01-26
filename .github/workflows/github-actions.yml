@@ -44,4 +44,6 @@ jobs:
           python ./runtests.py
           screen -m -d python ./dogconfig/manage.py runserver 127.0.0.1:8000
           sleep 10
+          curl -LI 127.0.0.1:8000/swagger.json -o /dev/null -w '%{http_code}\n' -s
+          curl -LI http://127.0.0.1:8000/swagger.json -o /dev/null -w '%{http_code}\n' -s
           [ $(curl -LI http://127.0.0.1:8000/swagger.json -o /dev/null -w '%{http_code}\n' -s) == 200 ] && echo "Local host accessible"  
