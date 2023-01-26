@@ -14,8 +14,16 @@ dependencies = [
     "doglib>=1.0.2",
     "dogapi>=1.0.0.dev2",
 ]
+
 authors = [
     { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
 ]
+
 [tool.setuptools]
-packages = ["dogui"]
+include-package-data = true
+
+[tool.setuptools.package-dir]
+dogui = "dogui"
+
+[tools.setuptools.packages.find]
+where = ["dogui"]
