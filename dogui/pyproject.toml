@@ -27,3 +27,6 @@ dogui = "dogui"
 
 [tools.setuptools.packages.find]
 where = ["dogui"]
+
+[tool.setuptools.package-data]
+"*" = ["*.html"]

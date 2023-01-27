@@ -2,7 +2,6 @@ from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.template import RequestContext
-import logging
 import logging.config
 import requests
 
