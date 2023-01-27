@@ -42,7 +42,7 @@ jobs:
           EUROPEANA_WSKEY: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python ./runtests.py
-          screen -m -d $(python ./dogconfig/manage.py runserver 127.0.0.1:8000 > cidebug.txt)
+          screen -m -d python ./dogconfig/manage.py runserver 127.0.0.1:8000 > cidebug.txt
           sleep 10
           curl -LI http://127.0.0.1:8000/swagger.json -o /dev/null -w '%{http_code}\n' -s == 200
           cat cidebug.txt
