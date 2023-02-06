@@ -20,7 +20,7 @@ def home(request: HttpRequest) -> HttpResponse:
         pids = pid_form.cleaned_data['pid_field']
         api_url = API_NETLOC + f'/{functionality}/?pid={",".join(pids)}'
         logging.warning(api_url)
-        api_response = requests.get(api_url)
+        api_response = requests.get(api_url, verify=False)
         logging.warning(api_response)
         context.push({f"{functionality}_response": api_response.json()})
 
