@@ -19,9 +19,7 @@ def home(request: HttpRequest) -> HttpResponse:
         functionality = pid_form.cleaned_data['functionality_field']
         pids = pid_form.cleaned_data['pid_field']
         api_url = API_NETLOC + f'/{functionality}/?pid={",".join(pids)}'
-        logging.warning(api_url)
-        api_response = requests.get(api_url, verify=False)
-        logging.warning(api_response)
+        api_response = requests.get(api_url)
         context.push({f"{functionality}_response": api_response.json()})
 
         return render(request, f"UI/_{functionality}.html", context.flatten())
