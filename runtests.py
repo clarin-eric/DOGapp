@@ -1,5 +1,4 @@
 import sys
-from debug_toolbar.panels.logging import collector
 import django
 from django.conf import settings
 from django.test.utils import get_runner
@@ -30,11 +29,6 @@ if __name__ == "__main__":
             'version': 1,
             'handlers': {
                 # existing handlers
-                'djdt_log': {
-                    'level': 'DEBUG',
-                    'class': 'debug_toolbar.panels.logging.ThreadTrackingHandler',
-                    'collector': collector,
-                },
                 'console': {
                     'level': 'DEBUG',
                     'class': 'logging.StreamHandler'
@@ -42,7 +36,7 @@ if __name__ == "__main__":
             },
             'root': {
                 'level': 'DEBUG',
-                'handlers': ['djdt_log', 'console'],
+                'handlers': ['console'],
             },
             'loggers': {
                 '': {
@@ -54,6 +48,21 @@ if __name__ == "__main__":
         API_NETLOC="http://127.0.0.1:8000/api",
         TEMPLATE_LOADERS=[
             'django.template.loaders.app_directories.Loader',
+        ],
+        TEMPLATES=[
+            {
+                'BACKEND': 'django.template.backends.django.DjangoTemplates',
+                'DIRS': [],
+                'APP_DIRS': True,
+                'OPTIONS': {
+                    'context_processors': [
+                        'django.template.context_processors.debug',
+                        'django.template.context_processors.request',
+                        'django.contrib.auth.context_processors.auth',
+                        'django.contrib.messages.context_processors.messages',
+                    ],
+                },
+            },
         ]
     )
     django.setup()
