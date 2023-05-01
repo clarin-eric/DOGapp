@@ -70,4 +70,3 @@ if __name__ == "__main__":
     TestRunner = get_runner(settings)
     test_runner = TestRunner(verbosity=2)
     failures = test_runner.run_tests(["dogapi.tests"])
-    sys.exit(0)
