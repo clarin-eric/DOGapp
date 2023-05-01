@@ -18,10 +18,14 @@ if __name__ == "__main__":
         },
         ROOT_URLCONF="dogproject" + '.urls',
         INSTALLED_APPS=[
+            "debug_toolbar",
             "django.contrib.auth",
             "django.contrib.contenttypes",
             "django.contrib.sites",
             "dogapi",
+        ],
+        MIDDLEWARE=[
+            'debug_toolbar.middleware.DebugToolbarMiddleware',
         ],
         LOGGING={
             'version': 1,
