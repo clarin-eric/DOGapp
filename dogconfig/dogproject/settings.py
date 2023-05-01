@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-from debug_toolbar.panels.logging import collector
 import logging.config
 from os.path import abspath, dirname, join
 
@@ -48,11 +47,13 @@ ROOT_URLCONF = app_name + '.urls'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 API_NETLOC = "http://127.0.0.1:8000/api"
 CORS_ORIGIN_ALLOW_ALL = True
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    # ...
-]
+INTERNAL_IPS = ['127.0.0.1']
+
+# https://knasmueller.net/fix-djangos-debug-toolbar-not-showing-inside-docker
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -133,11 +134,6 @@ LOGGING = {
     'version': 1,
     'handlers': {
         # existing handlers
-        'djdt_log': {
-            'level': 'DEBUG',
-            'class': 'debug_toolbar.panels.logging.ThreadTrackingHandler',
-            'collector': collector,
-        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler'
@@ -145,7 +141,7 @@ LOGGING = {
     },
     'root': {
         'level': 'DEBUG',
-        'handlers': ['djdt_log', 'console'],
+        'handlers': ['console'],
     },
     'loggers': {
         '': {
@@ -162,6 +158,11 @@ CACHES = {
         'LOCATION': 'cache:11211',
     }
 }
+
+INTERNAL_IPS = ['127.0.0.1']
+import socket
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

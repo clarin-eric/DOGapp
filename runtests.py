@@ -1,5 +1,4 @@
 import sys
-
 from debug_toolbar.panels.logging import collector
 import django
 from django.conf import settings
@@ -52,7 +51,10 @@ if __name__ == "__main__":
                 }
             }
         },
-        API_NETLOC="http://127.0.0.1:8000/api"
+        API_NETLOC="http://127.0.0.1:8000/api",
+        TEMPLATE_LOADERS=[
+            'django.template.loaders.app_directories.Loader',
+        ]
     )
     django.setup()
     TestRunner = get_runner(settings)
