@@ -45,9 +45,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 ROOT_URLCONF = app_name + '.urls'
-
-#
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 API_NETLOC = "http://127.0.0.1:8000/api"
+CORS_ORIGIN_ALLOW_ALL = True
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
@@ -154,8 +154,15 @@ LOGGING = {
         }
     }
 }
-
 logging.config.dictConfig(LOGGING)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': 'cache:11211',
+    }
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -168,20 +175,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-# TODO
-# CORS_ORIGIN_WHITELIST = (
-#   'http://localhost:8000',
-# )
