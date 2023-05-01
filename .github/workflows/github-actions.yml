@@ -29,11 +29,6 @@ jobs:
           pip install ./DOGlib -r ./DOGlib/requirements.txt
       - name: Install DOG applications
         run: |
-          pip install django-cors-headers
-          pip install djangorestframework
-          pip install django-rest-swagger
-          pip install django-debug-toolbar
-          pip install drf-yasg
           pip install ./dogapi
           pip install ./dogui
           pip install ./dogconfig

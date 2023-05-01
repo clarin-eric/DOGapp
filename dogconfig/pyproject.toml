@@ -15,8 +15,10 @@ dependencies = [
     "Django>=4.1.1",
     "django-cors-headers>=3.1.13",
     "djangorestframework>=3.14.0",
+    "django-debug-toolbar>=4.0.0",
     "dogapi>=1.0.0-dev2",
     "drf-yasg>=1.21.4",
+    "pymemcache>=4.0.0",
     "pyyaml>=6.0",
     "uritemplate>=4.1.1",
 ]
