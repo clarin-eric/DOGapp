@@ -21,6 +21,7 @@ if __name__ == "__main__":
             "django.contrib.contenttypes",
             "django.contrib.sites",
             "dogapi",
+            "dogui",
         ],
         MIDDLEWARE=[
             'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -67,6 +68,6 @@ if __name__ == "__main__":
     )
     django.setup()
     TestRunner = get_runner(settings)
-    test_runner = TestRunner()
+    test_runner = TestRunner(verbosity=2)
     failures = test_runner.run_tests(["dogapi.tests"])
     sys.exit(bool(failures))
