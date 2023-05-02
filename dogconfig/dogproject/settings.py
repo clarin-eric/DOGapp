@@ -90,7 +90,7 @@ REDOC_SETTINGS = {
 }
 
 SWAGGER_SETTINGS = {
-    'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.OpenAPISchemaGenerator',
+    'DEFAULT_GENERATOR_CLASS': 'rest_framework.schemas.generators.BaseSchemaGenerator',
     'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
     'SECURITY_DEFINITIONS': {
         'basic': {
