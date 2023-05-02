@@ -89,7 +89,7 @@ REDOC_SETTINGS = {
     'LAZY_RENDERING': False,
 }
 
-VERYFI_SSL = False
+VERIFY_SSL = False
 
 SWAGGER_SETTINGS = {
     'DEFAULT_GENERATOR_CLASS': 'rest_framework.schemas.generators.BaseSchemaGenerator',
