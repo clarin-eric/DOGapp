@@ -25,6 +25,9 @@
                                 <td>
                                 {% for ref_pid in ref_files.pid %}
                                     <a href="{{ ref_pid }}">{{ ref_pid }}</a>
+                                    {% if not forloop.last %}
+                                        <br>
+                                    {% endif %}
                                 {% endfor %}
                                 </td>
                                 </tr>
