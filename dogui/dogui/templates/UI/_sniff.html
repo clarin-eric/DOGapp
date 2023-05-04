@@ -24,11 +24,12 @@
                                 {% if not forloop.last %}
                                     <br>
                                 {% endif %}
-                                <td><input type="checkbox" name="pid_field" value="{{ pid }}"></td>
-                                {% if not forloop.last %}
-                                    <br>
-                                {% endif %}
                             {% endif %}
+                            <td><input type="checkbox" name="pid_field" value="{{ pid }}">
+                            {% if not forloop.last %}
+                                <br>
+                            {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

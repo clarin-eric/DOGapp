@@ -2,7 +2,7 @@
 requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
 [project]
 name = "dogconfig"
-version = "1.0.0-dev2"
+version = "1.0.1-a1"
 description = "Django web application providing Digital Object Gates functionality"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -16,7 +16,7 @@ dependencies = [
     "django-cors-headers>=3.1.13",
     "djangorestframework>=3.14.0",
     "django-debug-toolbar>=4.0.0",
-    "dogapi>=1.0.0-dev2",
+    "dogapi>=1.0.1-a1",
     "drf-yasg>=1.21.4",
     "pymemcache>=4.0.0",
     "pyyaml>=6.0",
