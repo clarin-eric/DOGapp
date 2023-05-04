@@ -16,10 +16,19 @@
                             <td>{{ pid }}</td>
                             {% if sniff_res %}
                                 <td><a href={{ sniff_res.host_netloc }}>{{ sniff_res.name }}</a></td>
+                                {% if not forloop.last %}
+                                    <br>
+                                {% endif %}
                             {% else %}
                                 <td>NA</td>
+                                {% if not forloop.last %}
+                                    <br>
+                                {% endif %}
+                                <td><input type="checkbox" name="pid_field" value="{{ pid }}"></td>
+                                {% if not forloop.last %}
+                                    <br>
+                                {% endif %}
                             {% endif %}
-                            <td><input type="checkbox" name="pid_field" value="{{ pid }}"></td>
                         </tr>
                     {% endfor %}
                 </tbody>
