@@ -10,7 +10,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 authors = [
-    { name = "Michal Gawor", email = "m.j.gawor@uu.nl"}
+    "Michal Gawor <m.j.gawor@uu.nl>"
 ]
 packages = [
     { include = "dogproject"},
