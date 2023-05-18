@@ -1,6 +1,4 @@
-[build-system]
-requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
-[project]
+[tool.poetry]
 name = "dogconfig"
 version = "1.0.1-a1"
 description = "Django web application providing Digital Object Gates functionality"
@@ -25,5 +23,14 @@ dependencies = [
 authors = [
     { name = "Michal Gawor", email = "m.j.gawor@uu.nl"}
 ]
-[tool.setuptools]
-packages = ["dogconfig"]
+packages = [
+    { include = "dogproject"},
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+dogapi = "1.0.1-a1"
+dogui = "1.0.1-a1"
