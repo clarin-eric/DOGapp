@@ -23,3 +23,4 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.dependencies]
 dogapi = 1.0.1-a1
 dogui = 1.0.1-a1
+
