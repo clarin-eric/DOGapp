@@ -1,6 +1,4 @@
-[build-system]
-requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
-[project]
+[tool.poetry]
 name = "dogui"
 version = "1.0.1-a1"
 description = "Django UI templates for Digital Object Gate API consumption"
@@ -10,23 +8,17 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
-dependencies = [
-    "doglib>=1.0.2",
-    "dogapi>=1.0.1-a1",
-]
-
 authors = [
-    { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
+    "Michał Gawor <m.j.gawor@uu.nl>"
+]
+packages = [
+    { include = "dogui" }
 ]
 
-[tool.setuptools]
-include-package-data = true
+[tool.poetry.dependencies]
+dogapi = ">=1.0.1-a1"
 
-[tool.setuptools.package-dir]
-dogui = "dogui"
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[tools.setuptools.packages.find]
-where = ["dogui"]
-
-[tool.setuptools.package-data]
-"*" = ["*.html"]
