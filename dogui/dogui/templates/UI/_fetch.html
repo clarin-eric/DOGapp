@@ -20,7 +20,10 @@
                             <td>{{ fetch_res.license }}</td>
                             <td>{{ fetch_res.description }}</td>
                                 {% for ref_files in fetch_res.ref_files %}
+                                    {% if ref_files.resource_type %}
                                     <td>{{ ref_files.resource_type }}</td>
+                                    {% else %}
+                                    <td></td>
                                     <td>
                                     {% if ref_files.pid|is_instance:list %}
                                         {% for ref_pid in ref_files.pid %}
