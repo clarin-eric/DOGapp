@@ -16,5 +16,6 @@ def get_type(value: Any) -> Type:
 
 @register.filter
 def is_instance(value: Any, class_name) -> bool:
-    class_type: Type = exec(class_name)
+    value = exec(value)
+    class_type = exec(class_name)
     return isinstance(value, class_type)

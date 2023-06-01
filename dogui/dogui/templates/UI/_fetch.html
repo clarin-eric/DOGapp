@@ -1,5 +1,5 @@
 {% extends 'UI/_home.html' %}
-{%  load dogui_extras %}
+{% load dogui_extras %}
 {% block result %}
     <div class='table-reponsive'>
         <table id='fetch_result_table'
@@ -21,19 +21,18 @@
                             <td>{{ fetch_res.description }}</td>
                                 {% for ref_files in fetch_res.ref_files %}
                                     {% if ref_files.resource_type %}
-                                    <td>{{ ref_files.resource_type }}</td>
+                                        <td>{{ ref_files.resource_type }}</td>
                                     {% else %}
-                                    <td></td>
+                                        <td></td>
+                                    {% endif %}
                                     <td>
-                                    {% if ref_files.pid|is_instance:list %}
+                                    {% if ref_files.pid %}
                                         {% for ref_pid in ref_files.pid %}
                                             <a href="{{ ref_pid }}">{{ ref_pid }}</a>
                                             {% if not forloop.last %}
                                                 <br>
                                             {% endif %}
                                         {% endfor %}
-                                    {% else %}
-                                        <a href="{{ ref_files.pid }}">{{ ref_files.pid }}</a>
                                     {% endif %}
                                     </td>
                                 {% endfor %}
