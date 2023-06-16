@@ -66,7 +66,7 @@ INSTALLED_APPS = [
     # 3rd party
     'debug_toolbar',
     'corsheaders',
-    'drf_yasg',
+    'drf_spectacular',
     'rest_framework',
 
     # CLARIN internal dependency
@@ -83,23 +83,19 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
-}
-
-REDOC_SETTINGS = {
-    'LAZY_RENDERING': False,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 VERIFY_SSL = False
 
-SWAGGER_SETTINGS = {
-    'DEFAULT_GENERATOR_CLASS': 'rest_framework.schemas.generators.BaseSchemaGenerator',
-    'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
-    'SECURITY_DEFINITIONS': {
-        'basic': {
-            'type': 'basic'
-        }
-    },
-    'DEFAULT_INFO': app_name + '.urls.openapi_info',
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Digital Object Gate',
+    'DESCRIPTION': 'DOG API resolving referenced resources in the metadata',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 MIDDLEWARE = [
@@ -157,6 +153,14 @@ LOGGING = {
     },
     'loggers': {
         '': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        },
+        'dogapi': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        },
+        'dogui': {
             'level': 'DEBUG',
             'handlers': ['console'],
         }
