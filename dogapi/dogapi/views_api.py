@@ -84,14 +84,16 @@ def fetch(request: Request) -> Response:
     try:
         pids = parse_queryparam(request, "pid")
         fetch_result: dict = {pid: dog.fetch(pid) for pid in pids}
-        fetch_result = {pid: ({result["failure"]: 0} if result else
-                              {result["failure"]: 1,
-                               result["failure_message"]: "Persistent Identifier could not be resolved or parsed"})
-                        for pid, result in fetch_result.items()}
         if not bool(fetch_result):
             ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
         else:
-            fetch_result = {pid: FetchResultSerializer(ref_files).data for pid, ref_files in fetch_result.items() if ref_files}
+            fetch_result = {pid: ({**result, **{"failure": 0}} if result else
+                                  {"failure": 2,
+                                   "failure_message": "Persistent Identifier could not be resolved or parsed"})
+                            for pid, result in fetch_result.items()}
+            fetch_result = {pid: FetchResultSerializer(ref_files).data
+                            for pid, ref_files in fetch_result.items()
+                            if ref_files["failure"] == 0}
             if fetch_result:
                 ret = Response(fetch_result, status=200)
             else:
@@ -101,9 +103,6 @@ def fetch(request: Request) -> Response:
         ret = Response(err, status=400)
 
     return ret
-
-
-
 
 
 @extend_schema(parameters=[pid_queryparam],
@@ -275,10 +274,10 @@ def sniff(request: Request) -> Response:
     try:
         pids = parse_queryparam(request, "pid")
         sniff_result = {pid: dog.sniff(pid) for pid in pids}
-        sniff_result = {pid: ({result["failure"]: 0} if result else
-                              {result["failure"]: 2,
-                               result["failure_message"]: "Persistent Identifier could not be resolved or parsed"})
-                        for pid, result in sniff_result}
+        sniff_result = {pid: ({**result, **{"failure": 0}} if result else
+                              {"failure": 2, "failure_message": "Persistent Identifier could not be resolved or parsed"})
+                        for pid, result in sniff_result.items()}
+
         if sniff_result:
             ret = Response(sniff_result, status=200)
         else:
@@ -288,7 +287,45 @@ def sniff(request: Request) -> Response:
 
     return ret
 
-
+@extend_schema(parameters=[pid_queryparam],
+               description="Checks whether input is a PID that can be parsed by DOG. Does only string parsing. "
+                           "Any valid string in a format of URL, DOI or HDL will be accepted. "
+                           "A valid PID string does not imply valid string ",
+               responses={
+                   200: OpenApiTypes.OBJECT,
+                   400: OpenApiTypes.STR
+               },
+               request=None,
+               examples=[
+                   OpenApiExample(
+                       name="Successful sniff result example",
+                       description="Host repository details ",
+                       value=[
+                           {
+                               "https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422": {
+                                   "name": "LINDAT/CLARIAH-CZ",
+                                   "host_name": "LINDAT/CLARIAH-CZ",
+                                   "host_netloc": "https://lindat.mff.cuni.cz",
+                                   "failure": 0
+                               }
+                           }
+                       ],
+                       response_only=True
+                   ),
+                   OpenApiExample(
+                       name="Failed sniff result example",
+                       description="Host sniff details",
+                       value=[
+                           {
+                               "<definitelyNotAPID>": {},
+                               "failure": 1,
+                               "failure_message": "Persistent Identifier could not be resolved or metadata could not be parsed"
+                           }
+                       ],
+                       response_only=True
+                   )
+               ]
+               )
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def is_pid(request: Request) -> Response:
