@@ -16,12 +16,14 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10.7"
+          python-version: "3.11.4"
       
       - name: Update package manager
         run: |
-          sudo apt-get update 
+          sudo apt-get update
+          pip install -U pip
           pip install wheel
+          pip install requests
 
       - name: Install DOGlib
         run: |
