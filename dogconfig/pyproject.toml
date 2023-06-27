@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dogconfig"
-version = "1.0.1-a1"
+version = "1.0.1-a2"
 description = "Django web application providing Digital Object Gates functionality"
 classifiers = [
     "Development Status :: 5 - Production/Stable",

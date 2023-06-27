@@ -38,3 +38,4 @@ To start the project local installation of `dogapi` and `dogui` is required, con
 ```bash
 python ./dogconfig/manage.py runserver
 ```
+By default DOG homepage should be available at your `localhost:8000` and API endpoints at `localhost:8000/api/<functionality>`

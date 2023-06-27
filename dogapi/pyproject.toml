@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dogapi"
-version = "1.0.1-a1"
+version = "1.0.1-a2"
 description = "Django API views serving Digital Object Gate functionalities"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
