@@ -10,7 +10,7 @@ from typing import List
 
 from .models import dog
 from .schemas import pid_queryparam
-from .serializers import FetchResultSerializer, IdentifyResponseSerializer
+from .serializers import FetchResultSerializer
 from .utils import parse_queryparam, QueryparamParsingError
 
 

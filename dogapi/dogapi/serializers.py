@@ -1,10 +1,4 @@
 """Serializer classes for drf_spectacular OpenAPI 3.0 documentation"""
-
-from drf_spectacular.utils import extend_schema, extend_schema_field, OpenApiParameter, OpenApiExample
-from drf_spectacular.types import OpenApiTypes
-from rest_framework.request import Request
-from typing import TypedDict, List, Union
-
 from rest_framework import serializers
 
 
