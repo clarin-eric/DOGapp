@@ -94,11 +94,7 @@ def fetch(request: Request) -> Response:
             fetch_result = {pid: FetchResultSerializer(ref_files).data
                             for pid, ref_files in fetch_result.items()
                             if ref_files["failure"] == 0}
-            if fetch_result:
-                ret = Response(fetch_result, status=200)
-            else:
-                ret = Response(f"All Persistent Identifiers either not correct or has not been recognised",
-                               status=400)
+            ret = Response(fetch_result, status=200)
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
 
@@ -156,8 +152,7 @@ def identify(request: Request) -> Response:
         if identify_result:
             ret = Response(identify_result, status=200)
         else:
-            ret = Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised",
-                           status=400)
+            ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
 
@@ -178,7 +173,7 @@ def identify(request: Request) -> Response:
                        description="Checks if PID points to a metadata referenging another resource(s)"
                                    "Due to drf-spectacular not supporting variable keys documentation generation, the output type"
                                    "specification is available only through the description and examples for the time being",
-                       value= {"https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422": True},
+                       value={"https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422": True},
                        response_only=True
                    ),
                    OpenApiExample(
@@ -211,10 +206,9 @@ def is_collection(request: Request) -> Response:
         if is_collection_result:
             ret = Response(is_collection_result, status=200)
         else:
-            ret = Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)
+            ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
-
     return ret
 
 
@@ -281,10 +275,9 @@ def sniff(request: Request) -> Response:
         if sniff_result:
             ret = Response(sniff_result, status=200)
         else:
-            ret = Response(f"Persistent Identifier(s) {pids} is either not correct or has been not recognised", status=400)
+            ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
-
     return ret
 
 @extend_schema(parameters=[pid_queryparam],

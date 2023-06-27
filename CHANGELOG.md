@@ -7,6 +7,9 @@ Changes:
 - Unittests for parameter parsing
 - Fixed CI pipeline
 - Build config with `.toml + Poetry`
+- Unittests for endpoints
+- OpenAPI 3.0 endpoint documentation
+- 
 
 
 ## [1.0.0] - 17.11.2022
