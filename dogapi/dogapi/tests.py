@@ -136,7 +136,6 @@ class TestIsPIDEndpoint(unittest.TestCase):
         pids = ["https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422",
                 "https://b2share.eudat.eu/records/d64361c0a6384760a8a8f32e0dc4a481"]
         response = self.client.get(f"/api/ispid/?pid={','.join(pids)}")
-        # if correct failure code will be 0, note that 200 response code does not imply success
         self.assertTrue(
             response.json()["https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422"] and
             response.json()["https://b2share.eudat.eu/records/d64361c0a6384760a8a8f32e0dc4a481"])
@@ -144,20 +143,17 @@ class TestIsPIDEndpoint(unittest.TestCase):
     def test_single_incorrect_pid(self):
         pid = "abcd"
         response = self.client.get(f"/api/sniff/?pid={pid}")
-        # if correct failure code will be 0, note that 200 response code does not imply success
         self.assertFalse(response.json()["abcd"])
 
     def test_multiple_incorrect_pid(self):
         pids = ["abcd", "efgh"]
         response = self.client.get(f"/api/sniff/?pid={','.join(pids)}")
-        # if correct failure code will be 0, note that 200 response code does not imply success
         self.assertTrue(not response.json()["abcd"] and
                         not response.json()["efgh"])
 
     def test_mixed_correct_incorrect_pid(self):
         pids = ["https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422", "abcd"]
         response = self.client.get(f"/api/sniff/?pid={','.join(pids)}")
-        # if correct failure code will be 0, note that 200 response code does not imply success
         self.assertTrue(
             not response.json()["abcd"]
             and response.json()["https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422"]
