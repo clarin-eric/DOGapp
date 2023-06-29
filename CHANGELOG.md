@@ -9,7 +9,7 @@ Changes:
 - Build config with `.toml + Poetry`
 - Unittests for endpoints
 - OpenAPI 3.0 endpoint documentation
-- 
+- Upgrade Python==3.11 and Django==4.2
 
 
 ## [1.0.0] - 17.11.2022

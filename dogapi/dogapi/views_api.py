@@ -10,7 +10,6 @@ from typing import List
 
 from .models import dog
 from .schemas import pid_queryparam
-from .serializers import FetchResultSerializer
 from .utils import parse_queryparam, QueryparamParsingError
 
 
@@ -91,9 +90,6 @@ def fetch(request: Request) -> Response:
                                   {"failure": 2,
                                    "failure_message": "Persistent Identifier could not be resolved or parsed"})
                             for pid, result in fetch_result.items()}
-            fetch_result = {pid: FetchResultSerializer(ref_files).data
-                            for pid, ref_files in fetch_result.items()
-                            if ref_files["failure"] == 0}
             ret = Response(fetch_result, status=200)
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
