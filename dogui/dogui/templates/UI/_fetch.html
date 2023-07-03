@@ -10,7 +10,6 @@
                     <th>Resource title</th>
                     <th>License</th>
                     <th>Description</th>
-                    <th>Resource type</th>
                     <th colspan="2">Referenced Resources</th>
                 </tr>
             </thead>
@@ -34,27 +33,31 @@
                                 Description
                             {% endcomment %}
                             <td>{{ fetch_res.description }}</td>
-                            {% for ref_files_by_type in fetch_res.ref_files %}
-                                {% if 'resource_type' in ref_file %}
-                                    <td>{{ ref_files.resource_type }}</td>
-                                {% else %}
-                                    <td>unspecified</td>
-                                {% endif %}
-
-                                <td>
-                                    {% if 'pid' in ref_file %}
-                                        <a href="{{ ref_file.pid }}">{{ ref_file.pid }}</a>
-                                        {% if not forloop.last %}
-                                            <br>
-                                        {% endif %}
-                                    {% endif %}
-                                    </td>
+                            <td>
+                            <table>
+                                {% for ref_files_by_type in fetch_res.ref_files %}
+                                    <tr>
+                                        <td>
+                                            {{ ref_files_by_type.resource_type }}
+                                        </td>
+                                        <td>
+                                            {% for pid in ref_files_by_type.pid %}
+                                                <a href="{{ pid }}">{{ pid }}</a>
+                                                    {% if not forloop.last %}
+                                                        <br>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
                                 {% endfor %}
+                            </table>
+                            </td>
                         {% else %}
                             <td>NA</td>
                             <td>NA</td>
                             <td>NA</td>
-                            <td></td>
+                            <td>NA</td>
+                            <td>NA</td>
                         {% endif %}
                     </tr>
                 {% endfor %}
