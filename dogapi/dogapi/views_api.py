@@ -1,6 +1,7 @@
 from django.conf import settings
 from drf_spectacular.utils import extend_schema, OpenApiExample, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
+import json
 import logging.config
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -86,10 +87,14 @@ def fetch(request: Request) -> Response:
         if not bool(fetch_result):
             ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
         else:
-            fetch_result = {pid: ({**result, **{"failure": 0}} if result else
-                                  {"failure": 2,
-                                   "failure_message": "Persistent Identifier could not be resolved or parsed"})
+            fetch_result = {pid: (result | {"failure": 0} if result else {"failure": 2,
+                                                                          "failure_message": "Persistent Identifier could not be resolved or parsed"})
                             for pid, result in fetch_result.items()}
+
+            #fetch_result = {pid: (result | {"failure": 0} if result else
+            #                      {"failure": 2,
+            #                       "failure_message": "Persistent Identifier could not be resolved or parsed"})
+            #                for pid, result in fetch_result.items()}
             ret = Response(fetch_result, status=200)
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
@@ -264,7 +269,7 @@ def sniff(request: Request) -> Response:
     try:
         pids = parse_queryparam(request, "pid")
         sniff_result = {pid: dog.sniff(pid) for pid in pids}
-        sniff_result = {pid: ({**result, **{"failure": 0}} if result else
+        sniff_result = {pid: (result | {"failure": 0} if result else
                               {"failure": 2, "failure_message": "Persistent Identifier could not be resolved or parsed"})
                         for pid, result in sniff_result.items()}
 

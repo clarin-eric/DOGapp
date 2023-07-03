@@ -7,32 +7,46 @@
             <thead>
                 <tr>
                     <th>PID</th>
+                    <th>Resource title</th>
                     <th>License</th>
                     <th>Description</th>
+                    <th>Resource type</th>
                     <th colspan="2">Referenced Resources</th>
                 </tr>
             </thead>
             <tbody>
                 {% for pid, fetch_res in fetch_response.items %}
                     <tr>
+                        {% comment %}
+                            PID
+                        {% endcomment %}
                         <td>{{ pid }}</td>
                         {% if fetch_res %}
+                            {% comment %}
+                                Resource title
+                            {% endcomment %}
+                            <td>{{ fetch_res.title }}</td>
+                            {% comment %}
+                                License
+                            {% endcomment %}
                             <td>{{ fetch_res.license }}</td>
+                            {% comment %}
+                                Description
+                            {% endcomment %}
                             <td>{{ fetch_res.description }}</td>
-                                {% for ref_files in fetch_res.ref_files %}
-                                    {% if ref_files.resource_type %}
-                                        <td>{{ ref_files.resource_type }}</td>
-                                    {% else %}
-                                        <td></td>
-                                    {% endif %}
-                                    <td>
-                                    {% if ref_files.pid %}
-                                        {% for ref_pid in ref_files.pid %}
-                                            <a href="{{ ref_pid }}">{{ ref_pid }}</a>
-                                            {% if not forloop.last %}
-                                                <br>
-                                            {% endif %}
-                                        {% endfor %}
+                            {% for ref_files_by_type in fetch_res.ref_files %}
+                                {% if 'resource_type' in ref_file %}
+                                    <td>{{ ref_files.resource_type }}</td>
+                                {% else %}
+                                    <td>unspecified</td>
+                                {% endif %}
+
+                                <td>
+                                    {% if 'pid' in ref_file %}
+                                        <a href="{{ ref_file.pid }}">{{ ref_file.pid }}</a>
+                                        {% if not forloop.last %}
+                                            <br>
+                                        {% endif %}
                                     {% endif %}
                                     </td>
                                 {% endfor %}

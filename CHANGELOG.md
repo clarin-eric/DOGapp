@@ -10,7 +10,8 @@ Changes:
 - Unittests for endpoints
 - OpenAPI 3.0 endpoint documentation
 - Upgrade Python==3.11 and Django==4.2
-
+- Fix whitespaces in PID form breaking DOG
+- Replace `{**A, **B}` to Python >=3.9 `A | B`
 
 ## [1.0.0] - 17.11.2022
 First release of Digital Object Gate web application

@@ -19,6 +19,7 @@ packages = [
 doglib = ">= 1.0.2"
 Django = ">= 4.2.0"
 drf-spectacular = ">=0.26.3"
+requests = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
