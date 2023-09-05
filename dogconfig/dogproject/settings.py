@@ -93,7 +93,7 @@ VERIFY_SSL = False
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Digital Object Gate',
     'DESCRIPTION': 'DOG API resolving referenced resources in the metadata',
-    'VERSION': '1.0.0',
+    'VERSION': '1.0.1',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
 }
