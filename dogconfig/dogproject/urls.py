@@ -19,7 +19,7 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
-from dogapi.views_api import fetch, identify, sniff
+from dogapi.views_api import fetch, identify, sniff, expand_datatype
 
 openapi_info = openapi.Info(title="Snippets API",
                             default_version='v1',
@@ -40,4 +40,5 @@ urlpatterns = [
     path('fetch/', fetch, name='fetch'),
     path('identify/', identify, name='identify'),
     path('sniff/', sniff, name='sniff'),
+    path('expanddatatype/', expand_datatype, name='expand data type'),
 ]
