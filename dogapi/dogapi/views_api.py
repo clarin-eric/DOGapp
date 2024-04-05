@@ -9,13 +9,24 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 from typing import List
 
-from .models import dog
-from .schemas import pid_queryparam
-from .utils import parse_queryparam, QueryparamParsingError
 
+from .models import dog, doglib_expand_datatype
+from .schemas import pid_queryparam
+from .utils import QueryparamParsingError
 
 logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger(__name__)
+
+
+def parse_queryparam(request: Request, param_name: str) -> List[str]:
+    """
+    Parses queryparameters from direct API call (PHP-like format ?param[]=val1&param[]=val2, both with and without [])
+    and via Swagger UI (?param=val1,val2)
+    """
+    query_param_candidates = request.GET.getlist(param_name)
+    # Swagger UI returns a 1 element list with comma separated values of parameter, e.g. ["string,string,string"]
+    param_candidates = [param for param_candidate in query_param_candidates for param in param_candidate.split(',')]
+    return param_candidates
 
 
 @extend_schema(parameters=[pid_queryparam],
@@ -331,3 +342,16 @@ def is_pid(request: Request) -> Response:
     except QueryparamParsingError as err:
         ret = Response(err, status=400)
     return ret
+
+
+@permission_classes([AllowAny])
+@api_view(['GET'])
+def expand_datatype(request: Request) -> Response:
+    data_types = parse_queryparam(request, 'data_type')
+    expanded_datatypes: dict = {}
+    for data_type in data_types:
+        expanded_datatypes.update(doglib_expand_datatype(data_type))
+    if expanded_datatypes:
+        return Response(expanded_datatypes, status=200)
+    else:
+        return Response(f"MIME data type(s) {data_types} is either not correct or has been not recognised", status=400)
