@@ -10,12 +10,6 @@ classifiers = [
 authors = [
     "Michał Gawor <m.j.gawor@uu.nl>",
 ]
-packages = [
-    { include = "dogapi" }
-]
-
-[tool.poetry.dependencies]
-doglib = ">= 1.0.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
