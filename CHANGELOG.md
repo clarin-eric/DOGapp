@@ -1,6 +1,13 @@
 #Changelog
 
-## [1.0.1] - TBD
+
+## [1.0.2] - TBD
+- build wheel in CI and distribute Alpine friendly wheels for internal CLARIN
+  use
+- new API endpoint `/expanddatatype?data_type=<data_type>`
+- fetch includes `/expanddatatype` response by default
+
+## [1.0.1] - never released
 Changes:
 - Fixed stability issue by providing shared cache for uwsgi apps
 - `dogui` Django raw HTML templates

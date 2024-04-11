@@ -92,8 +92,16 @@ def fetch(request: Request) -> Response:
     :rtype: rest_framework.response.Response
     """
     ret: Response
+    pids = parse_queryparam(request, "pid")
     try:
-        pids = parse_queryparam(request, "pid")
+        expand_datatype_str: str = parse_queryparam(request, "expand_datatype")[0]
+        expand_datatype_flag: bool
+        if expand_datatype_str in ('y', 'yes', 't', 'true', 'on', '1'):
+            expand_datatype_flag = True
+        else:
+            expand_datatype_flag = False
+
+
         fetch_result: dict = {pid: dog.fetch(pid) for pid in pids}
         if not bool(fetch_result):
             ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)

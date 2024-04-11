@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dogapi"
-version = "1.0.1-a2"
+version = "1.0.2-a3"
 description = "Django API views serving Digital Object Gate functionalities"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -16,10 +16,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-doglib = ">= 1.0.2"
-Django = ">= 4.2.0"
-drf-spectacular = ">=0.26.3"
-requests = "*"
+doglib = ">= 1.0.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
