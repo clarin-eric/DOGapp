@@ -1,6 +1,5 @@
 [tool.poetry]
 name = "dogui"
-version = "1.0.2-a3"
 description = "Django UI templates for Digital Object Gate API consumption"
 classifiers = [
     "Development Status :: 5 - Production/Stable",

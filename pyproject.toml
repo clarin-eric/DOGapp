@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "DOGapp"
 description = "CLARIN Centre Registry Django project configuration"
-version = "1.0.2-a3"
+version = "1.0.2-rc3"
 license = "../LICENSE.txt"
 authors = [
     "Beatriz Sanchez Bribian",
@@ -26,11 +26,12 @@ homepage = ""
 repository = "https://github.com/clarin-eric/DOGapp/"
 
 [tool.poetry.dependencies]
-python = '>=3.11.*,<4.0'
+doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.6-rc1/doglib-1.0.6rc1-py3-none-any.whl" }
 Django = '4.2.11'
 django-debug-toolbar = '4.3.0'
 djangorestframework = '3.15.1'
 drf-spectacular = ">=0.26.3"
+python = '>=3.11.*,<4.0'
 requests = "*"
 
 [tool.poetry.group.test.dependencies]
