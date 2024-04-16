@@ -1,10 +1,10 @@
 #Changelog
 
 
-## [1.0.2] - TBD
+## [1.0.2] - 16.04.2024
 - build wheel in CI and distribute Alpine friendly wheels for internal CLARIN
   use
-- new API endpoint `/expanddatatype?data_type=<data_type>`
+- new API endpoint `/expanddatatype?data_type=<data_type>` (not operational yet)
 - fetch includes `/expanddatatype` response by default
 
 ## [1.0.1] - never released
