@@ -1,13 +1,6 @@
 [tool.poetry]
 name = "dogconfig"
-description = "Django web application providing Digital Object Gates functionality"
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Framework :: Django :: 4.1",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-]
+description = "Django Digital Object Gate project configuration"
 authors = [
     "Michal Gawor <m.j.gawor@uu.nl>"
 ]
@@ -15,12 +8,3 @@ packages = [
     { include = "dogproject"},
 ]
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.dependencies]
-dogapi = ">=1.0.1-a1"
-dogui = ">=1.0.1-a1"
-django-debug-toolbar = ">=4.1.0"
-pymemcache = ">=4.0.0"

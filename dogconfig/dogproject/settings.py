@@ -26,6 +26,7 @@ SECRET_KEY ='testsecret087B*#bAIUSd'
 ADMIN_ENABLED = False
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # TODO: templatize
+DTR_INTEGRATION = True
 SESSION_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = not DEBUG
@@ -174,6 +175,8 @@ CACHES = {
         'LOCATION': 'cache:11211',
     }
 }
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

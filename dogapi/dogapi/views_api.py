@@ -102,7 +102,7 @@ def fetch(request: Request) -> Response:
             expand_datatype_flag = False
 
 
-        fetch_result: dict = {pid: dog.fetch(pid) for pid in pids}
+        fetch_result: dict = {pid: dog.fetchs(pid) for pid in pids}
         if not bool(fetch_result):
             ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
         else:
@@ -358,7 +358,7 @@ def expand_datatype(request: Request) -> Response:
     data_types = parse_queryparam(request, 'data_type')
     expanded_datatypes: dict = {}
     for data_type in data_types:
-        expanded_datatypes.update(doglib_expand_datatype(data_type))
+        expanded_datatypes.update(doglib_expand_datatype(data_type, dtr=settings.DTR_INTEGRATION))
     if expanded_datatypes:
         return Response(expanded_datatypes, status=200)
     else:
