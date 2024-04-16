@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import logging.config
 from os.path import abspath, dirname, join
 
 from dogproject import __name__ as app_name
@@ -24,7 +24,9 @@ SECRET_KEY ='testsecret087B*#bAIUSd'
 ## Secure cookies have to be turned off in development mode, assuming there is
 ## no reverse proxy with X-Forwarded-Proto=https or https://tools.ietf.org/html/rfc7239.
 ADMIN_ENABLED = False
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True # TODO: templatize
+DTR_INTEGRATION = True
 SESSION_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SECURE = not DEBUG
@@ -33,8 +35,6 @@ PIWIK_WEBSITE_ID = "1000"
 PROJECT_DIR = abspath(dirname(__file__))
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'django']
 TEMPLATE_DEBUG = DEBUG
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
@@ -45,8 +45,16 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 ROOT_URLCONF = app_name + '.urls'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+API_NETLOC = "http://127.0.0.1:8000/api"
+CORS_ORIGIN_ALLOW_ALL = True
+INTERNAL_IPS = ['127.0.0.1']
 
-TEMPLATE_LOADERS = ('django.template.loaders.app_directories.Loader', )
+# https://knasmueller.net/fix-djangos-debug-toolbar-not-showing-inside-docker
+import socket
+hostname, _, ips = socket.gethostbyname_ex("localhost")
+INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -57,13 +65,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party
+    'debug_toolbar',
     'corsheaders',
-    'drf_yasg',
+    'drf_spectacular',
     'rest_framework',
 
-    # local
-    'dogapi.apps.DogApiConf',
+    # CLARIN internal dependency
     'doglib',
+
+    # local
+    'dogapi',
+    'dogui'
+
 ]
 
 REST_FRAMEWORK = {
@@ -71,21 +84,19 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-REDOC_SETTINGS = {
-    'LAZY_RENDERING': False,
-}
+VERIFY_SSL = False
 
-SWAGGER_SETTINGS = {
-    'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.OpenAPISchemaGenerator',
-    'DEFAULT_AUTO_SCHEMA_CLASS': 'drf_yasg.inspectors.SwaggerAutoSchema',
-    'SECURITY_DEFINITIONS': {
-        'basic': {
-            'type': 'basic'
-        }
-    },
-    'DEFAULT_INFO': app_name + '.urls.openapi_info',
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Digital Object Gate',
+    'DESCRIPTION': 'DOG API resolving referenced resources in the metadata',
+    'VERSION': '1.0.1',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 MIDDLEWARE = [
@@ -97,13 +108,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
+TEMPLATE_LOADERS = ('django.template.loaders.app_directories.Loader', )
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
         'APP_DIRS': True,
+        'DIRS': [join(BASE_DIR, 'templates'),
+                 join(BASE_DIR, './../dogui/dogui/templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -114,6 +128,54 @@ TEMPLATES = [
         },
     },
 ]
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+        'TEST': {
+            'NAME': 'mytestdatabase',
+        },
+    },
+}
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        # existing handlers
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'root': {
+        'level': 'DEBUG',
+        'handlers': ['console'],
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        },
+        'dogapi': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        },
+        'dogui': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        }
+    }
+}
+logging.config.dictConfig(LOGGING)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': 'cache:11211',
+    }
+}
+
 
 
 # Internationalization
@@ -128,20 +190,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-# TODO
-# CORS_ORIGIN_WHITELIST = (
-#   'http://localhost:8000',
-# )

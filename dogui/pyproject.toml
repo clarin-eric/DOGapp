@@ -1,0 +1,7 @@
+[tool.poetry]
+name = "dogui"
+description = "Django UI templates for Digital Object Gate API consumption"
+packages = [
+    { include = "dogui" }
+]
+

@@ -1,20 +1,6 @@
-[build-system]
-requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
-[project]
+[tool.poetry]
 name = "dogapi"
-version = "1.0.0-dev"
-description = "Django API views serving Digital Object Gate functionalities"
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Framework :: Django :: 4.1",
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-]
-dependencies = [
-    "doglib>=1.0.0",
-]
 authors = [
-    { name = "Michał Gawor", email = "m.j.gawor@uu.nl"}
+    "Michał Gawor <m.j.gawor@uu.nl>",
 ]
-[tool.setuptools]
-packages = ["dogapi"]
+

@@ -1,0 +1,67 @@
+{% extends 'UI/_home.html' %}
+{% load dogui_extras %}
+{% block result %}
+    <div class='table-reponsive'>
+        <table id='fetch_result_table'
+               class='datatables-table stripe order-column row-border'>
+            <thead>
+                <tr>
+                    <th>PID</th>
+                    <th>Resource title</th>
+                    <th>License</th>
+                    <th>Description</th>
+                    <th colspan="2">Referenced Resources</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pid, fetch_res in fetch_response.items %}
+                    <tr>
+                        {% comment %}
+                            PID
+                        {% endcomment %}
+                        <td>{{ pid }}</td>
+                        {% if fetch_res %}
+                            {% comment %}
+                                Resource title
+                            {% endcomment %}
+                            <td>{{ fetch_res.title }}</td>
+                            {% comment %}
+                                License
+                            {% endcomment %}
+                            <td>{{ fetch_res.license }}</td>
+                            {% comment %}
+                                Description
+                            {% endcomment %}
+                            <td>{{ fetch_res.description }}</td>
+                            <td>
+                            <table>
+                                {% for ref_files_by_type in fetch_res.ref_files %}
+                                    <tr>
+                                        <td>
+                                            {{ ref_files_by_type.resource_type }}
+                                        </td>
+                                        <td>
+                                            {% for pid in ref_files_by_type.pid %}
+                                                <a href="{{ pid }}">{{ pid }}</a>
+                                                    {% if not forloop.last %}
+                                                        <br>
+                                                    {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                            </td>
+                        {% else %}
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock result%}

@@ -1,0 +1,40 @@
+{% extends 'UI/_home.html' %}
+{% block result %}
+    <form method="GET" action="/">
+        <div class='table-reponsive'>
+            <table id='all_centres' class='datatables-table stripe order-column row-border'>
+                <thead>
+                    <tr>
+                        <th>PID</th>
+                        <th>Recognised host</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pid, sniff_res in sniff_response.items %}
+                        <tr>
+                            <td>{{ pid }}</td>
+                            {% if sniff_res %}
+                                <td><a href={{ sniff_res.host_netloc }}>{{ sniff_res.name }}</a></td>
+                                {% if not forloop.last %}
+                                    <br>
+                                {% endif %}
+                            {% else %}
+                                <td>NA</td>
+                                {% if not forloop.last %}
+                                    <br>
+                                {% endif %}
+                            {% endif %}
+                            <td><input type="checkbox" name="pid_field" value="{{ pid }}">
+                            {% if not forloop.last %}
+                                <br>
+                            {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" name="functionality_field" value="fetch">Fetch selected</button>
+        </div>
+    </form>
+{% endblock result%}

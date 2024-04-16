@@ -1,27 +1,10 @@
-[build-system]
-requires = ["setuptools>=65", "setuptools_scm[toml]>=7.0", "wheel"]
-[project]
+[tool.poetry]
 name = "dogconfig"
-version = "1.0.0-dev0"
-description = "Django web application providing Digital Object Gates functionality"
-classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "Framework :: Django :: 4.1",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-]
-dependencies = [
-    "Django>=4.1.1",
-    "django-cors-headers>=3.1.13",
-    "djangorestframework>=3.14.0",
-    "dogapi>=1.0.0-dev",
-    "drf-yasg>=1.21.4",
-    "pyyaml>=6.0",
-    "uritemplate>=4.1.1",
-]
+description = "Django Digital Object Gate project configuration"
 authors = [
-    { name = "Michal Gawor", email = "m.j.gawor@uu.nl"}
+    "Michal Gawor <m.j.gawor@uu.nl>"
 ]
-[tool.setuptools]
-packages = ["dogproject"]
+packages = [
+    { include = "dogproject"},
+]
+
