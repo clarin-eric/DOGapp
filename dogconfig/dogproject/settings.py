@@ -38,8 +38,8 @@ TEMPLATE_DEBUG = DEBUG
 MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
-                   '../../dogapi/dogapi/assets')
-STATICFILES_DIRS = (join(BASE_DIR, 'DOGapp/static'))
+                   '../../assets')
+STATICFILES_DIRS = (join(BASE_DIR, 'dogapp/static'))
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
