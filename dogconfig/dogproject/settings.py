@@ -38,7 +38,7 @@ TEMPLATE_DEBUG = DEBUG
 MEDIA_ROOT = ''
 STATIC_URL = '/static/'
 STATIC_ROOT = join(PROJECT_DIR,
-                   '../../assets')
+                   '../DOG/assets')
 STATICFILES_DIRS = (join(BASE_DIR, 'dogapp/static'))
 
 STATICFILES_FINDERS = (

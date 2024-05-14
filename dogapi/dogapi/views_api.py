@@ -300,6 +300,7 @@ def sniff(request: Request) -> Response:
         ret = Response(err, status=400)
     return ret
 
+
 @extend_schema(parameters=[pid_queryparam],
                description="Checks whether input is a PID that can be parsed by DOG. Does only string parsing. "
                            "Any valid string in a format of URL, DOI or HDL will be accepted. "
