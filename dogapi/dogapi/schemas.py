@@ -24,3 +24,19 @@ pid_queryparam: OpenApiParameter = OpenApiParameter(name='pid',
                                                             value='https://clarin-pl.eu/dspace/handle/11321/6?format=cmdi'
                                                         )
                                                     ])
+use_dtr_queryparam: OpenApiParameter = OpenApiParameter(name='use_dtr',
+                                                        location=OpenApiParameter.QUERY,
+                                                        description='flag whether expand MIMETypes with DTR',
+                                                        required=False,
+                                                        type={'type': "boolean"},
+                                                        examples=[
+                                                            OpenApiExample(
+                                                                'True',
+                                                                description='Do use DTR',
+                                                                value='True'
+                                                            ),
+                                                            OpenApiExample(
+                                                                'False',
+                                                                description='Do NOT use DTR',
+                                                                value='False')
+                                                        ])

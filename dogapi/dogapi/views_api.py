@@ -1,7 +1,6 @@
 from django.conf import settings
 from drf_spectacular.utils import extend_schema, OpenApiExample, OpenApiParameter
 from drf_spectacular.types import OpenApiTypes
-import json
 import logging.config
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -11,7 +10,7 @@ from typing import List
 
 
 from .models import dog, doglib_expand_datatype
-from .schemas import pid_queryparam
+from .schemas import pid_queryparam, use_dtr_queryparam
 from .utils import QueryparamParsingError
 
 logging.config.dictConfig(settings.LOGGING)
@@ -28,7 +27,6 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
     param_candidates = [param for param_candidate in query_param_candidates for param in param_candidate.split(',')]
     return param_candidates
 
-
 @extend_schema(parameters=[pid_queryparam],
                description="Fetches all PIDs referenced in the metadata by resource type. For response object \
                            specification please consult examples.",
@@ -41,8 +39,9 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                    OpenApiExample(
                        name="Successful fetch result example",
                        description="Fetch referenced resources from the metadata. "
-                                   "Due to drf-spectacular not supporting variable keys documentation generation, the output type "
-                                   "specification is available only through the description and examples for the time being",
+                                   "Due to drf-spectacular not supporting variable keys documentation generation, "
+                                   "the output type specification is available only through the description and "
+                                   "examples for the time being",
                        value=[
                            {"https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422": {
                                "ref_files": [
@@ -59,7 +58,9 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                                        "resource_type": "LandingPage",
                                        "pid": ["https://hdl.handle.net/11234/1-3422"]}
                                ],
-                               "description": "Talks of Karel Makoň given to his friends in the course of late sixties through early nineties of the 20th century. The topic is mostly christian mysticism.",
+                               "description": "Talks of Karel Makoň given to his friends in the course of late sixties "
+                                              "through early nineties of the 20th century. The topic is mostly "
+                                              "christian mysticism.",
                                "license": "http://creativecommons.org/licenses/by-sa/4.0/",
                                "failure": 0,
                            }}],
@@ -67,19 +68,28 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                    ),
                    OpenApiExample(
                        name="Failed fetch result example",
-                       description="There are no referenced resources in the metadata. "
-                                   "Due to drf-spectacular not supporting variable keys documentation generation, the output type "
-                                   "specification is available only through the description and examples for the time being",
-                       value={"<definitelyNotAPID>": {
+                       description="Could not parse the response",
+                       value={"<RegisteredPID>": {
                                "failure": 1,
-                               "failure_message": "Persistent Identifier could not be resolved or metadata could not be parsed"
+                               "failure_message": "Persistent Identifier could not be resolved or metadata could not "
+                                                  "be parsed"
+                           }},
+                       response_only=True
+                   ),
+OpenApiExample(
+                       name="Failed fetch result example",
+                       description="",
+                       value={"<NotARegisteredPID>": {
+                               "failure": 2,
+                               "failure_message": "Persistent Identifier has been not recognised"
                            }},
                        response_only=True
                    )
                ])
+
 @permission_classes([AllowAny])
 @api_view(['GET'])
-def fetch(request: Request) -> Response:
+def fetch(request: Request, use_dtr: bool = False) -> Response:
     """
     Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats:
     ?pid=val1&pid=val2&pid=val3
@@ -93,33 +103,20 @@ def fetch(request: Request) -> Response:
     """
     ret: Response
     pids = parse_queryparam(request, "pid")
-    try:
-        expand_datatype_str: str = parse_queryparam(request, "expand_datatype")[0]
-        expand_datatype_flag: bool
-        if expand_datatype_str in ('y', 'yes', 't', 'true', 'on', '1'):
-            expand_datatype_flag = True
-        else:
-            expand_datatype_flag = False
-
-
-        fetch_result: dict = {pid: dog.fetchs(pid) for pid in pids}
-        if not bool(fetch_result):
-            ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
-        else:
-            fetch_result = {pid: (result | {"failure": 0} if result else {"failure": 2,
-                                                                          "failure_message": "Persistent Identifier could not be resolved or parsed"})
-                            for pid, result in fetch_result.items()}
-
-            #fetch_result = {pid: (result | {"failure": 0} if result else
-            #                      {"failure": 2,
-            #                       "failure_message": "Persistent Identifier could not be resolved or parsed"})
-            #                for pid, result in fetch_result.items()}
-            ret = Response(fetch_result, status=200)
-    except QueryparamParsingError as err:
-        ret = Response(err, status=400)
-
+    use_dtr_queryparam = parse_queryparam(request, "use_dtr")
+    if use_dtr_queryparam:
+        if use_dtr_queryparam[0] in {"True", "true"}:
+            use_dtr = True
+    fetch_result: dict = {pid: dog.fetch(pid, dtr=use_dtr) for pid in pids}
+    if not bool(fetch_result):
+        ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
+    else:
+        ret = Response(
+            {pid: (result | {"failure": 0}) if result else {"failure": 2,
+                                                            "failure_message": "Persistent Identifier could not be resolved or parsed"}
+             for pid, result in fetch_result.items()}
+        )
     return ret
-
 
 @extend_schema(parameters=[pid_queryparam],
                description="Identifies collection with its title and description, functionality requested for "
@@ -133,11 +130,14 @@ def fetch(request: Request) -> Response:
                    OpenApiExample(
                        name="Successfully identified result example",
                        description="Collection has been identified. "
-                                   "Due to drf-spectacular not supporting variable keys documentation generation, the output type "
-                                   "specification is available only through the description and examples for the time being",
+                                   "Due to drf-spectacular not supporting variable keys documentation generation,"
+                                   "the output type specification is available only through the description and "
+                                   "examples for the time being",
                        value={"https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422":
                                   {'item_title': 'LINDAT / CLARIAH-CZ Data & Tools',
-                                   'description': 'Talks of Karel Makoň given to his friends in the course of late sixties through early nineties of the 20th century. The topic is mostly christian mysticism.',
+                                   'description': 'Talks of Karel Makoň given to his friends in the course of late '
+                                                  'sixties through early nineties of the 20th century. The topic is '
+                                                  'mostly christian mysticism.',
                                    'reverse_pid': 'https://hdl.handle.net/11234/1-3422@format=cmdi'}
                               },
                        response_only=True
@@ -145,12 +145,14 @@ def fetch(request: Request) -> Response:
                    OpenApiExample(
                        name="Failed result identification example",
                        description="There are no referenced resources in the metadata "
-                                   "Due to drf-spectacular not supporting variable keys documentation generation, the output type "
-                                   "specification is available only through the description and examples for the time being",
+                                   "Due to drf-spectacular not supporting variable keys documentation generation, "
+                                   "the output type specification is available only through the description and "
+                                   "examples for the time being",
                        value={"<definitelyNotAPID>": {}},
                        response_only=True
                    )
                ])
+
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def identify(request: Request) -> Response:
@@ -178,7 +180,6 @@ def identify(request: Request) -> Response:
 
     return ret
 
-
 @extend_schema(parameters=[pid_queryparam],
                description="Checks if PIDs points to a metadata referencing another resource(s). For response object \
                            specification please consult examples.",
@@ -191,16 +192,18 @@ def identify(request: Request) -> Response:
                    OpenApiExample(
                        name="Input PID points to a collection",
                        description="Checks if PID points to a metadata referenging another resource(s)"
-                                   "Due to drf-spectacular not supporting variable keys documentation generation, the output type"
-                                   "specification is available only through the description and examples for the time being",
+                                   "Due to drf-spectacular not supporting variable keys documentation generation, "
+                                   "the output type specification is available only through the description and"
+                                   "examples for the time being",
                        value={"https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422": True},
                        response_only=True
                    ),
                    OpenApiExample(
                        name="Input PID does not point to a collection",
                        description="Checks if PID points to a metadata referenging another resource(s)"
-                                   "Due to drf-spectacular not supporting variable keys documentation generation, the output type "
-                                   "specification is available only through the description and examples for the time being",
+                                   "Due to drf-spectacular not supporting variable keys documentation generation, "
+                                   "the output type specification is available only through the description and "
+                                   "examples for the time being",
                        value={"https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-3422/makon-plzen1.zip?sequence=32": False},
                        response_only=True
                    )
@@ -262,7 +265,8 @@ def is_collection(request: Request) -> Response:
                            {
                                "<definitelyNotAPID>": {},
                                "failure": 1,
-                               "failure_message": "Persistent Identifier could not be resolved or metadata could not be parsed"
+                               "failure_message": "Persistent Identifier could not be resolved or metadata could not "
+                                                  "be parsed"
                            }
                        ],
                        response_only=True
@@ -333,7 +337,8 @@ def sniff(request: Request) -> Response:
                            {
                                "<definitelyNotAPID>": {},
                                "failure": 1,
-                               "failure_message": "Persistent Identifier could not be resolved or metadata could not be parsed"
+                               "failure_message": "Persistent Identifier could not be resolved or metadata could not "
+                                                  "be parsed"
                            }
                        ],
                        response_only=True
@@ -352,15 +357,25 @@ def is_pid(request: Request) -> Response:
         ret = Response(err, status=400)
     return ret
 
-
+@extend_schema(parameters=[pid_queryparam],
+               description="Returns taxonomy of a MIME type according to Data Type Registry",
+               responses={
+                   200: OpenApiTypes.OBJECT,
+                   400: OpenApiTypes.STR
+               },
+               request=None,
+               examples=[
+               ]
+               )
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def expand_datatype(request: Request) -> Response:
     data_types = parse_queryparam(request, 'data_type')
     expanded_datatypes: dict = {}
     for data_type in data_types:
-        expanded_datatypes.update(doglib_expand_datatype(data_type, dtr=settings.DTR_INTEGRATION))
+        expanded_datatypes.update(doglib_expand_datatype(data_type))
     if expanded_datatypes:
         return Response(expanded_datatypes, status=200)
     else:
-        return Response(f"MIME data type(s) {data_types} is either not correct or has been not recognised", status=400)
+        return Response(f"MIME data type(s) {data_types} is either not correct or has been not recognised",
+                        status=400)
