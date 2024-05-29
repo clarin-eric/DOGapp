@@ -1,5 +1,5 @@
 from django.conf import settings
-from drf_spectacular.utils import extend_schema, OpenApiExample, OpenApiParameter
+from drf_spectacular.utils import extend_schema, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
 import logging.config
 from rest_framework.decorators import api_view, permission_classes
@@ -27,7 +27,8 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
     param_candidates = [param for param_candidate in query_param_candidates for param in param_candidate.split(',')]
     return param_candidates
 
-@extend_schema(parameters=[pid_queryparam],
+
+@extend_schema(parameters=[pid_queryparam, use_dtr_queryparam],
                description="Fetches all PIDs referenced in the metadata by resource type. For response object \
                            specification please consult examples.",
                responses={
@@ -37,7 +38,37 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                request=None,
                examples=[
                    OpenApiExample(
-                       name="Successful fetch result example",
+                       name="Successful fetch result example with use_dtr=False",
+                       description="Fetch referenced resources from the metadata. "
+                                   "Due to drf-spectacular not supporting variable keys documentation generation, "
+                                   "the output type specification is available only through the description and "
+                                   "examples for the time being",
+                       value=[
+                           {"https://lindat.mff.cuni.cz/repository/xmlui/handle/11234/1-3422": {
+                               "ref_files": [
+                                   {
+                                       "resource_type": "Resource",
+                                       "pid": [
+                                           "http://radio.makon.cz/",
+                                           "https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-3422/README?sequence=1]}",
+                                           "...",
+                                           "https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-3422/makon-plzen2.zip?sequence=33"
+                                       ]
+                                   },
+                                   {
+                                       "resource_type": "LandingPage",
+                                       "pid": ["https://hdl.handle.net/11234/1-3422"]}
+                               ],
+                               "description": "Talks of Karel Makoň given to his friends in the course of late sixties "
+                                              "through early nineties of the 20th century. The topic is mostly "
+                                              "christian mysticism.",
+                               "license": "http://creativecommons.org/licenses/by-sa/4.0/",
+                               "failure": 0,
+                           }}],
+                       response_only=True
+                   ),
+                   OpenApiExample(
+                       name="Successful fetch result example with use_dtr=True",
                        description="Fetch referenced resources from the metadata. "
                                    "Due to drf-spectacular not supporting variable keys documentation generation, "
                                    "the output type specification is available only through the description and "
@@ -76,7 +107,7 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                            }},
                        response_only=True
                    ),
-OpenApiExample(
+                   OpenApiExample(
                        name="Failed fetch result example",
                        description="",
                        value={"<NotARegisteredPID>": {
@@ -86,7 +117,6 @@ OpenApiExample(
                        response_only=True
                    )
                ])
-
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def fetch(request: Request, use_dtr: bool = False) -> Response:
@@ -118,7 +148,7 @@ def fetch(request: Request, use_dtr: bool = False) -> Response:
         )
     return ret
 
-@extend_schema(parameters=[pid_queryparam],
+@extend_schema(parameters=[pid_queryparam, ],
                description="Identifies collection with its title and description, functionality requested for "
                            "Virtual Content Registry. For response object specification please consult examples.",
                responses={
@@ -152,7 +182,6 @@ def fetch(request: Request, use_dtr: bool = False) -> Response:
                        response_only=True
                    )
                ])
-
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def identify(request: Request) -> Response:
@@ -179,6 +208,7 @@ def identify(request: Request) -> Response:
         ret = Response(err, status=400)
 
     return ret
+
 
 @extend_schema(parameters=[pid_queryparam],
                description="Checks if PIDs points to a metadata referencing another resource(s). For response object \
@@ -357,6 +387,7 @@ def is_pid(request: Request) -> Response:
         ret = Response(err, status=400)
     return ret
 
+
 @extend_schema(parameters=[pid_queryparam],
                description="Returns taxonomy of a MIME type according to Data Type Registry",
                responses={
@@ -373,7 +404,7 @@ def expand_datatype(request: Request) -> Response:
     data_types = parse_queryparam(request, 'data_type')
     expanded_datatypes: dict = {}
     for data_type in data_types:
-        expanded_datatypes.update(doglib_expand_datatype(data_type))
+        expanded_datatypes[data_type] = doglib_expand_datatype(data_type)
     if expanded_datatypes:
         return Response(expanded_datatypes, status=200)
     else:

@@ -3,7 +3,6 @@
 
 from django.urls import include, path, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularJSONAPIView
-from rest_framework.permissions import AllowAny
 
 
 from dogui.views_ui import home
@@ -20,5 +19,5 @@ urlpatterns = [
     path('api/ispid/', is_pid, name='is pid'),
     path('', home, name='main'),
     path('__debug__/', include('debug_toolbar.urls')),
-    path('expanddatatype/', expand_datatype, name='expand data type'),
+    path('api/expanddatatype/', expand_datatype, name='expand data type'),
 ]
