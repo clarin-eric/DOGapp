@@ -36,14 +36,15 @@ class PIDForm(forms.Form):
     """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['pid_field'].label = ""
-        self.fields['functionality_field'].label = ""
+        self.fields["pid_field"].label = ""
+        self.fields["functionality_field"].label = ""
 
     FUNCTIONALITIES: List[tuple] = [
         ('sniff', 'sniff'),
         # ('identify', 'identify'),
         ('fetch', 'fetch'),
         ('ispid', 'is pid'),
+        ('expanddatatype', 'expand MIME data type'),
     ]
     pid_field: PIDField = PIDField(required=True,
                                    widget=forms.TextInput(attrs={'required': 'True'}))

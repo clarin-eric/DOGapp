@@ -152,20 +152,6 @@ LOGGING = {
         'level': 'DEBUG',
         'handlers': ['console'],
     },
-    'loggers': {
-        '': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        },
-        'dogapi': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        },
-        'dogui': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        }
-    }
 }
 logging.config.dictConfig(LOGGING)
 

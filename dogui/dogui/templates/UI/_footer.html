@@ -1,0 +1,14 @@
+{% load static %}
+{% block footer %}
+<div id='footer'
+     class='periphery'>
+    <a title='about'
+       href='/about'>&#x2139; Version {{ VERSION }}</a>
+    <a title='CLARIN ERIC'
+       href='https://www.clarin.eu/'>{# @formatter:off #}
+        <img src="{% static 'dogui/style/CLARIN-Logo_4C14pure3_noextraneouscanvas.png' %}"
+             alt='CLARIN ERIC logo'></a>{# @formatter:on #}
+    <a title='contacting us'
+       href='/contacting'>&#128236; Contacting us</a>
+</div>
+{% endblock footer %}

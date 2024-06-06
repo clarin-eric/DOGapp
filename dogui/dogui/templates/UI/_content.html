@@ -1,0 +1,24 @@
+{% extends 'UI/_.html' %}
+{% block content %}
+<div id="content">
+    Welcome to CLARIN-ERIC Digital Object Gate. The goal of DOG is to ease access to referenced resources in metadata.
+    Currently, DOG supports 4 functionalities:
+    <ul>
+        <li>sniff - checks if input PID points to a registered repository</li>
+        <li>fetch - fetches all PIDs of references resources in the metadata </li>
+        <li>is pid - checks if input string is a DOG parsable PID</li>
+        <li>expand data type - returns MIME Data Type taxonomy from <a href="">Data Type Registry</a></li>
+    </ul>
+
+    OpenAPI docummentation available under <a href></a>
+
+    <h3> BETA Digital Object Gate </h3>
+
+        {% block pid_form %}
+            {%  if pid_form %}
+                {% include 'UI/_form_pid.html' with form=pid_form %}
+            {% endif %}
+        {% endblock pid_form %}
+        {% block result %}{% endblock result %}
+</div>
+{% endblock content %}
