@@ -410,3 +410,9 @@ def expand_datatype(request: Request) -> Response:
     else:
         return Response(f"MIME data type(s) {data_types} is either not correct or has been not recognised",
                         status=400)
+
+
+@permission_classes([AllowAny])
+@api_view(['GET'])
+def get_all_repositories(request: Request) -> Response:
+    return Response(dog.get_all_repositories(), status=200)

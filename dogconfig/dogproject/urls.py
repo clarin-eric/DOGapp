@@ -6,7 +6,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularJSONAPIView
 
 
 from dogui.views_ui import home
-from dogapi.views_api import fetch, identify, sniff, is_pid, expand_datatype
+from dogapi.views_api import fetch, identify, sniff, is_pid, expand_datatype, get_all_repositories
 
 
 urlpatterns = [
@@ -20,4 +20,5 @@ urlpatterns = [
     path('', home, name='main'),
     path('__debug__/', include('debug_toolbar.urls')),
     path('api/expanddatatype/', expand_datatype, name='expand data type'),
+    path('api/allregrepo/', get_all_repositories, name='get all repositories'),
 ]

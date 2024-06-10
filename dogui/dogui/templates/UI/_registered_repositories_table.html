@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>
+            Shorthand
+        </th>
+        <th>
+            Full name
+        </th>
+    </tr>
+    {% for reg_repo in reg_repos %}
+    <tr>
+        <td><a href="{{ reg_repo.host_netloc }}"></a>{{ reg_repo.host_name }}</td>
+        <td>{{ reg_repo.name }}</td>
+    </tr>
+    {% endfor %}
+</table>

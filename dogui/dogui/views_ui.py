@@ -23,22 +23,20 @@ def home(request: HttpRequest) -> HttpResponse:
             api_url = API_NETLOC + f'/{functionality}/?pid={",".join(pids)}'
         else:
             api_url = API_NETLOC + f'/{functionality}/?data_type={",".join(pids)}'
-        print("API URL")
-        print(api_url)
         # if functionality == 'fetch':
         #     use_dtr = pid_form.cleaned_data['use_dtr_field']
         #     api_url += "&use_dtr=" + use_dtr
 
         api_response = requests.get(api_url, verify=settings.VERIFY_SSL)
         if functionality == 'expanddatatype':
-            logging.critical(str(api_response))
-            print("$$$$$$$$$$$$$$$$$")
-            print(type(api_response))
-            print(api_response)
             taxonomy_tree = TaxonomyTree(api_response.json())
             context.push({"taxonomy_tree": taxonomy_tree})
-        logging.critical(f'UI response {api_response}')
-        context.push({f"{functionality}_response": api_response.json()})
+        else:
+            context.push({f"{functionality}_response": api_response.json()})
+
+        all_registered_repos_url = API_NETLOC + "/allregrepo"
+        all_registered_repos_response = requests.get(all_registered_repos_url)
+        context.push({"reg_repos": all_registered_repos_response.json()})
 
         return render(request, f"UI/_{functionality}.html", context.flatten())
     else:
