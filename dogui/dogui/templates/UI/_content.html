@@ -10,7 +10,7 @@
         <li>expand data type - returns MIME Data Type taxonomy from <a href="">Data Type Registry</a></li>
     </ul>
 
-    OpenAPI docummentation available under <a href="">=</a>
+    OpenAPI docummentation available under <a href=""></a>
 
     Source code for DOGlib available <a href="https://github.com/clarin-eric/DOGlib/">here</a>
     source code for DOGapp avaiable <a href="https://github.com/clarin-eric/DOGapp/">here</a>
@@ -26,8 +26,11 @@
 </div>
 {% endblock content %}
 
+<br>
 <div id="registered_repos_table">
-{% block registered_repos %}
-{% include 'UI/_registered_repositories_table.html' with reg_repos=reg_repos %}
-{% endblock registered_repos %}
+    {% block registered_repos %}
+        {% include 'UI/_registered_repositories_table.html' with reg_repos=reg_repos %}
+    {% endblock registered_repos %}
 </div>
+
+
