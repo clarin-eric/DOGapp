@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.template import RequestContext
 import logging.config
 import requests
+import sys
 
 from .forms import PIDForm
 from .utils import TaxonomyTree
@@ -15,6 +16,16 @@ API_NETLOC = settings.API_NETLOC
 def home(request: HttpRequest) -> HttpResponse:
     context: RequestContext = RequestContext(request)
     pid_form: PIDForm() = PIDForm(request.GET)
+
+    all_registered_repos_url = API_NETLOC + "/allregrepo"
+    all_registered_repos_response = requests.get(all_registered_repos_url)
+
+    print("$$$$$$$$$$$$$$$$$$", file=sys.stderr)
+    print(all_registered_repos_response.json(), file=sys.stderr)
+    logging.debug("#########")
+    logging.debug(all_registered_repos_response.json())
+    context.push({"reg_repos": all_registered_repos_response.json()})
+
     if pid_form.is_valid():
         context.push({"pid_form": pid_form})
         functionality = pid_form.cleaned_data['functionality_field']
@@ -33,10 +44,6 @@ def home(request: HttpRequest) -> HttpResponse:
             context.push({"taxonomy_tree": taxonomy_tree})
         else:
             context.push({f"{functionality}_response": api_response.json()})
-
-        all_registered_repos_url = API_NETLOC + "/allregrepo"
-        all_registered_repos_response = requests.get(all_registered_repos_url)
-        context.push({"reg_repos": all_registered_repos_response.json()})
 
         return render(request, f"UI/_{functionality}.html", context.flatten())
     else:

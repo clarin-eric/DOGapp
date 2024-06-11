@@ -416,4 +416,4 @@ def expand_datatype(request: Request) -> Response:
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def get_all_repositories(request: Request) -> Response:
-    return Response(dumps(dog.get_all_repositories(), status=200))
+    return Response(dog.get_all_repositories(), status=200)

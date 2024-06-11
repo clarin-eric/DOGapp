@@ -94,7 +94,7 @@ VERIFY_SSL = False
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Digital Object Gate',
     'DESCRIPTION': 'DOG API resolving referenced resources in the metadata',
-    'VERSION': '1.0.1',
+    'VERSION': '1.0.3',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
 }
@@ -141,16 +141,25 @@ DATABASES = {
 
 LOGGING = {
     'version': 1,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'handlers': {
         # existing handlers
         'console': {
             'level': 'DEBUG',
-            'class': 'logging.StreamHandler'
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
         }
     },
-    'root': {
-        'level': 'DEBUG',
-        'handlers': ['console'],
+    'loggers': {
+        'root': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True
+        }
     },
 }
 logging.config.dictConfig(LOGGING)

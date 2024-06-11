@@ -9,7 +9,7 @@
     </tr>
     {% for reg_repo in reg_repos %}
     <tr>
-        <td><a href="{{ reg_repo.host_netloc }}"></a>{{ reg_repo.host_name }}</td>
+        <td><a href="{{ reg_repo.host_netloc }}">{{ reg_repo.host_name }}</a></td>
         <td>{{ reg_repo.name }}</td>
     </tr>
     {% endfor %}

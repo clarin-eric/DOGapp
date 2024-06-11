@@ -26,7 +26,7 @@ homepage = ""
 repository = "https://github.com/clarin-eric/DOGapp/"
 
 [tool.poetry.dependencies]
-# doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.6/doglib-1.0.6-py3-none-any.whl" } 
+doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.7-rc1/doglib-1.0.7rc1-py3-none-any.whl" }
 Django = '4.2.11'
 django-cors-headers = '>=4.3.1'
 django-debug-toolbar = '4.3.0'
