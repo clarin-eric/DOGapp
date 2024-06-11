@@ -1,6 +1,7 @@
 from django.conf import settings
 from drf_spectacular.utils import extend_schema, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
+from json import dumps
 import logging.config
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
@@ -415,4 +416,4 @@ def expand_datatype(request: Request) -> Response:
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def get_all_repositories(request: Request) -> Response:
-    return Response(dog.get_all_repositories(), status=200)
+    return Response(dumps(dog.get_all_repositories(), status=200))
