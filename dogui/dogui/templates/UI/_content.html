@@ -1,8 +1,6 @@
 {% extends 'UI/_.html' %}
 {% block content %}
 <div id="content">
-    Why Changes Are Not Installed
-
     Welcome to CLARIN-ERIC Digital Object Gate. The goal of DOG is to ease access to referenced resources in metadata.
     Currently, DOG supports 4 functionalities:
     <ul>
@@ -26,13 +24,14 @@
         {% endblock pid_form %}
         {% block result %}{% endblock result %}
 </div>
-{% endblock content %}
 
-<br>
+
 <div id="registered_repos_table">
     {% block registered_repos %}
         {% include 'UI/_registered_repositories_table.html' with reg_repos=reg_repos %}
     {% endblock registered_repos %}
 </div>
+
+{% endblock content %}
 
 
