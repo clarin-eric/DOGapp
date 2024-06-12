@@ -1,17 +1,16 @@
 class TaxonomyTree:
     def __init__(self, taxonomy_dict: dict):
         self.name = next(iter(taxonomy_dict.keys()))
-        print("NAME")
-        print(self.name)
         taxonomy_dict = taxonomy_dict[self.name]
         tree_root_pid: str = ""
+        print("TAXONOMY DICT")
         print(taxonomy_dict)
         for node_pid, taxonomy_node in taxonomy_dict.items():
             print("NODE PID")
             print(node_pid)
             print("taxonomy_node")
             print(taxonomy_node)
-            if taxonomy_node["name"] == self.name:
+            if not taxonomy_node["parents"]:
                 tree_root_pid = node_pid
                 break
         self.node = TaxonomyNode(tree_root_pid, taxonomy_dict)

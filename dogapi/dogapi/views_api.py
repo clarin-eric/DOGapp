@@ -389,7 +389,7 @@ def is_pid(request: Request) -> Response:
     return ret
 
 
-@extend_schema(parameters=[pid_queryparam],
+@extend_schema(parameters=[],
                description="Returns taxonomy of a MIME type according to Data Type Registry",
                responses={
                    200: OpenApiTypes.OBJECT,
