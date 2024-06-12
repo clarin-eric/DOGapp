@@ -7,7 +7,7 @@ pid_queryparam: OpenApiParameter = OpenApiParameter(name='pid',
                                                     description='Persistent identifier(s)',
                                                     required=True,
                                                     type={'type': 'array',
-                                                          'items': 'str'},
+                                                          'items': {'type': 'string'}},
                                                     examples=[
                                                         OpenApiExample(
                                                             'HDL',

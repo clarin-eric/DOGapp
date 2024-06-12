@@ -149,7 +149,7 @@ def fetch(request: Request, use_dtr: bool = False) -> Response:
         )
     return ret
 
-@extend_schema(parameters=[pid_queryparam, ],
+@extend_schema(parameters=[pid_queryparam],
                description="Identifies collection with its title and description, functionality requested for "
                            "Virtual Content Registry. For response object specification please consult examples.",
                responses={
