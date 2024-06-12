@@ -41,7 +41,7 @@
                                             {{ ref_files_by_type.resource_type }}
                                         </td>
                                         <td>
-                                            {% for pid in ref_files_by_type.pid %}
+                                            {% for pid in ref_files_by_type.ref_resources %}
                                                 <a href="{{ pid }}">{{ pid }}</a>
                                                     {% if not forloop.last %}
                                                         <br>
