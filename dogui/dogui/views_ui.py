@@ -20,10 +20,6 @@ def home(request: HttpRequest) -> HttpResponse:
     all_registered_repos_url = API_NETLOC + "/allregrepo"
     all_registered_repos_response = requests.get(all_registered_repos_url)
 
-    print("$$$$$$$$$$$$$$$$$$", file=sys.stderr)
-    print(all_registered_repos_response.json(), file=sys.stderr)
-    logging.debug("#########")
-    logging.debug(all_registered_repos_response.json())
     context.push({"reg_repos": all_registered_repos_response.json()})
 
     if pid_form.is_valid():

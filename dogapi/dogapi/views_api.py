@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.cache import cache
 from drf_spectacular.utils import extend_schema, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
 from json import dumps
@@ -417,3 +418,13 @@ def expand_datatype(request: Request) -> Response:
 @api_view(['GET'])
 def get_all_repositories(request: Request) -> Response:
     return Response(dog.get_all_repositories(), status=200)
+
+
+@permission_classes([AllowAny])
+@api_view(['GET'])
+def get_repositories_status(request: Request) -> Response:
+    repository_status = cache.get('repositories_status')
+    if not repository_status:
+        repository_status = dog.get_repository_status()
+        cache.set('repositories_status', repository_status, 86400)
+    return Response(repository_status, status=200)
