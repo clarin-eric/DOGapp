@@ -423,8 +423,16 @@ def get_all_repositories(request: Request) -> Response:
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def get_repositories_status(request: Request) -> Response:
-    repository_status = cache.get('repositories_status')
-    if not repository_status:
-        repository_status = dog.get_repository_status()
-        cache.set('repositories_status', repository_status, 86400)
-    return Response(repository_status, status=200)
+    repositories_status = cache.get('repositories_status')
+    logger.warning("CACHE CHECK")
+    logger.warning(repositories_status)
+
+    if not repositories_status:
+        logger.warning("NO CACHE HIT")
+        repositories_status = dog.get_all_repositories_status()
+        logger.warning("POPULATING CACHE")
+        cache.set('repositories_status', repositories_status, 86400)
+        logger.warning("TEST CACHE POPULATION")
+        _test = cache.get('repositories_status')
+        cache.get('repositories_status')
+    return Response(repositories_status, status=200)
