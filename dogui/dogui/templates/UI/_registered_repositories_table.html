@@ -1,16 +1,32 @@
 <table>
     <tr>
         <th>
-            Shorthand
+            Repository
         </th>
         <th>
-            Full name
+            URL
+        </th>
+        <th>
+            HDL
+        </th>
+        <th>
+            DOI
         </th>
     </tr>
-    {% for reg_repo in reg_repos %}
+    {% for repo_name, repo_status in repos_status.items %}
     <tr>
-        <td><a href="{{ reg_repo.host_netloc }}">{{ reg_repo.host_name }}</a></td>
-        <td>{{ reg_repo.name }}</td>
+        <td>{{ repo_name }}</td>
+        {% for pid_type, status in repo_status.items %}
+            <td class="non_textual">
+                {% if status == 'NA' %}
+                    <em>-</em>
+                {% elif status == 'SUCCESS' %}
+                    <span class='positive'>Δ</span>
+                {% else %}
+                    <span class='negative'>✗</span>
+                {% endif %}
+            </td>
+        {% endfor %}
     </tr>
     {% endfor %}
 </table>

@@ -17,10 +17,10 @@ def home(request: HttpRequest) -> HttpResponse:
     context: RequestContext = RequestContext(request)
     pid_form: PIDForm() = PIDForm(request.GET)
 
-    all_registered_repos_url = API_NETLOC + "/allregrepo"
-    all_registered_repos_response = requests.get(all_registered_repos_url)
+    all_repo_status_url = API_NETLOC + "/repostatus/"
+    all_repo_status_response = requests.get(all_repo_status_url)
 
-    context.push({"reg_repos": all_registered_repos_response.json()})
+    context.push({"repos_status": all_repo_status_response.json()})
 
     if pid_form.is_valid():
         context.push({"pid_form": pid_form})
