@@ -17,7 +17,7 @@
     <tr>
         <td>{{ repo_name }}</td>
         {% for pid_type, status in repo_status.items %}
-            <td class="non_textual">
+            <td>
                 {% if status == 'NA' %}
                     <em>-</em>
                 {% elif status == 'SUCCESS' %}
