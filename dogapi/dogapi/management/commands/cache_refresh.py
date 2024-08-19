@@ -4,7 +4,7 @@ from django.test.client import RequestFactory
 from dogapi.views_api import get_repositories_status
 
 
-class RefreshCacheCommand(BaseCommand):
+class Command(BaseCommand):
     help = 'Refresh repository status cache'
 
     def handle(self, *args, **options):
