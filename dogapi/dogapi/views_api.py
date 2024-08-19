@@ -423,9 +423,14 @@ def get_all_repositories(request: Request) -> Response:
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def get_repositories_status(request: Request) -> Response:
+    logging.critical("TRY TO GET CACHE")
     repositories_status = cache.get('repositories_status')
+    logging.critical("CACHE")
+    logging.critical(repositories_status)
 
     if not repositories_status:
         repositories_status = dog.get_all_repositories_status()
+        logging.critical("API")
+        logging.critical(repositories_status)
         cache.set('repositories_status', repositories_status, 86400)
     return Response(repositories_status, status=200)

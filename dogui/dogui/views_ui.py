@@ -20,6 +20,9 @@ def home(request: HttpRequest) -> HttpResponse:
     all_repo_status_url = API_NETLOC + "/repostatus/"
     all_repo_status_response = requests.get(all_repo_status_url)
 
+    logging.critical("STATUS")
+    logging.critical(all_repo_status_response)
+
     context.push({"repos_status": all_repo_status_response.json()})
 
     if pid_form.is_valid():

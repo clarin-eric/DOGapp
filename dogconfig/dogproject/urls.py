@@ -22,5 +22,5 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('api/expanddatatype/', expand_datatype, name='expand data type'),
     path('api/allregrepo/', get_all_repositories, name='get all repositories'),
-    path('api/repostatus/', get_repositories_status, name='get repositories status')
+    path('api/repostatus/', get_repositories_status, name='get repositories status'),
 ]
