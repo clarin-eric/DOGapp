@@ -18,7 +18,8 @@ def home(request: HttpRequest) -> HttpResponse:
     pid_form: PIDForm() = PIDForm(request.GET)
 
     all_repo_status_url = API_NETLOC + "/repostatus/"
-    all_repo_status_response = requests.get(all_repo_status_url)
+    all_repo_status_response = requests.get(all_repo_status_url,
+                                            verify=settings.VERIFY_SSL)
 
     logging.critical("STATUS")
     logging.critical(all_repo_status_response)
