@@ -10,7 +10,7 @@ PID's can be passed as parameters to URL query in following formats:
 
 Available endpoints:
 
-`/api/schema`, provides OpenApi 3.0 specification of the API.
+`/api/openapi.json`, provides OpenApi 3.0 specification of the API.
 
 `/api/sniff/?pid`, Checks whether PID points to resources in registered repository.
 
@@ -18,12 +18,12 @@ Available endpoints:
 
 `/api/identify/?pid`, identifies PID (VLO request).
 
+`/api/repostatus/`, dictionary with Registered Repositories as keys and PID:status pairs
+
 ## Installation
-Install packages by running following commands in the project's root dir (order matters):
+Install DOG by running following commands in the project's root dir:
 ```bash
-pip install ./dogapi
-pip install ./dogui
-pip install ./dogconfig
+pip install .
 ```
 
 ## Testing
@@ -39,3 +39,4 @@ To start the project local installation of `dogapi` and `dogui` is required, con
 python ./dogconfig/manage.py runserver
 ```
 By default DOG homepage should be available at your `localhost:8000` and API endpoints at `localhost:8000/api/<functionality>`
+
