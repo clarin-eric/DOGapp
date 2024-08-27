@@ -1,5 +1,11 @@
 #Changelog
+## [1.0.4] - 27.08.2024
+- memcache
+- repository status table
 
+## [1.0.3] - never released
+- DTR integration
+- type taxonomy
 
 ## [1.0.2] - 16.04.2024
 - build wheel in CI and distribute Alpine friendly wheels for internal CLARIN
