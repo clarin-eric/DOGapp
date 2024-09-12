@@ -38,8 +38,13 @@ def home(request: HttpRequest) -> HttpResponse:
         #     use_dtr = pid_form.cleaned_data['use_dtr_field']
         #     api_url += "&use_dtr=" + use_dtr
 
+        logging.critical("API ENDPOINT")
+        logging.critical(api_url)
+
         api_response = requests.get(api_url, verify=settings.VERIFY_SSL)
         if functionality == 'expanddatatype':
+            logging.critical("API RESPONSE")
+            logging.critical(api_response)
             taxonomy_tree = TaxonomyTree(api_response.json())
             context.push({"taxonomy_tree": taxonomy_tree})
         else:
