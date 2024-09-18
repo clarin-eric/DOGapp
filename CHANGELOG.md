@@ -1,4 +1,7 @@
 #Changelog
+## [1.0.5] - 18.09.2024
+- bump DOGlib to 1.0.9
+
 ## [1.0.4] - 27.08.2024
 - memcache
 - repository status table
