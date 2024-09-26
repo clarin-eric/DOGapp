@@ -1,6 +1,8 @@
 #Changelog
-## [1.0.5] - 18.09.2024
+## [1.0.5] - 26.09.2024
 - bump DOGlib to 1.0.9
+- about view
+- refactor "Gate" to "Gateway"
 
 ## [1.0.4] - 27.08.2024
 - memcache
