@@ -9,12 +9,19 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+from importlib import metadata
+from importlib.metadata import PackageNotFoundError
 import logging.config
 from os.path import abspath, dirname, join
 
 from dogproject import __name__ as app_name
 
 BASE_DIR = dirname(dirname(__file__))
+
+try:
+    VERSION = metadata.version("centre-registry-app")
+except PackageNotFoundError:
+    VERSION = 'SNAPSHOT'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -125,6 +132,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'dogui.context_processors.version',
             ],
         },
     },

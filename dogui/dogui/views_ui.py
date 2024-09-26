@@ -21,9 +21,6 @@ def home(request: HttpRequest) -> HttpResponse:
     all_repo_status_response = requests.get(all_repo_status_url,
                                             verify=settings.VERIFY_SSL)
 
-    logging.critical("STATUS")
-    logging.critical(all_repo_status_response)
-
     context.push({"repos_status": all_repo_status_response.json()})
 
     if pid_form.is_valid():
@@ -37,9 +34,6 @@ def home(request: HttpRequest) -> HttpResponse:
         # if functionality == 'fetch':
         #     use_dtr = pid_form.cleaned_data['use_dtr_field']
         #     api_url += "&use_dtr=" + use_dtr
-
-        logging.critical("API ENDPOINT")
-        logging.critical(api_url)
 
         api_response = requests.get(api_url, verify=settings.VERIFY_SSL)
         if functionality == 'expanddatatype':
@@ -55,3 +49,8 @@ def home(request: HttpRequest) -> HttpResponse:
         pid_form: PIDForm = PIDForm(initial={'functionality_field': 'sniff'})
         context.push({"pid_form": pid_form})
         return render(request, "UI/_content.html", context.flatten())
+
+
+def about(request: HttpRequest) -> HttpResponse:
+    context: RequestContext = RequestContext(request)
+    return render(request, "UI/_about.html", context.flatten())
