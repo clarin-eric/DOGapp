@@ -19,7 +19,7 @@ from dogproject import __name__ as app_name
 BASE_DIR = dirname(dirname(__file__))
 
 try:
-    VERSION = metadata.version("centre-registry-app")
+    VERSION = metadata.version("dogapp")
 except PackageNotFoundError:
     VERSION = 'SNAPSHOT'
 
