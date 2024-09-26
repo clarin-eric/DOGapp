@@ -1,13 +1,4 @@
-import django_dataclasses
 from doglib import FetchResult, ReferencedResource, ReferencedResources
-
-
-@django_dataclasses.dataclass
-class FetchResultWrapper:
-    """Wrapping dict of dataclasses into django_dataclasses.dataclass,
-    because Django is retarded and can't use dictionary as dictionary"""
-    pid: str
-    fetch_result: FetchResult
 
 
 class TaxonomyTree:
