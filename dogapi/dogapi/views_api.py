@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.cache import cache
+from dataclasses import asdict
 from drf_spectacular.utils import extend_schema, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
 from json import dumps
@@ -8,10 +9,10 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.request import Request
-from typing import List
+from typing import Dict, List
 
 
-from .models import dog, doglib_expand_datatype
+from .models import dog, doglib_expand_datatype, FetchResult, ReferencedResource, ReferencedResources
 from .schemas import pid_queryparam, use_dtr_queryparam
 from .utils import QueryparamParsingError
 
@@ -121,7 +122,7 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                ])
 @permission_classes([AllowAny])
 @api_view(['GET'])
-def fetch(request: Request, use_dtr: bool = False) -> Response:
+def fetch(request: Request, use_dtr: bool = False) -> Dict[str, FetchResult]:
     """
     Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats:
     ?pid=val1&pid=val2&pid=val3
@@ -139,15 +140,17 @@ def fetch(request: Request, use_dtr: bool = False) -> Response:
     if use_dtr_queryparam:
         if use_dtr_queryparam[0] in {"True", "true"}:
             use_dtr = True
-    fetch_result: dict = {pid: dog.fetch(pid, dtr=use_dtr) for pid in pids}
+    fetch_result: dict = {pid: asdict(dog.fetch(pid, dtr=use_dtr)) for pid in pids}
     if not bool(fetch_result):
         ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
     else:
-        ret = Response(
-            {pid: (result | {"failure": 0}) if result else {"failure": 2,
-                                                            "failure_message": "Persistent Identifier could not be resolved or parsed"}
-             for pid, result in fetch_result.items()}
-        )
+        ret = Response(fetch_result, status=200)
+    # else:
+    #     ret = Response(
+    #         {pid: (result | {"failure": 0}) if result else {"failure": 2,
+    #                                                         "failure_message": "Persistent Identifier could not be resolved or parsed"}
+    #          for pid, result in fetch_result.items()}
+    #     )
     return ret
 
 @extend_schema(parameters=[pid_queryparam],
@@ -201,7 +204,7 @@ def identify(request: Request) -> Response:
     ret: Response
     try:
         pids: List[str] = parse_queryparam(request, "pid")
-        identify_result = {pid: dog.identify(pid) for pid in pids}
+        identify_result = {pid: asdict(dog.identify(pid)) for pid in pids}
         if identify_result:
             ret = Response(identify_result, status=200)
         else:
@@ -323,10 +326,7 @@ def sniff(request: Request) -> Response:
 
     try:
         pids = parse_queryparam(request, "pid")
-        sniff_result = {pid: dog.sniff(pid) for pid in pids}
-        sniff_result = {pid: (result | {"failure": 0} if result else
-                              {"failure": 2, "failure_message": "Persistent Identifier could not be resolved or parsed"})
-                        for pid, result in sniff_result.items()}
+        sniff_result = {pid: asdict(dog.sniff(pid)) for pid in pids}
 
         if sniff_result:
             ret = Response(sniff_result, status=200)

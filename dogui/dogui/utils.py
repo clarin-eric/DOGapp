@@ -1,15 +1,21 @@
+import django_dataclasses
+from doglib import FetchResult, ReferencedResource, ReferencedResources
+
+
+@django_dataclasses.dataclass
+class FetchResultWrapper:
+    """Wrapping dict of dataclasses into django_dataclasses.dataclass,
+    because Django is retarded and can't use dictionary as dictionary"""
+    pid: str
+    fetch_result: FetchResult
+
+
 class TaxonomyTree:
     def __init__(self, taxonomy_dict: dict):
         self.name = next(iter(taxonomy_dict.keys()))
         taxonomy_dict = taxonomy_dict[self.name]
         tree_root_pid: str = ""
-        print("TAXONOMY DICT")
-        print(taxonomy_dict)
         for node_pid, taxonomy_node in taxonomy_dict.items():
-            print("NODE PID")
-            print(node_pid)
-            print("taxonomy_node")
-            print(taxonomy_node)
             if not taxonomy_node["parents"]:
                 tree_root_pid = node_pid
                 break
@@ -28,3 +34,4 @@ class TaxonomyNode:
 
     def _has_children(self) -> bool:
         return True if self.children else False
+

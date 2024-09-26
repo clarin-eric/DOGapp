@@ -1,3 +1,4 @@
+import django_dataclasses
 from django.conf import settings
 import logging
 from rest_framework.request import Request
