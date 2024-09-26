@@ -1,0 +1,36 @@
+{% extends 'UI/_.html' %}
+{% block title %} - About{% endblock title %}
+{% block content %}
+<div id="content">
+    <h1>About the CLARIN Digital Object Gateway</h1>
+    <p>Digital Object Gateway is a web service exposing DOGlib functionality over UI and API for increased machine
+        resolvability and processability of metadata
+        Service is available through this user interface and a RESTful
+        <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(alpha)'>application programming interface</a>. </p>
+    <h2>Source code</h2>
+    <h3>Source code and issue tracking</h3>
+    <p>The source code of the DOG library: <a href='https://github.com/clarin-eric/DOGlib'>DOGlib GitHub repository</a>.
+    The source code of the DOG application: <a href='https://github.com/clarin-eric/DOGapp'>DOGapp GitHub repository</a>. </p>
+    <h2>Credits</h2>
+    <h3>Maintainers</h3>
+    <ul>
+        <li>Michał Gawor <sup><a href='https://www.clarin.eu/applications/'>CLARIN ERIC</a></sup></li>
+        <li>André Moreira <sup><a href='https://www.clarin.eu/applications/'>CLARIN ERIC</a></sup></li>
+    </ul>
+    <h3>Original Developers</h3>
+    <ul>
+        <li>Michał Gawor <sup><a href='https://www.clarin.eu/applications/'>CLARIN ERIC</a></sup></li>
+    </ul>
+    <h2>Licenses</h2>
+    <p>Our source code in this project is GPL 3.0 licensed.
+        <a href='https://clarin.eu/content/development-information'>Get to work with CLARIN applications' source code and documentation</a>.
+    </p>
+    <h3>Technology used</h3>
+    <ul>
+        <li><a href='https://github.com/django/django/blob/master/LICENSE'>django</a></li>
+        <li><a href='https://github.com/django-debug-toolbar/django-debug-toolbar/blob/master/LICENSE'>django-debug-toolbar</a></li>
+        <li><a href='https://github.com/SeleniumHQ/selenium/blob/trunk/LICENSE'>Selenium WebDriver Python bindings</a></li>
+        <li><a href='https://github.com/memcached/memcached/blob/master/LICENSE'>memecache</a></li>
+    </ul>
+</div>
+{% endblock content %}
