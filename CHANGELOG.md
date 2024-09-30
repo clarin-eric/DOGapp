@@ -1,5 +1,5 @@
 #Changelog
-## [1.0.5] - 26.09.2024
+## [1.0.5] - 30.09.2024
 - bump DOGlib to 1.0.9
 - about view
 - refactor "Gate" to "Gateway"
