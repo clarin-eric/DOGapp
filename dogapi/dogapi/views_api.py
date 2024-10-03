@@ -326,7 +326,7 @@ def sniff(request: Request) -> Response:
 
     try:
         pids = parse_queryparam(request, "pid")
-        sniff_result = {pid: asdict(dog.sniff(pid)) for pid in pids}
+        sniff_result = {pid: dog.sniff(pid) for pid in pids}
 
         if sniff_result:
             ret = Response(sniff_result, status=200)

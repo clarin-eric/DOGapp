@@ -22,7 +22,6 @@ class TaxonomyNode:
         for child_id in taxonomy_dict[pid]["children"]:
             self.children.append(TaxonomyNode(child_id, taxonomy_dict))
         self.has_children = self._has_children()
-asd
-    def _has_children(self) -> bool:asd
-        return True if self.children else False
 
+    def _has_children(self) -> bool:
+        return True if self.children else False
