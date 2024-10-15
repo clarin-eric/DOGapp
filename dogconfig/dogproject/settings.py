@@ -75,11 +75,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party
-    'bootstrap5',
     'corsheaders',
     'debug_toolbar',
     'drf_spectacular',
-    'fontawesomefree',
     'rest_framework',
 
     # CLARIN internal dependency
