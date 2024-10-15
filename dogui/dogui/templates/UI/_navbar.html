@@ -1,0 +1,21 @@
+{% block navbar %}
+<div id='header'
+         class='periphery'
+         role='navigation'>
+    <div id='brand'>
+        <a href='/'><span>Digital Object Gateway</span></a>
+    </div>
+    <div id='menu'>
+        <a class='{% if view == "home" or view == "sniff" or view == "fetch" or view == "ispid" %}active{% endif %}'
+           href='/'>DOG</a>
+        {% if DTR_ENABLED %}
+            <a class='{% if view == "dtr" %}active{% endif %}'
+                href='/dtr'>DTR</a>
+        {% endif %}
+        <a class='{% if view == "about" %}active{% endif %}'
+           href='/about'>About</a>
+        <a class='{% if view == "contact" %}active{% endif %}'
+           href='/contact'>Contact</a>
+    </div>
+</div>
+{% endblock navbar %}

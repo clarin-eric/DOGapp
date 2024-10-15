@@ -44,7 +44,6 @@ class PIDForm(forms.Form):
         # ('identify', 'identify'),
         ('fetch', 'fetch'),
         ('ispid', 'is pid'),
-        ('expanddatatype', 'expand MIME data type'),
     ]
     pid_field: PIDField = PIDField(required=True,
                                    widget=forms.TextInput(attrs={'required': 'True'}))

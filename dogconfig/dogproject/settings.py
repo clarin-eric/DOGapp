@@ -62,6 +62,9 @@ import socket
 hostname, _, ips = socket.gethostbyname_ex("localhost")
 INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 
+
+
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -72,9 +75,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 3rd party
-    'debug_toolbar',
+    'bootstrap5',
     'corsheaders',
+    'debug_toolbar',
     'drf_spectacular',
+    'fontawesomefree',
     'rest_framework',
 
     # CLARIN internal dependency
@@ -85,6 +90,9 @@ INSTALLED_APPS = [
     'dogui'
 
 ]
+
+DTR_ENABLED = False
+
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [

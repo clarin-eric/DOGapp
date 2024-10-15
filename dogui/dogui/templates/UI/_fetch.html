@@ -37,8 +37,8 @@
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>Data type</th>
-                                    <th>PID</th>
+                                    <th>Resource type</th>
+                                    <th>PID (MIME type)</th>
                                 </tr>
                                 </thead>
                                 {% for ref_resources in fetch_result.ref_files %}
@@ -48,13 +48,10 @@
                                         </td>
                                         <td>
                                             {% for ref_resource in ref_resources.ref_resources %}
-                                                <a href="{{ ref_resource.pid }}">{{ ref_resource.pid }}</a>
+                                                <a href="{{ ref_resource.pid }}">{{ ref_resource.pid }}</a> {% if ref_resource.data_type %} ({{ ref_resource.data_type }}) {% else %} (unknown) {% endif %}
                                                     {% if not forloop.last %}
                                                         <br>
                                                     {% endif %}
-                                            {% comment %}
-                                            TODO INCLUDE DATA TYPE ALONG PID
-                                            {% endcomment %}
                                             {% endfor %}
                                         </td>
                                     </tr>

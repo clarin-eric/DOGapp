@@ -5,7 +5,7 @@ from django.urls import include, path, re_path
 from drf_spectacular.views import SpectacularAPIView, SpectacularJSONAPIView
 
 
-from dogui.views_ui import home, about
+from dogui.views_ui import about, contact, dtr, home
 from dogapi.views_api import (fetch, identify, sniff, is_pid, expand_datatype, get_all_repositories,
                               get_repositories_status)
 
@@ -26,5 +26,7 @@ urlpatterns = [
 
     # UI
     path('', home, name='main'),
-    path('about', about, name='about')
+    path('about', about, name='about'),
+    path('contact', contact, name='contact'),
+    path('dtr', dtr, name='contact')
 ]

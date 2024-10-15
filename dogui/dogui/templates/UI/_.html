@@ -15,15 +15,15 @@
         {# @formatter:on #}
 </head>
 <body>
-    {% block header %}
-        {% include 'UI/_header.html' %}
+    {% block navbar %}
+        {% include 'UI/_navbar.html' %}
     {% endblock %}
 
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 
     {% block footer %}
         {% include 'UI/_footer.html' %}
     {% endblock %}
-</div>
 </body>
 </html>

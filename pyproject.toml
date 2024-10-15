@@ -26,12 +26,15 @@ homepage = ""
 repository = "https://github.com/clarin-eric/DOGapp/"
 
 [tool.poetry.dependencies]
-doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.10-a2/doglib-1.0.10a2-py3-none-any.whl" }
-Django = '4.2.15'
+# CLARIN DOGlib
+doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.10/doglib-1.0.10-py3-none-any.whl" }
+# 3rd party
+Django = '4.2.16'
 django-cors-headers = '4.4.0'
 django-debug-toolbar = '4.4.6'
 djangorestframework = '3.15.2'
 drf-spectacular = "0.27.2"
+fontawesomefree = "6.6.0"
 python = '>=3.11.*,<4.0'
 pymemcache = '4.0.0'
 requests = '2.32.3'
