@@ -390,30 +390,6 @@ def is_pid(request: Request) -> Response:
     return ret
 
 
-@extend_schema(parameters=[],
-               description="Returns taxonomy of a MIME type according to Data Type Registry",
-               responses={
-                   200: OpenApiTypes.OBJECT,
-                   400: OpenApiTypes.STR
-               },
-               request=None,
-               examples=[
-               ]
-               )
-@permission_classes([AllowAny])
-@api_view(['GET'])
-def expand_datatype(request: Request) -> Response:
-    data_types = parse_queryparam(request, 'data_type')
-    expanded_datatypes: dict = {}
-    for data_type in data_types:
-        expanded_datatypes[data_type] = doglib_expand_datatype(data_type)
-    if expanded_datatypes:
-        return Response(expanded_datatypes, status=200)
-    else:
-        return Response(f"MIME data type(s) {data_types} is either not correct or has been not recognised",
-                        status=400)
-
-
 @permission_classes([AllowAny])
 @api_view(['GET'])
 def get_all_repositories(request: Request) -> Response:

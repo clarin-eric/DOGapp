@@ -1,0 +1,6 @@
+[tool.poetry]
+name = "dogdtr"
+authors = [
+    "Michał Gawor <m.j.gawor@uu.nl>",
+]
+

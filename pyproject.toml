@@ -16,7 +16,8 @@ maintainers = [
 packages = [
   { include = "dogproject", from = "dogconfig" },
   { include = "dogui", from = "dogui" },
-  { include = "dogapi", from = "dogapi" }, 
+  { include = "dogapi", from = "dogapi" },
+  { include = "dogdtr", from = "dogdtr" },
 ]
 
 [tool.poetry.urls]
