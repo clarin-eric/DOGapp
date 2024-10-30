@@ -2,9 +2,10 @@
 
 ## [1.0.7] - TBD
 - dogdtr as separate reusable Django application
-- doglib dtr logic migrated to dogdtr for better logic granulation
-- UI view for dtr functionality
+- DTR logic migrated from DOGlib to dogdtr Django app for better logic granulation
+- UI view for DTR functionality
 - API versioning in URL
+- better .gitignore coverage of PyCharm and static artifacts
 
 ## [1.0.6] - 15.10.2024
 - configurable DTR plugin
