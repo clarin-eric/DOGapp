@@ -53,7 +53,7 @@ STATICFILES_FINDERS = (
 )
 ROOT_URLCONF = app_name + '.urls'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-API_NETLOC = "http://127.0.0.1:8000/api"
+API_NETLOC = "http://127.0.0.1:8000/api/v1"
 CORS_ORIGIN_ALLOW_ALL = True
 INTERNAL_IPS = ['127.0.0.1']
 

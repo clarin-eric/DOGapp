@@ -3,10 +3,8 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.template import RequestContext
 import logging.config
-import requests
-import sys
 
-from .forms import PIDForm
+
 from .utils import TaxonomyTree
 
 logging.config.dictConfig(settings.LOGGING)

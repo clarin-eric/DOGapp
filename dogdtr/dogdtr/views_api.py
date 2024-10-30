@@ -1,6 +1,3 @@
-from django.conf import settings
-from django.core.cache import cache
-from dataclasses import asdict
 from drf_spectacular.utils import extend_schema, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
 from rest_framework.decorators import api_view, permission_classes
@@ -12,7 +9,12 @@ from rest_framework.request import Request
 from dogapi.utils import parse_queryparam
 
 
-@extend_schema(parameters=[],
+from .dtr import expand_datatype
+from .schemas import mimetype_parameter
+from .utils import parse_queryparam
+
+
+@extend_schema(parameters=[mimetype_parameter],
                description="Returns taxonomy of a MIME type according to Data Type Registry",
                responses={
                    200: OpenApiTypes.OBJECT,
@@ -28,7 +30,7 @@ def expand_datatype(request: Request) -> Response:
     data_types = parse_queryparam(request, 'data_type')
     expanded_datatypes: dict = {}
     for data_type in data_types:
-        expanded_datatypes[data_type] = doglib_expand_datatype(data_type)
+        expanded_datatypes[data_type] = expand_datatype(data_type)
     if expanded_datatypes:
         return Response(expanded_datatypes, status=200)
     else:

@@ -1,3 +1,6 @@
+from dogapi.utils import parse_queryparam
+
+
 class TaxonomyTree:
     def __init__(self, taxonomy_dict: dict):
         self.name = next(iter(taxonomy_dict.keys()))

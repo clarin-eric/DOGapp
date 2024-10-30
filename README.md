@@ -10,15 +10,15 @@ PID's can be passed as parameters to URL query in following formats:
 
 Available endpoints:
 
-`/api/openapi.json`, provides OpenApi 3.0 specification of the API.
+`/api/v1/openapi.json`, provides OpenApi 3.0 specification of the API.
 
-`/api/sniff/?pid`, Checks whether PID points to resources in registered repository.
+`/api/v1/sniff/?pid`, Checks whether PID points to resources in registered repository.
 
-`/api/fetch/?pid`, Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats.
+`/api/v1/fetch/?pid`, Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats.
 
-`/api/identify/?pid`, identifies PID (VLO request).
+`/api/v1/identify/?pid`, identifies PID (VLO request).
 
-`/api/repostatus/`, dictionary with Registered Repositories as keys and PID:status pairs
+`/api/v1/repostatus/`, dictionary with Registered Repositories as keys and PID:status pairs
 
 ## Installation
 Install DOG by running following commands in the project's root dir:

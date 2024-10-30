@@ -8,6 +8,7 @@ from doglib.pid import pid_factory
 logging.config.dictConfig(settings.LOGGING)
 logger = logging.getLogger(__name__)
 
+
 class QueryparamParsingError(Exception):
     """
     Raised when unable to parse given query parameter from the request
@@ -55,9 +56,9 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
     logger.critical(query_pid_candidates)
     query_pid_candidates = [query_pid_candidate.replace(' ', '') for query_pid_candidate in query_pid_candidates]
     # Swagger UI returns a 1 element list with comma separated values of parameter, e.g. ["string,string,string"]
-    pid_candidates: List[str] = [pid.replace(' ', '')
+    param_candidates: List[str] = [pid.replace(' ', '')
                                  for pid_candidate in query_pid_candidates
                                  for pid in pid_candidate.split(',')]
-    logger.critical(pid_candidates)
+    logger.critical(param_candidates)
 
-    return pid_candidates
+    return param_candidates
