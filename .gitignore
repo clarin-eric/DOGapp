@@ -130,3 +130,6 @@ dmypy.json
 
 # Django statics
 */DOG/assets
+
+# PyCharm
+.idea/
