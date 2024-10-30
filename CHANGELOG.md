@@ -1,4 +1,17 @@
-#Changelog
+# Changelog
+
+## [1.0.7] - TBD
+- dogdtr as separate reusable Django application
+- doglib dtr logic migrated to dogdtr for better logic granulation
+- UI view for dtr functionality
+- API versioning in URL
+
+## [1.0.6] - 15.10.2024
+- configurable DTR plugin
+- switchboard style migration - ONGOING (artifacts in place, failed to mimic React server side)
+- navbar
+- fixed dynamic versioning
+
 ## [1.0.5] - 30.09.2024
 - bump DOGlib to 1.0.9
 - about view
