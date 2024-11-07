@@ -24,6 +24,7 @@ def home(request: HttpRequest) -> HttpResponse:
 
     context.push({"repos_status": all_repo_status_response.json()})
     context.push({"DTR_ENABLED": DTR_ENABLED})
+    context.push({"API_NETLOC": API_NETLOC})
 
     if pid_form.is_valid():
         context.push({"pid_form": pid_form})
