@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.0.7] - TBD
-- dogdtr as separate reusable Django application
+## [1.0.7] - 7.11.2024
+- dogdtr as separate reusable Django application (WIP)
+- switchboard style migration (WIP)
 - DTR logic migrated from DOGlib to dogdtr Django app for better logic granulation
-- UI view for DTR functionality
 - API versioning in URL
 - better .gitignore coverage of PyCharm and static artifacts
+- href API to Swagger beta DOG configuration 
 
 ## [1.0.6] - 15.10.2024
 - configurable DTR plugin

@@ -3,6 +3,8 @@ DOGapp is a modelless Django application exposing REST API for [DOGlib](https://
 Its goal is to provide fair access to CLARIN resources from the metadata by exposing both UI interface and API endpoints. 
 
 ## API
+API also available via [Swagger UI](https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(beta))
+
 PID's can be passed as parameters to URL query in following formats:
 >?pid=val1&pid=val2&pid=val3 \
 >?pid=val1,val2,val3 \
