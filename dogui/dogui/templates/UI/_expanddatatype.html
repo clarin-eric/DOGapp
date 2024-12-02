@@ -1,9 +1,0 @@
-{% extends 'UI/_content.html' %}
-{% load dogui_extras %}
-{% block result %}
-    <ul>
-    {% with node=taxonomy_tree.node template_name="UI/tree/_tree_node_view.html" %}
-        {% include "UI/tree/_tree_node_view.html" %}
-    {% endwith %}
-    </ul>
-{% endblock result %}

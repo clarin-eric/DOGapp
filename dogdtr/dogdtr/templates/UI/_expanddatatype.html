@@ -1,9 +1,12 @@
-{% extends 'UI/_content.html' %}
-{% load dogui_extras %}
+{% extends 'UI/_dtr.html' %}
+{{ taxonomies }}
 {% block result %}
-    <ul>
-    {% with node=taxonomy_tree.node template_name="UI/tree/_tree_node_view.html" %}
-        {% include "UI/tree/_tree_node_view.html" %}
-    {% endwith %}
-    </ul>
+    {% for input_type, taxonomy in taxonomies.items %}
+        <ul>
+        {{ taxonomy }}
+        {% if taxonomy %}
+            {% include 'UI/tree/_tree_node_view.html' with node=taxonomy %}
+        {% endif %}
+        </ul>
+    {% endfor %}
 {% endblock result %}

@@ -1,6 +1,16 @@
 from dogapi.utils import parse_queryparam
 
 
+from typing import List
+
+
+
+class MIMEType:
+    name: str
+    id: str
+    children: List
+
+
 class TaxonomyTree:
     def __init__(self, taxonomy_dict: dict):
         self.name = next(iter(taxonomy_dict.keys()))

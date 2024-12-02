@@ -1,4 +1,18 @@
 {% extends 'UI/_.html' %}
 {% block content %}
-<h2> PLACEHOLDER </h2>
-<h3> PLUGGABLE DTR UI TBD Q4 2024 </h3>
+    <div id="content">
+    <h2> DOG Data Type Registry plugin</h2>
+    <h3> DOG subservice allowing MIMEtype taxonomy expansion based on <a href="">Data Type Registry</a></h3>
+
+        Type a MIMEtype (e.g. `application/json`) into the box
+
+        {%  block mimetype %}
+            {% if mimetype_form %}
+                {% include 'UI/_form_mimetype.html' with form=mimetype_form %}
+            {% endif %}
+        {%  endblock mimetype %}
+
+        {% block result %}
+        {% endblock result %}
+    </div>
+{% endblock content %}

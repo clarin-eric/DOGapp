@@ -26,13 +26,13 @@ from .utils import parse_queryparam
                )
 @permission_classes([AllowAny])
 @api_view(['GET'])
-def expand_datatype(request: Request) -> Response:
-    data_types = parse_queryparam(request, 'data_type')
+def expand_datatype_view(request: Request) -> Response:
+    mime_types = parse_queryparam(request, 'mimetype')
     expanded_datatypes: dict = {}
-    for data_type in data_types:
+    for data_type in mime_types:
         expanded_datatypes[data_type] = expand_datatype(data_type)
     if expanded_datatypes:
         return Response(expanded_datatypes, status=200)
     else:
-        return Response(f"MIME data type(s) {data_types} is either not correct or has been not recognised",
+        return Response(f"MIME data type(s) {mime_types} is either not correct or has been not recognised",
                         status=400)

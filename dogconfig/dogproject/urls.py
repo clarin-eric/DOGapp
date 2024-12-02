@@ -7,7 +7,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularJSONAPIView
 
 from dogapi.views_api import (fetch, identify, sniff, is_pid, get_all_repositories,
                               get_repositories_status)
-from dogdtr.views_api import expand_datatype
+from dogdtr.views_api import expand_datatype_view
 
 from dogdtr.views_ui import dtr
 from dogui.views_ui import about, contact, home
@@ -24,13 +24,13 @@ urlpatterns = [
     path('api/v1/ispid/', is_pid, name='is pid'),
 
     path('__debug__/', include('debug_toolbar.urls')),
-    path('api/v1/expanddatatype/', expand_datatype, name='expand data type'),
+    path('api/v1/expanddatatype/', expand_datatype_view, name='expand data type'),
     path('api/v1/allregrepo/', get_all_repositories, name='get all repositories'),
     path('api/v1/repostatus/', get_repositories_status, name='get repositories status'),
 
     # UI
     path('', home, name='main'),
-    path('about', about, name='about'),
-    path('contact', contact, name='contact'),
-    path('dtr', dtr, name='contact')
+    path('about/', about, name='about'),
+    path('contact/', contact, name='contact'),
+    path('dtr/', dtr, name='dtr'),
 ]

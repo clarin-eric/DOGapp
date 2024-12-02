@@ -63,7 +63,8 @@ hostname, _, ips = socket.gethostbyname_ex("localhost")
 INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 
 
-
+DTR_ENABLED = True
+VERIFY_SSL = False
 
 # Application definition
 INSTALLED_APPS = [
@@ -86,11 +87,10 @@ INSTALLED_APPS = [
     # local
     'dogapi',
     'dogui'
-
 ]
 
-DTR_ENABLED = False
-
+if DTR_ENABLED:
+    INSTALLED_APPS += ['dogdtr']
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -100,14 +100,10 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-VERIFY_SSL = False
-
-
-
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Digital Object Gate',
     'DESCRIPTION': 'DOG API resolving referenced resources in the metadata',
-    'VERSION': '1.0.3',
+    'VERSION': VERSION,
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
 }
@@ -142,6 +138,9 @@ TEMPLATES = [
         },
     },
 ]
+
+if DTR_ENABLED:
+    TEMPLATES[0]['DIRS'] += [join(BASE_DIR, './../dogdtr/dogdtr/templates')]
 
 DATABASES = {
     'default': {

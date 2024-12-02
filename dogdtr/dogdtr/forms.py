@@ -34,9 +34,10 @@ class MIMETypeForm(forms.Form):
     """
     Input form for inserting MIMEtype
     """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["mimetype"].label = ""
 
     mimetype_field: MIMETypeField = MIMETypeField(required=True,
                                                   widget=forms.TextInput(attrs={'required': 'True'}))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["mimetype_field"].label = ""

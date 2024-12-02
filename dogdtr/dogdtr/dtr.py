@@ -1,8 +1,12 @@
-
 import json
+import urllib
 
 from requests import RequestException
 from requests import get
+from typing import List, Tuple, Union
+
+
+from .utils import MIMEType
 
 
 class DataTypeNotFoundException(Exception):
@@ -10,11 +14,14 @@ class DataTypeNotFoundException(Exception):
         self.message = message
 
 
-def expand_datatype(data_type: str) -> dict:
+def expand_datatype(data_type: Union[str, List[str]]) -> List[dict]:
     """
     Wrapper for DTR datatype taxonomy discovery
     """
-    return get_dtr_taxonomy_by_type(data_type)
+    if isinstance(data_type, str):
+        return [get_dtr_taxonomy_by_type(data_type)]
+    elif isinstance(data_type, list):
+        return [get_dtr_taxonomy_by_type(dt) for dt in data_type]
 
 
 def get_dtr_taxonomy_by_type(data_type: str) -> dict:
@@ -24,61 +31,50 @@ def get_dtr_taxonomy_by_type(data_type: str) -> dict:
     :param data_type: str, MIME type, e.g. 'text/xml'
     :return: dict, a dictionary representation of the type's taxonomy
     """
-    dtr_type_search_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/search?query={data_type}&name={data_type}"
+    dtr_taxonomy_search_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/search?query={data_type}&name={data_type}"
+    data_type = urllib.parse.quote(data_type, safe='')
 
     try:
-        url, dtr_taxonomy_search_response, header = get(dtr_type_search_endpoint)
+        dtr_taxonomy_search_response = get(dtr_taxonomy_search_endpoint)
     except RequestException as error:
-        raise DataTypeNotFoundException(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
+        raise DataTypeNotFoundException(f"Failed to reach DTR to query for taxonomy") from error
+    except ValueError as error:
+        raise DataTypeNotFoundException(f"Failed to unpack DTR response. Most probably {data_type} is not registered") from error
 
-    dtr_taxonomy_json = json.loads(dtr_taxonomy_search_response)
-    print("get_dtr_taxonomy_by_type: TAXONOMY")
-    print(dtr_taxonomy_json)
     try:
-        dtr_type_id = dtr_taxonomy_json[0]["id"]
-    except (IndexError, KeyError) as error:
-        raise DataTypeNotFoundException(f"DataType <{data_type}> doesn't exist in the DTR taxonomy") from error
-    parents = dtr_taxonomy_json[0]["parents"]
-    if parents:
-        for parent_id, parent_name in parents.items():
-            dtr_type_id = get_taxonomy_root_node_by_id(parent_id)
-    return get_taxonomy_subtree_from_root_id(dtr_type_id)
+        dtr_taxonomy_search_json = dtr_taxonomy_search_response.json()
+        type_taxonomy_id = dtr_taxonomy_search_json[0]["id"]
+    except IndexError as error:
+        raise DataTypeNotFoundException(f"Failed to resolve {data_type} taxonomy. Most probably it doesn't exist.")
 
 
-def get_taxonomy_root_node_by_id(data_type_id: str) -> str:
-    """
-    Returns an ID of the root type of the taxonomy for the given data_type_id
+    root_taxonomy_id = retrieve_root(type_taxonomy_id)
+    taxonomy_tree = retrieve_taxonomy_tree(root_taxonomy_id)
+    return taxonomy_tree
 
-    :param data_type_id: str, DTR MIME type PID, e.g. 21.T11969/f33c32fa8246e2ca6d5c
-    :return: dict, a dictionary representation of the type's taxonomy
-    """
-    dtr_taxonomy_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/{data_type_id}"
-    url, dtr_taxonomy_node_response, header = get(dtr_taxonomy_endpoint)
-    dtr_taxonomy_json = json.loads(dtr_taxonomy_node_response)
-    try:
-        dtr_type_id = dtr_taxonomy_json["id"]
-    except (IndexError, KeyError) as error:
-        raise DataTypeNotFoundException(f"DataType with id <{data_type_id}> doesn't exist in the DTR taxonomy") from error
-    parents = dtr_taxonomy_json["parents"]
-    # Assumption of single parent
-    taxonomy_root_id = dtr_type_id
-    if parents:
-        for parent_id, parent_name in parents.items():
-            taxonomy_root_id = get_taxonomy_root_node_by_id(parent_id)
-    return taxonomy_root_id
+def retrieve_root(taxonomy_id: str) -> Tuple[str, str]:
+    dtr_taxonomy_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/{taxonomy_id}"
+    taxonomy_response = get(dtr_taxonomy_endpoint)
+    taxonomy_json = taxonomy_response.json()
+
+    # Recurse until no parent under "parents" key
+    for parent_id, parent_name in taxonomy_json["parents"].items():
+        return retrieve_root(parent_id)
+    taxonomy_id = taxonomy_json["id"]
+    return taxonomy_id
 
 
-def get_taxonomy_subtree_from_root_id(root_id: str) -> dict:
-    """
-    Get a subtree from the root ID
+def retrieve_taxonomy_tree(taxonomy_id: str):
+    dtr_taxonomy_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/{taxonomy_id}"
+    dtr_taxonomy_response = get(dtr_taxonomy_endpoint)
+    dtr_taxonomy_json = dtr_taxonomy_response.json()
 
-    :param root_id: str, the root node ID
-    :return: dict, MIME type taxonomy
-    """
-    dtr_taxonomy_subtree_endpoint = f"http://typeapi.lab.pidconsortium.net/v1/taxonomy/{root_id}/subtree"
-    url, dtr_taxonomy_subtree_response, header = get(dtr_taxonomy_subtree_endpoint)
-    dtr_taxonomy_subtree_json = json.loads(dtr_taxonomy_subtree_response)
-    return dtr_taxonomy_subtree_json
+    taxonomy_name = dtr_taxonomy_json["name"]
+
+    children = []
+    for child_id, child_name in dtr_taxonomy_json["children"].items():
+        children.append(retrieve_taxonomy_tree(child_id))
+    return {taxonomy_name: {"id": taxonomy_id, "children": children}}
 
 
 """

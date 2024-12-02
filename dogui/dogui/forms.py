@@ -34,10 +34,6 @@ class PIDForm(forms.Form):
     """
     Input form for inserting PID and operation to perform
     """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["pid_field"].label = ""
-        self.fields["functionality_field"].label = ""
 
     FUNCTIONALITIES: List[tuple] = [
         ('sniff', 'sniff'),
@@ -51,3 +47,8 @@ class PIDForm(forms.Form):
                                                                widget=forms.RadioSelect(
                                                                    attrs={'class': 'form-check-inline',
                                                                           'required': 'True'}), )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["pid_field"].label = ""
+        self.fields["functionality_field"].label = ""
