@@ -1,12 +1,14 @@
 {% extends 'UI/_dtr.html' %}
-{{ taxonomies }}
 {% block result %}
     {% for input_type, taxonomy in taxonomies.items %}
         <ul>
-        {{ taxonomy }}
-        {% if taxonomy %}
-            {% include 'UI/tree/_tree_node_view.html' with node=taxonomy %}
-        {% endif %}
+        {% for tax in taxonomy %}
+        <li>
+            {% with node=tax %}
+                {% include 'UI/tree/_tree_node_view.html' %}
+            {% endwith %}
+        </li>
+        {% endfor %}
         </ul>
     {% endfor %}
 {% endblock result %}

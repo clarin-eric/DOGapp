@@ -1,16 +1,16 @@
-{% extends 'UI/_expanddatatype.html' %}
-{% block node %}
-    {% for input_type_name, data in node.items %}
-        {% if data.children %}
-            {% for child in data.children %}
 
+    {% for input_type_name, data in node.items %}
+
+        {{ input_type_name }}
+        {% if data.children %}
+            <ul>
+            {% for child in data.children %}
                 <li>
                     {% with node=child template_name="UI/tree/_tree_node_view.html" %}
                         {% include template_name %}
                     {% endwith %}
                 </li>
-
             {% endfor %}
+            </ul>
         {% endif %}
     {% endfor %}
-{% endblock node %}
