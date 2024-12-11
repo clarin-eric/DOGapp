@@ -4,6 +4,7 @@ description = "Django Digital Object Gate project configuration"
 authors = [
     "Michal Gawor <m.j.gawor@uu.nl>"
 ]
+include = ["templates"]
 packages = [
     { include = "dogproject"},
 ]
