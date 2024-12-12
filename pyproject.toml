@@ -13,6 +13,10 @@ maintainers = [
     "Michał Gawor <michal@clarin.eu>",
     "Andre Moreira <andre@clarin.eu>",
 ]
+include = [
+    { path = "dogconfig/dogproject/templates/*", format = ["sdist", "wheel"] },
+]
+
 packages = [
   { include = "dogproject", from = "dogconfig" },
   { include = "dogui", from = "dogui" },

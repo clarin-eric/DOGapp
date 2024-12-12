@@ -126,6 +126,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
         'DIRS': [join(BASE_DIR, 'templates'),
+                 join(BASE_DIR, 'dogproject/templates'),
                  join(BASE_DIR, './../dogui/dogui/templates')],
         'OPTIONS': {
             'context_processors': [
