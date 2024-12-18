@@ -55,8 +55,6 @@ def home(request: HttpRequest) -> HttpResponse:
         pid_form: PIDForm = PIDForm(initial={'functionality_field': 'sniff'})
         context.push({"pid_form": pid_form})
         context.push({"view": "home"})
-        base_dir = settings.BASE_DIR
-        print(base_dir)
         return render(request, "UI/_content.html", context.flatten())
 
 
