@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.8] - 6.01.2025
+- finish dogdtr as pluggable Django application
+- fix dynamic versioning in the UI footer
+
 ## [1.0.7] - 7.11.2024
 - dogdtr as separate reusable Django application (WIP)
 - switchboard style migration (WIP)
