@@ -26,9 +26,8 @@ packages = [
 
 [tool.poetry.urls]
 changelog = "https://github.com/clarin-eric/DOGapp/blob/main/CHANGELOG.md"
-documentation = "https://github.com/clarin-eric/DOGapp/"
 homepage = ""
-repository = "https://github.com/clarin-eric/DOGapp/"
+
 
 [tool.poetry.dependencies]
 # CLARIN DOGlib
