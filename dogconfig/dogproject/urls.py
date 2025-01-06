@@ -13,7 +13,6 @@ from dogdtr.views_ui import dtr
 from dogui.views_ui import about, contact, home
 
 
-
 urlpatterns = [
     re_path(r'api/v1/openapi.yml', SpectacularAPIView.as_view(), name='openapi_schema_yml'),
     re_path(r'api/v1/openapi.json', SpectacularJSONAPIView.as_view(), name='openapi_schema_json'),
