@@ -16,17 +16,33 @@
     {% for repo_name, repo_status in repos_status.items %}
     <tr>
         <td>{{ repo_name }}</td>
-        {% for pid_type, status in repo_status.items %}
-            <td>
-                {% if status == 'NA' %}
-                    <em>-</em>
-                {% elif status == 'SUCCESS' %}
+        <td>
+            {% if repo_status.url == 'NA' %}
+            <em>-</em>
+            {% elif repo_status.url == 'SUCCESS' %}
+            <span class='positive'>Δ</span>
+            {% else %}
+            <span class='negative'>✗</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if repo_status.doi == 'NA' %}
+            <em>-</em>
+                {% elif repo_status.doi == 'SUCCESS' %}
                     <span class='positive'>Δ</span>
                 {% else %}
                     <span class='negative'>✗</span>
                 {% endif %}
             </td>
-        {% endfor %}
+                    <td>
+                {% if repo_status.hdl == 'NA' %}
+                    <em>-</em>
+                {% elif repo_status.hdl == 'SUCCESS' %}
+                    <span class='positive'>Δ</span>
+                {% else %}
+                    <span class='negative'>✗</span>
+                {% endif %}
+            </td>
     </tr>
     {% endfor %}
 </table>
