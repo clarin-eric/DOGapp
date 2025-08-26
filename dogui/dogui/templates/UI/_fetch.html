@@ -42,7 +42,9 @@
                                 </tr>
                                 </thead>
                                 {% for ref_resources in fetch_result.ref_files %}
+                                {% if ref_resources %}
                                     <tr>
+                                        {% if ref_resources.ref_resources %}
                                         <td>
                                             {{ ref_resources.resource_type }}
                                         </td>
@@ -54,7 +56,9 @@
                                                     {% endif %}
                                             {% endfor %}
                                         </td>
+                                        {% endif %}
                                     </tr>
+                                {% endif %}
                                 {% endfor %}
                             </table>
                             </td>
