@@ -2,20 +2,12 @@
 {% block content %}
 <div id="content">
     Welcome to CLARIN ERIC Digital Object Gateway. The goal of DOG is to ease access to referenced resources in metadata.
-    Currently, DOG supports {% if DTR_ENABLED %} 4 {% else %} 3 {% endif %} functionalities:
+    Currently, DOG supports 3 primary functionalities:
     <ul>
         <li>sniff - checks if input PID points to a registered repository</li>
-        <li>fetch - fetches all PIDs of references resources in the metadata </li>
+        <li>fetch - fetches all PIDs of referenced resources in the metadata </li>
         <li>is pid - checks if input string is a DOG parsable PID</li>
     </ul>
-
-    Swagger available <a href="https://infra.clarin.eu/apis/">here</a>
-    <br>
-    Raw openapi.json available <a href="https://alpha-dog.clarin.eu/api/v1/openapi.json">here</a>
-    <br>
-    Source code for DOGlib available <a href="https://github.com/clarin-eric/DOGlib/">here</a>
-    <br>
-    Source code for DOGapp avaiable <a href="https://github.com/clarin-eric/DOGapp/">here</a>
 
     <h3> {{ INSTANCE }} Digital Object Gateway</h3>
 

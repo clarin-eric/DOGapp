@@ -1,4 +1,16 @@
 # Changelog
+## [1.0.9] - TBD
+- DOGlib 1.0.11 (signposting)
+- Django -> 4.2.23
+- django-cors-headers -> 4.7.0
+- django-debug-toolbar -> 6.0.0
+- djangorestframework -> 3.16.1
+- drf-spectacular -> 0.28.0
+- requests -> '2.32.5'
+- hide empty resource types in result table
+- sort repositories by name in status table
+- fix typos
+- move Swagger and OpenAPI to `About` section
 
 ## [1.0.8] - 6.01.2025
 - finish dogdtr as pluggable Django application

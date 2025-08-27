@@ -21,8 +21,8 @@ def home(request: HttpRequest) -> HttpResponse:
     all_repo_status_url = API_NETLOC + "/repostatus/"
     all_repo_status_response = requests.get(all_repo_status_url,
                                             verify=settings.VERIFY_SSL)
-
-    context.push({"repos_status": all_repo_status_response.json()})
+    all_repo_status_response = dict(sorted(all_repo_status_response.json().items()))
+    context.push({"repos_status": all_repo_status_response})
     context.push({"DTR_ENABLED": DTR_ENABLED})
     context.push({"API_NETLOC": API_NETLOC})
 

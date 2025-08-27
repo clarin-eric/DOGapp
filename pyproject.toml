@@ -31,17 +31,17 @@ homepage = ""
 
 [tool.poetry.dependencies]
 # CLARIN DOGlib
-doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.11-a8/doglib-1.0.11a8-py3-none-any.whl" }
+doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.11-a9/doglib-1.0.11a9-py3-none-any.whl" }
 # 3rd party
-Django = '4.2.17'
-django-cors-headers = '4.4.0'
-django-debug-toolbar = '4.4.6'
-djangorestframework = '3.15.2'
-drf-spectacular = "0.27.2"
+Django = '4.2.23'
+django-cors-headers = '4.7.0'
+django-debug-toolbar = '6.0.0'
+djangorestframework = '3.16.1'
+drf-spectacular = '0.28.0'
 fontawesomefree = "6.6.0"
 python = '>=3.11.*,<4.0'
 pymemcache = '4.0.0'
-requests = '2.32.3'
+requests = '2.32.5'
 
 [tool.poetry.group.test.dependencies]
 django-test-migrations = '1.4.0'

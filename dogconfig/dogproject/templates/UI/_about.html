@@ -4,10 +4,17 @@
 <div id="content">
     <h1>About the CLARIN ERIC Digital Object Gateway</h1>
     <p>Digital Object Gateway is a web service exposing DOGlib functionality over UI and API for increased machine
-        resolvability and processability of metadata
-        Service is available through this user interface and a {% if INSTANCE == "ALPHA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(alpha)'>REST API</a>. </p>
-                                                               {% elif INSTANCE == "BETA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(beta)'>REST API</a>
-                                                               {% endif %}
+        resolvability and processability of metadata.</p>
+
+    <h2>API</h2>
+    <p>Swagger available  {% if INSTANCE == "ALPHA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(alpha)'>here</a>. </p>
+        {% elif INSTANCE == "BETA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(beta)'>here</a>. </p>
+    {% endif %}
+    <p>Raw openapi.json available  {% if INSTANCE == "ALPHA" %} <a href="https://alpha-dog.clarin.eu/api/v1/openapi.json">here</a>. </p>
+        {% elif INSTANCE == "BETA" %} <a href="https://beta-dog.clarin.eu/api/v1/openapi.json">here</a>. </p>
+    {% endif %}
+
+
     <h2>Source code</h2>
     <h3>Source code and issue tracking</h3>
     <p>The source code of DOG library: <a href='https://github.com/clarin-eric/DOGlib'>DOGlib GitHub repository</a>. </p>
