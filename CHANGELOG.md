@@ -1,5 +1,5 @@
 # Changelog
-## [1.0.9] - TBD
+## [1.0.9] - 27.08.2025
 - DOGlib 1.0.11 (signposting)
 - Django -> 4.2.23
 - django-cors-headers -> 4.7.0
