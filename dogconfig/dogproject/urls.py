@@ -2,6 +2,7 @@
 """
 
 from django.urls import include, path, re_path
+from django.views.generic.base import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularJSONAPIView
 
 
@@ -32,4 +33,5 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
     path('dtr/', dtr, name='dtr'),
+    path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"))
 ]
