@@ -22,7 +22,7 @@
                         <td>{{ pid }}</td>
                         {% if fetch_result %}
                             {% if fetch_result.HTTP_upstream_response_code %}
-                                <td>Upstream HTTP response: {{ fetch_result.HTTP_upstream_response_code }}</td>
+                                <td colspan="4">Upstream HTTP response: {{ fetch_result.HTTP_upstream_response_code }}</td>
                             {% else %}
                                 {% comment %}
                                     Resource title
