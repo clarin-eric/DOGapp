@@ -52,14 +52,15 @@
                                                         <td>
                                                         {{ ref_resources.resource_type }}
                                                         </td>
-                                                    <td>
+                                                        <td>
                                                         {% for ref_resource in ref_resources.ref_resources %}
                                                             <a href="{{ ref_resource.pid }}">{{ ref_resource.pid }}</a> {% if ref_resource.data_type %} ({{ ref_resource.data_type }}) {% else %} (unknown) {% endif %}
                                                             {% if not forloop.last %}
                                                                 <br>
                                                             {% endif %}
                                                         {% endfor %}
-                                                    </td>
+                                                        </td>
+                                                    {% endif %}
                                                 {% endif %}
                                             {% endfor %}
                                         {% endif %}
