@@ -12,7 +12,7 @@ from rest_framework.request import Request
 from typing import Dict, List
 
 
-from .models import dog, doglib_expand_datatype, FetchResult, ReferencedResource, ReferencedResources
+from .models import dog, doglib_expand_datatype, FetchResult, RequestError
 from .schemas import pid_queryparam, use_dtr_queryparam
 from .utils import QueryparamParsingError
 
