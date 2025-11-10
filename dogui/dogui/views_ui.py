@@ -39,7 +39,7 @@ def home(request: HttpRequest) -> HttpResponse:
         #     api_url += "&use_dtr=" + use_dtr
 
         api_response = requests.get(api_url, verify=settings.VERIFY_SSL)
-
+        print(api_response)
         #TODO move DTR to separate application
         # if functionality == 'expanddatatype':
         #     taxonomy_tree = TaxonomyTree(api_response.json())

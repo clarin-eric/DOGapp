@@ -140,7 +140,7 @@ def fetch(request: Request, use_dtr: bool = False) -> Dict[str, FetchResult]:
     if use_dtr_queryparam:
         if use_dtr_queryparam[0] in {"True", "true"}:
             use_dtr = True
-    fetch_result: dict = {pid: asdict(dog.fetch(pid, dtr=use_dtr)) for pid in pids}
+    fetch_result: dict = {pid: dog.fetch(pid, dtr=use_dtr) for pid in pids}
     if not bool(fetch_result):
         ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
     else:
