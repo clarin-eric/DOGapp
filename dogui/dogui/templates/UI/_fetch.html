@@ -23,64 +23,63 @@
                         {% if fetch_result %}
                             {% if fetch_result.HTTP_upstream_response_code %}
                                 <td>Upstream HTTP response: {{ fetch_result.HTTP_upstream_response_code }}</td>
-                                {% else %}
-                                    {% comment %}
-                                        Resource title
-                                    {% endcomment %}
-                                    <td>{{ fetch_result.title }}</td>
-                                    {% comment %}
-                                        License
-                                    {% endcomment %}
-                                    <td>{{ fetch_result.license }}</td>
-                                    {% comment %}
-                                        Description
-                                    {% endcomment %}
-                                    <td>{{ fetch_result.description }}</td>
-                                    {% comment %}
-                                        Resources
-                                    {% endcomment %}
-                                    <td>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Resource type</th>
-                                                    <th>PID (MIME type)</th>
-                                                </tr>
-                                            </thead>
-                                            {% if fetch_result %}
-                                                <tr>
-                                                    {% if fetch_result.HTTP_upstream_response_code %}
-                                                        <td>Upstream HTTP response: {{ fetch_result.HTTP_upstream_response_code }}</td>
-                                                    {% else %}
-                                                        {% for ref_resources in fetch_result.ref_files %}
-                                                            {% if ref_resources %}
-                                                                {% if ref_resources.ref_resources %}
-                                                                    <td>
-                                                                        {{ ref_resources.resource_type }}
-                                                                    </td>
-                                                                    <td>
-                                                                        {% for ref_resource in ref_resources.ref_resources %}
-                                                                            <a href="{{ ref_resource.pid }}">{{ ref_resource.pid }}</a> {% if ref_resource.data_type %} ({{ ref_resource.data_type }}) {% else %} (unknown) {% endif %}
-                                                                            {% if not forloop.last %}
-                                                                                <br>
-                                                                            {% endif %}
-                                                                        {% endfor %}
-                                                                    </td>
-                                                                {% endif %}
-                                                            {% endif %}
-                                                        {% endfor %}
-                                                    {% endif %}
-                                                </tr>
-                                            {% endif %}
-                                        </table>
-                                    </td>
-                                {% endif %}
                             {% else %}
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>NA</td>
+                                {% comment %}
+                                    Resource title
+                                {% endcomment %}
+                                <td>{{ fetch_result.title }}</td>
+                                {% comment %}
+                                    License
+                                {% endcomment %}
+                                <td>{{ fetch_result.license }}</td>
+                                {% comment %}
+                                    Description
+                                {% endcomment %}
+                                <td>{{ fetch_result.description }}</td>
+                                {% comment %}
+                                    Resources
+                                {% endcomment %}
+                                <td>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Resource type</th>
+                                                <th>PID (MIME type)</th>
+                                            </tr>
+                                        </thead>
+                                        {% if fetch_result %}
+                                            <tr>
+                                                {% if fetch_result.HTTP_upstream_response_code %}
+                                                    <td>Upstream HTTP response: {{ fetch_result.HTTP_upstream_response_code }}</td>
+                                                {% else %}
+                                                    {% for ref_resources in fetch_result.ref_files %}
+                                                        {% if ref_resources %}
+                                                            {% if ref_resources.ref_resources %}
+                                                                <td>
+                                                                    {{ ref_resources.resource_type }}
+                                                                </td>
+                                                                <td>
+                                                                    {% for ref_resource in ref_resources.ref_resources %}
+                                                                        <a href="{{ ref_resource.pid }}">{{ ref_resource.pid }}</a> {% if ref_resource.data_type %} ({{ ref_resource.data_type }}) {% else %} (unknown) {% endif %}
+                                                                        {% if not forloop.last %}
+                                                                            <br>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                </td>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </tr>
+                                        {% endif %}
+                                    </table>
+                                </td>
                             {% endif %}
+                        {% else %}
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
+                            <td>NA</td>
                         {% endif %}
                     </tr>
                 {% endfor %}
