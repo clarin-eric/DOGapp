@@ -180,6 +180,11 @@ table.datatables-table {
   border: 0 !important;
   background-clip: padding-box; }
   table.datatables-table th, table.datatables-table td {
+    padding: 5px;
+    border: 0 !important; }
+  table.datatables-table th.right, table.datatables-table td.right {
+    text-align: right !important;
+    padding: 5px;
     border: 0 !important; }
   table.datatables-table td.non_textual {
     text-align: center; }
