@@ -1,4 +1,9 @@
 # Changelog
+
+## [1.0.10] - TBD
+- DOGlib 1.0.12 (pass upstream HTTP response code to output)
+- switchboard widget integration
+
 ## [1.0.9] - 27.08.2025
 - DOGlib 1.0.11 (signposting)
 - Django -> 4.2.23
