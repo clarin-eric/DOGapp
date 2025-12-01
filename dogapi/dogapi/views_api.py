@@ -122,7 +122,7 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                ])
 @permission_classes([AllowAny])
 @api_view(['GET'])
-def fetch(request: Request, use_dtr: bool = False) -> Dict[str, FetchResult]:
+def fetch(request: Request, use_dtr: bool = False) -> Response:
     """
     Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats:
     ?pid=val1&pid=val2&pid=val3
@@ -145,13 +145,8 @@ def fetch(request: Request, use_dtr: bool = False) -> Dict[str, FetchResult]:
         ret = Response(f"All Persistent Identifiers are either incorrect or unrecognised", status=400)
     else:
         ret = Response(fetch_result, status=200)
-    # else:
-    #     ret = Response(
-    #         {pid: (result | {"failure": 0}) if result else {"failure": 2,
-    #                                                         "failure_message": "Persistent Identifier could not be resolved or parsed"}
-    #          for pid, result in fetch_result.items()}
-    #     )
     return ret
+
 
 @extend_schema(parameters=[pid_queryparam],
                description="Identifies collection with its title and description, functionality requested for "

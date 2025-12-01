@@ -10,7 +10,16 @@
                     <th>Collection title</th>
                     <th>License</th>
                     <th>Description</th>
-                    <th colspan="2">Referenced Resources</th>
+                    <th colspan="2">Referenced Resources<br>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Resource type</th>
+                                    <th>PID (MIME type)</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +31,7 @@
                         <td>{{ pid }}</td>
                         {% if fetch_result %}
                             {% if fetch_result.HTTP_upstream_response_code %}
-                                <td class="td-right" colspan="4">Upstream HTTP response: {{ fetch_result.HTTP_upstream_response_code }}</td>
+                                <td class="right" colspan="4">Upstream HTTP response: {{ fetch_result.HTTP_upstream_response_code }}</td>
                             {% else %}
                                 {% comment %}
                                     Resource title
@@ -54,19 +63,23 @@
                                                 {% else %}
                                                     {% for ref_resources in fetch_result.ref_files %}
                                                         {% if ref_resources %}
-                                                            {% if ref_resources.ref_resources %}
-                                                                <td>
-                                                                    {{ ref_resources.resource_type }}
-                                                                </td>
-                                                                <td>
-                                                                    {% for ref_resource in ref_resources.ref_resources %}
-                                                                        <a href="{{ ref_resource.pid }}">{{ ref_resource.pid }}</a> {% if ref_resource.data_type %} ({{ ref_resource.data_type }}) {% else %} (unknown) {% endif %}
-                                                                        {% if not forloop.last %}
-                                                                            <br>
-                                                                        {% endif %}
-                                                                    {% endfor %}
-                                                                </td>
-                                                            {% endif %}
+                                                            <tr>
+                                                                {% if ref_resources.ref_resources %}
+                                                                    <td>
+                                                                        {{ ref_resources.resource_type }}
+                                                                    </td>
+                                                                    <td>
+                                                                        <div id="resourcepid{{ forloop.counter }}">
+                                                                        {% for ref_resource in ref_resources.ref_resources %}
+                                                                            <a href="{{ ref_resource.pid }}">{{ ref_resource.pid }}</a> {% if ref_resource.data_type %} ({{ ref_resource.data_type }}) {% else %} (unknown) {% endif %}  <button onclick="showSwitchboardPopup({alignSelector:'#resourcepid{{ forloop.parentloop.counter }}', alignRight:true}, {url:'{{ ref_resource.pid }}', origin:'dog-clarin',{% if ref_resource.data_type %} mimeType:'{{ ref_resource.data_type }}' {% endif %}});">SB</button>
+                                                                            {% if not forloop.last %}
+                                                                                <br>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                        </div>
+                                                                    </td>
+                                                                {% endif %}
+                                                            </tr>
                                                         {% endif %}
                                                     {% endfor %}
                                                 {% endif %}

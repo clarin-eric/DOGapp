@@ -12,6 +12,7 @@ from .utils import TaxonomyTree
 logging.config.dictConfig(settings.LOGGING)
 API_NETLOC = settings.API_NETLOC
 DTR_ENABLED = settings.DTR_ENABLED
+VERIFY_SSL = settings.VERIFY_SSL
 
 
 def home(request: HttpRequest) -> HttpResponse:
@@ -20,7 +21,7 @@ def home(request: HttpRequest) -> HttpResponse:
 
     all_repo_status_url = API_NETLOC + "/repostatus/"
     all_repo_status_response = requests.get(all_repo_status_url,
-                                            verify=settings.VERIFY_SSL)
+                                            verify=VERIFY_SSL)
     all_repo_status_response = dict(sorted(all_repo_status_response.json().items()))
     context.push({"repos_status": all_repo_status_response})
     context.push({"DTR_ENABLED": DTR_ENABLED})
@@ -37,16 +38,13 @@ def home(request: HttpRequest) -> HttpResponse:
         # if functionality == 'fetch':
         #     use_dtr = pid_form.cleaned_data['use_dtr_field']
         #     api_url += "&use_dtr=" + use_dtr
-
-        api_response = requests.get(api_url, verify=settings.VERIFY_SSL)
-        print(api_response)
+        api_response = requests.get(api_url, verify=VERIFY_SSL)
         #TODO move DTR to separate application
         # if functionality == 'expanddatatype':
         #     taxonomy_tree = TaxonomyTree(api_response.json())
         #     context.push({"taxonomy_tree": taxonomy_tree})
         # else:
         #     context.push({f"{functionality}_response": api_response.json()})
-
         context.push({f"{functionality}_response": api_response.json()})
 
         context.push({"view": functionality})
