@@ -3,6 +3,8 @@
 ## [1.0.10] - TBD
 - DOGlib 1.0.12 (pass upstream HTTP response code to output)
 - switchboard widget integration
+- Python3.11 -> Python3.12
+- Django4.2.23 -> Django6.0.2
 
 ## [1.0.9] - 27.08.2025
 - DOGlib 1.0.11 (signposting)
