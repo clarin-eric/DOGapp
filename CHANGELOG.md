@@ -1,10 +1,13 @@
 # Changelog
 
 ## [1.0.10] - TBD
-- DOGlib 1.0.12 (pass upstream HTTP response code to output)
+- DOGlib 1.0.13 (pass upstream HTTP response code to output, `FetchResult.recognised: bool`)
+- prevent from failing on unknown repository, instead condition rendering on new `FetchResult` field
 - switchboard widget integration
 - Python3.11 -> Python3.12
 - Django4.2.23 -> Django6.0.2
+- minor dependencies bumps
+
 
 ## [1.0.9] - 27.08.2025
 - DOGlib 1.0.11 (signposting)
