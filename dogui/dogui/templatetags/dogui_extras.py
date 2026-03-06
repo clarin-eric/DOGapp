@@ -30,3 +30,8 @@ def url_escape_path(value):
         # Encode everything EXCEPT the structural characters of a URL
         return urllib.parse.quote(value, safe=':/?&=#')
     return value
+
+
+@register.filter
+def get_button_nth_child(value: int):
+    return (value * 3) - 1
