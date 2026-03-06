@@ -2,8 +2,9 @@
 
 ## [1.0.10] - TBD
 - DOGlib 1.0.13 (pass upstream HTTP response code to output, `FetchResult.recognised: bool`)
-- prevent from failing on unknown repository, instead condition rendering on new `FetchResult` field
+- prevent from failing on unknown repository, instead condition rendering on new `FetchResult.recognised` field
 - switchboard widget integration
+- funding section
 - Python3.11 -> Python3.12
 - Django4.2.23 -> Django6.0.2
 - minor dependencies bumps
