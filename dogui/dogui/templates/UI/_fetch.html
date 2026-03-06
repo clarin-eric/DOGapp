@@ -30,7 +30,7 @@
                         {% endcomment %}
                         <td>{{ pid }}</td>
                         {% if fetch_result %}
-                            {% if not fetch_result.recognised == "true" %}
+                            {% if not fetch_result.recognised %}
                                 <td class="right" colspan="4">{{ fetch_result.recognised }} Repository not recognised</td>
                             {% else %}
                                 {% if fetch_result.HTTP_upstream_response_code %}
