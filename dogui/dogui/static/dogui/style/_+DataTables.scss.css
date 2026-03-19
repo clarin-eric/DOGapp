@@ -135,6 +135,24 @@ a {
   a:active {
     color: #9e0025; }
 
+  /* Target the text input specifically */
+div#id_pid_field {
+    width: 100%;           /* Makes it fill the container width */
+    max-width: 500px;      /* Prevents it from getting too wide on desktop */
+    padding: 12px 16px;    /* Adds space inside the box */
+    font-size: 1.2rem;     /* Increases the text size */
+    border: 2px solid #ccc;/* Gives it a more defined border */
+    border-radius: 8px;    /* Rounds the corners for a modern look */
+    box-sizing: border-box;/* Ensures padding doesn't break the width */
+}
+
+/* Optional: Add a focus effect to make it pop when clicked */
+div#id_pid_field:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+}
+
 hr {
   clear: both; }
 
