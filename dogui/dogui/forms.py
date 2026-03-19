@@ -42,12 +42,11 @@ class PIDForm(forms.Form):
         ('ispid', 'is pid'),
     ]
     pid_field: PIDField = PIDField(required=True,
-                                   widget=forms.TextInput(attrs={'required': 'True'}))
-    functionality_field: forms.ChoiceField = forms.ChoiceField(choices=FUNCTIONALITIES, required=True,
+                                   widget=forms.TextInput(attrs={'required': 'True', 'placeholder': 'Persistent Identifier'}))
+    functionality_field: forms.ChoiceField = forms.ChoiceField(choices=FUNCTIONALITIES, required=True,\
                                                                widget=forms.RadioSelect(
                                                                    attrs={'class': 'form-check-inline',
-                                                                          'required': 'True',
-                                                                          'placeholder': 'Persistent Identifier'}), )
+                                                                          'required': 'True'}), )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
