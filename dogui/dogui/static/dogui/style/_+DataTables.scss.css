@@ -156,6 +156,9 @@ div#id_pid_field:focus {
 hr {
   clear: both; }
 
+div#fieldset {
+  border-color: transparent; }
+
 table tbody tr:nth-child(2n+1) td {
   background-color: #e3e3e3 !important; }
 table tbody td:first-child {
