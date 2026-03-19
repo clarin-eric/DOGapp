@@ -46,7 +46,8 @@ class PIDForm(forms.Form):
     functionality_field: forms.ChoiceField = forms.ChoiceField(choices=FUNCTIONALITIES, required=True,
                                                                widget=forms.RadioSelect(
                                                                    attrs={'class': 'form-check-inline',
-                                                                          'required': 'True'}), )
+                                                                          'required': 'True',
+                                                                          'placeholder': 'Persistent Identifier'}), )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
