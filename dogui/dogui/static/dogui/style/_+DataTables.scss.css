@@ -153,6 +153,25 @@ a {
     box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
 }
 
+/* hide placeholder text in text input field */
+@media all and (max-width:736px){
+    ::-webkit-input-placeholder {
+    color:white;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+    color:white;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+    color:white;
+    }
+
+    :-ms-input-placeholder {
+    color:white;
+    }
+}
+
 hr {
   clear: both; }
 
