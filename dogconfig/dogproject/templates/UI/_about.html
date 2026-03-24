@@ -9,9 +9,11 @@
     <h2>API</h2>
     <p>Swagger available  {% if INSTANCE == "ALPHA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(alpha)'>here</a>. </p>
         {% elif INSTANCE == "BETA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(beta)'>here</a>. </p>
+        {% else %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Data+Object+Gateway+API'>here</a>. </p>
     {% endif %}
     <p>Raw openapi.json available  {% if INSTANCE == "ALPHA" %} <a href="https://alpha-dog.clarin.eu/api/v1/openapi.json">here</a>. </p>
         {% elif INSTANCE == "BETA" %} <a href="https://beta-dog.clarin.eu/api/v1/openapi.json">here</a>. </p>
+        {% else %} <a href="https://beta-dog.clarin.eu/api/v1/openapi.json">here</a>. </p>
     {% endif %}
 
     <h2>Funding</h2>
