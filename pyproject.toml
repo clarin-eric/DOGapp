@@ -31,7 +31,7 @@ homepage = ""
 
 [tool.poetry.dependencies]
 # CLARIN DOGlib
-doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.13-a2/doglib-1.0.13a2-py3-none-any.whl" }
+doglib = { url = "https://github.com/clarin-eric/DOGlib/releases/download/1.0.13/doglib-1.0.13-py3-none-any.whl" }
 # 3rd party
 Django = '6.0.2'
 django-cors-headers = '4.9.0'

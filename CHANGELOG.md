@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.10] - TBD
+## [1.0.10] - 24.03.2026
 - DOGlib 1.0.13 (pass upstream HTTP response code to output, `FetchResult.recognised: bool`)
 - prevent from failing on unknown repository, instead condition rendering on new `FetchResult.recognised` field
 - switchboard widget integration
