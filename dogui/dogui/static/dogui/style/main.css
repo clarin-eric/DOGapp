@@ -1,0 +1,229 @@
+/* Font definitions and base typography configuration */
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  src: local('Source Sans 3 Variable'),
+       local("SourceSans3Variable-Roman"),
+       url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype-variations');
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: italic;
+  src: local('Source Sans 3 Variable Italic'),
+       local('SourceSans3Variable-Italic'),
+       url('../fonts/SourceSans3-Italic-VariableFont_wght.ttf') format('truetype-variations');
+}
+
+/* Base structural setup */
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 400;
+    overflow-x: hidden;
+    font-family: 'Source Sans 3', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+em {
+    font-style: italic;
+}
+
+pre {
+    background-color: transparent;
+    border: 0 none;
+    margin: 0;
+}
+
+/* Header layout rules */
+#header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header #brand a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+#header #menu a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #666;
+}
+
+#header #menu a.active {
+    color: #000;
+    font-weight: bold;
+}
+
+/* Page content and footer alignment */
+#content {
+    flex: 1 0 auto;
+    padding: 20px;
+}
+
+#footer {
+    background-color: #eee;
+    border-top: 1px solid #d5d5d5;
+    color: #777;
+    height: 80px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#footer a {
+    color: #777;
+    text-decoration: none;
+}
+
+#footer a img {
+    max-height: 40px;
+}
+
+nav *,
+#footer * {
+    font-size: 14px;
+}
+
+/* Global elements styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #000;
+}
+
+a {
+    cursor: pointer;
+}
+
+/* Form block style rules */
+#pid_form {
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px #ccc;
+    padding: 15px;
+    background: #fff;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+#pid_form input[type="text"] {
+    border: 1px solid #ccc;
+    color: #000;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#pid_form .form-check-inline {
+    margin-bottom: 15px;
+}
+
+#pid_form .form-check-inline div {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#pid_form button {
+    background-color: #006d91;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#pid_form button:hover {
+    background-color: #0080aa;
+}
+
+/* Table elements style rules */
+#registered_repos_table {
+    padding: 0;
+    margin-top: 15px;
+}
+
+#registered_repos_table table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px #ccc;
+}
+
+#registered_repos_table table th,
+#registered_repos_table table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#registered_repos_table table th {
+    background-color: #f3f9fc;
+    color: #033d71;
+}
+
+#registered_repos_table table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#registered_repos_table table span.positive {
+    color: #31708f;
+    background-color: #d9edf7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#registered_repos_table table span.negative {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.highlight {
+    background-color: #ff0;
+}
+
+/* Media Queries for responsive view adjustments */
+@media (max-width: 768px) {
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #header #menu {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    #header #menu a {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+
+    #footer {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+        text-align: center;
+    }
+}
