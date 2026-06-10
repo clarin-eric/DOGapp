@@ -1,6 +1,9 @@
 {% extends 'UI/_.html' %}
 {% block content %}
-<div class="main">
+<div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="main">
     <div class="jumbotron">
     Welcome to CLARIN ERIC Digital Object Gateway. The goal of DOG is to ease access to referenced resources in metadata.
     Currently, DOG supports 3 primary functionalities:
@@ -17,6 +20,7 @@
             {% endif %}
         {% endblock pid_form %}
         {% block result %}{% endblock result %}
+    </div>
     <br>
     <h4> Currently registered repositories within DOG </h4>
     <div id="registered_repos_table">
@@ -24,6 +28,9 @@
             {% include 'UI/_registered_repositories_table.html' with reg_repos=reg_repos %}
         {% endblock registered_repos %}
     </div>
-    </div>
+</div>
+</div>
+</div>
+</div>
 </div>
 {% endblock content %}
