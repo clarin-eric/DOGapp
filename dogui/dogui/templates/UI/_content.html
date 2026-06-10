@@ -4,18 +4,18 @@
     <div class="row">
     <div class="col-md-12">
     <div class="main">
-    <div class="p-5 mb-4 bg-jumbotron-classic rounded-3">
+    <div class="p-3 mb-2 bg-jumbotron-classic rounded-3">
     <div class="container-fluid py-5">
         <h2 class="display-5 fw-bold">Digital Object Gateway</h2>
-        <p> The goal of DOG is to breach the gap between entries in repositories and referenced resources. Manually registered repository configuration provides a mapping between collection's landing page URL or PID allowing ease retrieval of referenced resources</p>
+        <p> The goal of DOG is to breach the gap between entries in repositories and referenced resources. Manually registered repository configuration provides a mapping between collection's landing page URL or PID allowing easy retrieval of referenced resources.</p>
         <p> Currently, DOG supports 3 primary functionalities:</p>
             <ul>
                 <li>sniff - checks if input PID points to a registered repository</li>
                 <li>fetch - fetches all PIDs of referenced resources in the metadata </li>
                 <li>is pid - checks if input string is a DOG parsable PID</li>
             </ul>
-    </div>
-    </div>
+        <p> Status table of currently registered repositories with DOG can be found below </p>
+
 
     <h3> {{ INSTANCE }} Digital Object Gateway</h3>
         {% block pid_form %}
@@ -25,6 +25,8 @@
         {% endblock pid_form %}
         {% block result %}{% endblock result %}
     </div>
+    </div>
+    </div>
     <br>
     <h4> Currently registered repositories within DOG </h4>
     <div id="registered_repos_table">
@@ -32,7 +34,6 @@
             {% include 'UI/_registered_repositories_table.html' with reg_repos=reg_repos %}
         {% endblock registered_repos %}
     </div>
-</div>
 </div>
 </div>
 </div>
