@@ -227,3 +227,7 @@ a {
         text-align: center;
     }
 }
+
+.bg-jumbotron-classic {
+  background-color: #e9ecef !important;
+}
