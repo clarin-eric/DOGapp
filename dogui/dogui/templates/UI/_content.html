@@ -4,14 +4,17 @@
     <div class="row">
     <div class="col-md-12">
     <div class="main">
-    <div class="jumbotron">
-    Welcome to CLARIN ERIC Digital Object Gateway. The goal of DOG is to ease access to referenced resources in metadata.
-    Currently, DOG supports 3 primary functionalities:
-    <ul>
-        <li>sniff - checks if input PID points to a registered repository</li>
-        <li>fetch - fetches all PIDs of referenced resources in the metadata </li>
-        <li>is pid - checks if input string is a DOG parsable PID</li>
-    </ul>
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="lead">
+        <p> Welcome to CLARIN ERIC Digital Object Gateway. The goal of DOG is to breach the gap between entries in repositories and referenced resources.</p>
+        <hr class="my-4">
+        <p> Currently, DOG supports 3 primary functionalities:</p>
+            <ul>
+                <li>sniff - checks if input PID points to a registered repository</li>
+                <li>fetch - fetches all PIDs of referenced resources in the metadata </li>
+                <li>is pid - checks if input string is a DOG parsable PID</li>
+            </ul>
+    </div>
 
     <h3> {{ INSTANCE }} Digital Object Gateway</h3>
         {% block pid_form %}
@@ -28,7 +31,6 @@
             {% include 'UI/_registered_repositories_table.html' with reg_repos=reg_repos %}
         {% endblock registered_repos %}
     </div>
-</div>
 </div>
 </div>
 </div>
