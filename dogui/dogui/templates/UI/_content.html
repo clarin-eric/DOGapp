@@ -6,7 +6,7 @@
     <div class="main">
     <div class="p-3 mb-2 bg-jumbotron-classic rounded-3">
     <div class="container-fluid py-5">
-        <h2 class="display-5 fw-bold">Digital Object Gateway</h2>
+        <h3 class="display-5 fw-bold">{{ INSTANCE }} Digital Object Gateway</h3>
         <p> The goal of DOG is to breach the gap between entries in repositories and referenced resources. Manually registered repository configuration provides a mapping between collection's landing page URL or PID allowing easy retrieval of referenced resources.</p>
         <p> Currently, DOG supports 3 primary functionalities:</p>
             <ul>
@@ -16,8 +16,6 @@
             </ul>
         <p> Status table of currently registered repositories with DOG can be found below </p>
 
-
-    <h3> {{ INSTANCE }} Digital Object Gateway</h3>
         <div class="d-flex justify-content-center my-4">
         {% block pid_form %}
             {%  if pid_form %}
