@@ -18,12 +18,14 @@
 
 
     <h3> {{ INSTANCE }} Digital Object Gateway</h3>
+        <div class="d-flex justify-content-center my-4">
         {% block pid_form %}
             {%  if pid_form %}
                 {% include 'UI/_form_pid.html' with form=pid_form %}
             {% endif %}
         {% endblock pid_form %}
         {% block result %}{% endblock result %}
+        </div>
     </div>
     </div>
     </div>
