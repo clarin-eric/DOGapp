@@ -1,16 +1,14 @@
 {% block navbar %}
 <nav class="navbar navbar-static-top navbar-default">
     <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand nav-link" href="/" target="_self">
-                <span class="glyphicon glyphicon-cog" style="font-size: 14px; margin-right: 2px;" aria-hidden="true"></span>
-                <span style="font-size: 18px;">Digital Object Gateway</span>
-            </a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav">
+        <a class="navbar-brand d-flex align-items-center" href="/" target="_self">
+            <i class="bi bi-gear-fill" style="font-size: 18px; margin-right: 8px;" aria-hidden="true"></i>
+            <span style="font-size: 18px;">Digital Object Gateway</span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="dog-tab" href="/" data-discover="true">DOG</a>
+                    <a class="nav-link active" id="dog-tab" href="/" data-discover="true">DOG</a>
                 </li>
                 {% if DTR_ENABLED %}
                 <li class="nav-item" role="presentation">
@@ -24,7 +22,7 @@
                     <a class="nav-link" id="contact-tab" href="/contact" data-discover="true">Contact</a>
                 </li>
             </ul>
-            <ul class="navbar-nav ms-auto">
+            <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item">
                     <a class="nav-link p-0" href="http://www.clarin.eu/" style="margin-left: 20px;">
                         <img src="static/dogui/style/clarin-logo-wide.png" width="119px" height="46px" alt="CLARIN Logo">
