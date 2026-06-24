@@ -234,7 +234,7 @@ a {
 
 /* Override default Bootstrap5 active navbar tab colour */
 .navbar-nav .nav-link.active {
-    background-color: #0080aa;
+    background-color: #0080aa !important;
     color: #ffffff !important;
     border-radius: 4px;
     padding: 8px 16px;         /* Optional: adds some breathing room inside the highlight */
