@@ -50,15 +50,6 @@ body dl {
     margin-bottom: 10px !important;
 }
 
-/* Reproduce Switchboard font weight*/
-body,
-body p,
-body span,
-body a,
-body li {
-    font-weight: 300 !important;
-}
-
 em {
     font-style: italic;
 }
