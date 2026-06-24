@@ -12,14 +12,14 @@
                 </li>
                 {% if DTR_ENABLED %}
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link {% if request.path == '/dtr' %}active{% endif %}" id="dtr-tab" href="/dtr" data-discover="true">DTR</a>
+                    <a class="nav-link {% if request.path == '/dtr/' %}active{% endif %}" id="dtr-tab" href="/dtr" data-discover="true">DTR</a>
                 </li>
                 {% endif %}
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link {% if request.path == '/about' %}active{% endif %}" id="about-tab" href="/about" data-discover="true">About</a>
+                    <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" id="about-tab" href="/about" data-discover="true">About</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link {% if request.path == '/contact' %}active{% endif %}" id="contact-tab" href="/contact" data-discover="true">Contact</a>
+                    <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" id="contact-tab" href="/contact" data-discover="true">Contact</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto align-items-center">
