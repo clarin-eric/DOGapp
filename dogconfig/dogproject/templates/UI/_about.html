@@ -1,12 +1,14 @@
 {% extends 'UI/_.html' %}
 {% block title %} - About{% endblock title %}
 {% block content %}
-<div id="content">
-    <h1>About the CLARIN ERIC Digital Object Gateway</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+    <h2>About the CLARIN ERIC Digital Object Gateway</h2>
     <p>Digital Object Gateway is a web service exposing DOGlib functionality over UI and API for increased machine
         resolvability and processability of metadata.</p>
 
-    <h2>API</h2>
+    <h3>API</h3>
     <p>Swagger available  {% if INSTANCE == "ALPHA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(alpha)'>here</a>. </p>
         {% elif INSTANCE == "BETA" %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Digital%20Object%20Gateway%20API%20(beta)'>here</a>. </p>
         {% else %} <a href='https://infra.clarin.eu/apis/?urls.primaryName=Data+Object+Gateway+API'>here</a>. </p>
@@ -16,20 +18,20 @@
         {% else %} <a href="https://beta-dog.clarin.eu/api/v1/openapi.json">here</a>. </p>
     {% endif %}
 
-    <h2>Funding</h2>
+    <h3>Funding</h3>
     <p> Development of Digital Object Gateway has been made possible through funding received from European Union as part of <a href="https://atrium-research.eu/">ATRIUM</a> infrastructure under Grant Agreement n. 101132163.</p>
 
-    <h2>Source code</h2>
-    <h3>Source code and issue tracking</h3>
+    <h3>Source code</h3>
+    <h4>Source code and issue tracking</h4>
     <p>The source code of DOG library: <a href='https://github.com/clarin-eric/DOGlib'>DOGlib GitHub repository</a>. </p>
     <p>The source code of DOG application: <a href='https://github.com/clarin-eric/DOGapp'>DOGapp GitHub repository</a>. </p>
-    <h2>Credits</h2>
-    <h3>Maintainers</h3>
+    <h3>Credits</h3>
+    <h4>Maintainers</h4>
     <ul>
         <li>Michał Gawor <sup><a href='https://www.clarin.eu/applications/'>CLARIN ERIC</a></sup></li>
         <li>André Moreira <sup><a href='https://www.clarin.eu/applications/'>CLARIN ERIC</a></sup></li>
     </ul>
-    <h3>Developers</h3>
+    <h4>Developers</h4>
     <ul>
         <li>Michał Gawor <sup><a href='https://www.clarin.eu/applications/'>CLARIN ERIC</a></sup></li>
     </ul>
@@ -45,5 +47,7 @@
         <li><a href='https://github.com/SeleniumHQ/selenium/blob/trunk/LICENSE'>Selenium WebDriver Python bindings</a></li>
         <li><a href='https://github.com/memcached/memcached/blob/master/LICENSE'>memecache</a></li>
     </ul>
+    </div>
+    </div>
 </div>
 {% endblock content %}

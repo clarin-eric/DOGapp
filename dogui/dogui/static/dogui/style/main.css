@@ -233,7 +233,6 @@ a {
 }
 
 /* Override default Bootstrap5 navbar class*/
-
 body .navbar,
 body .navbar .container {
     padding-top: 0 !important;
@@ -272,7 +271,14 @@ body .navbar .ms-auto .nav-item {
     align-self: center !important;
 }
 
-/* Optional: Smooth transition effect when hovering or switching tabs */
 .navbar-nav .nav-link {
     transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Override default Bootstrap5 container */
+body .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
