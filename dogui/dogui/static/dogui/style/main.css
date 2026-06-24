@@ -243,6 +243,18 @@ a {
   }
 }
 
+
+/* Force bs5 rows to use legacy 30px gutters to match bs3/4 */
+body .row {
+  --bs-gutter-x: 30px !important;
+}
+
+/* Make columns inside the row adjust padding to match bs3/4 */
+body .row > * {
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+
 .bg-jumbotron-classic {
   background-color: #e9ecef !important;
 }
@@ -289,6 +301,5 @@ body .navbar .ms-auto .nav-item {
 .navbar-nav .nav-link {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
-
 
 
