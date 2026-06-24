@@ -274,13 +274,20 @@ body .row > * {
 }
 
 /* Override default Bootstrap5 navbar class*/
+body .navbar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    margin-bottom: 20px !important; /* ONLY push down from the absolute outside edge */
+}
+
 body .navbar,
 body .navbar .container {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     display: flex !important;
     align-items: stretch !important;
-    margin-bottom: 20px !important;
 }
 
 body .navbar .navbar-collapse,
@@ -323,7 +330,7 @@ b, strong {
 
 a {
   color: #0080aa;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 a:focus, a:hover {
