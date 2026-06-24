@@ -29,9 +29,11 @@ body {
     font-size: 16px;
     font-weight: 400;
     overflow-x: hidden;
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: "Source Sans Pro",Calibri,Arial,Helvetica,sans-serif;
     display: flex;
     flex-direction: column;
+    line-height: 1.42857143;
+    color: #333;
 }
 
 em {
@@ -228,6 +230,19 @@ a {
     }
 }
 
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1170px !important;
+  }
+}
+
+/* Neutralize 1400px breakpoint completely to match Bootstrap 3/4 */
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1170px !important;
+  }
+}
+
 .bg-jumbotron-classic {
   background-color: #e9ecef !important;
 }
@@ -275,10 +290,5 @@ body .navbar .ms-auto .nav-item {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Override default Bootstrap5 container */
-body .container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
+
+
