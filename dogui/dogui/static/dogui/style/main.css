@@ -244,3 +244,4 @@ a {
 /* Optional: Smooth transition effect when hovering or switching tabs */
 .navbar-nav .nav-link {
     transition: background-color 0.2s ease, color 0.2s ease;
+}
