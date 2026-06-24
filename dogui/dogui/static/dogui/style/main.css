@@ -231,3 +231,16 @@ a {
 .bg-jumbotron-classic {
   background-color: #e9ecef !important;
 }
+
+/* Override default Bootstrap5 active navbar tab colour */
+.navbar-nav .nav-link.active {
+    background-color: #0080aa;
+    color: #ffffff !important;
+    border-radius: 4px;
+    padding: 8px 16px;         /* Optional: adds some breathing room inside the highlight */
+    font-weight: normal;       /* Optional: resets the default Bootstrap bolding if you don't want it */
+}
+
+/* Optional: Smooth transition effect when hovering or switching tabs */
+.navbar-nav .nav-link {
+    transition: background-color 0.2s ease, color 0.2s ease;
