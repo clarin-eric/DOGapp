@@ -232,11 +232,44 @@ a {
   background-color: #e9ecef !important;
 }
 
-/* Override default Bootstrap5 active navbar tab colour */
+/* Override default Bootstrap5 navbar class*/
+
+body .navbar,
+body .navbar .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+body .navbar .navbar-collapse,
+body .navbar .navbar-nav {
+    height: 100% !important;
+    align-items: stretch !important;
+}
+
+body .navbar .navbar-nav .nav-item {
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+
 .navbar-nav .nav-link.active {
     background-color: #0080aa !important;
     color: #ffffff !important;
+    border-radius: 0 !important; /* Flush edges */
     font-weight: normal;       /* Optional: resets the default Bootstrap bolding if you don't want it */
+}
+
+body .navbar .navbar-nav .nav-link {
+    display: flex !important;
+    align-items: center !important; /* Keep text centered vertically */
+    height: 100% !important;
+    padding: 0 20px !important;     /* Horizontal breathing room */
+}
+
+body .navbar .ms-auto .nav-item {
+    align-self: center !important;
 }
 
 /* Optional: Smooth transition effect when hovering or switching tabs */
