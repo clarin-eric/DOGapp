@@ -27,7 +27,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 300;
     overflow-x: hidden;
     font-family: "Source Sans Pro",Calibri,Arial,Helvetica,sans-serif;
     display: flex;
@@ -36,11 +36,28 @@ body {
     color: #333;
 }
 
-/* Target every child, grandchild, and pseudo-element inside the body */
 body *, body *::before, body *::after {
     font-family: inherit;
     line-height: inherit;
     color: inherit;
+}
+
+/* Force Bs3/4 10px block spacing */
+body p,
+body ul,
+body ol,
+body dl {
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Reproduce Switchboard font weight*/
+body,
+body p,
+body span,
+body a,
+body li {
+    font-weight: 300 !important;
 }
 
 em {
