@@ -279,6 +279,17 @@ a {
     table-layout: auto !important;
 }
 
+/* Force the first column of ANY inner table (header or body) to take up 35% */
+#dog_result_inner_header th:nth-child(1),
+#dog_result_inner_body td:nth-child(1) {
+    width: 35% !important;
+}
+
+/* Force the second column of ANY inner table (header or body) to take up 65% */
+#dog_result_inner_header th:nth-child(2),
+#dog_result_inner_body td:nth-child(2) {
+    width: 65% !important;
+
 .highlight {
     background-color: #ff0;
 }
