@@ -270,13 +270,26 @@ a {
 }
 
 /* Nested result table */
-/* Nested result table styling reset */
-table.nested-result-table,
-table.nested-result-table th,
+table.nested-result-table {
+    background: transparent !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
+}
+
+#dog_result_inner_header th,
 table.nested-result-table td {
     background: transparent !important;
-    border: none !important;
-    padding: 4px !important;
+    border-bottom: 1px solid #ddd !important;
+    padding: 6px 4px !important;
+}
+
+#dog_result_inner_header th:first-child,
+#dog_result_table table.nested-result-table td:first-child {
+    border-right: 1px solid #ddd !important;
+}
+
+table.nested-result-table tr:last-child td {
+    border-bottom: none !important;
 }
 
 #dog_result_inner_header,
