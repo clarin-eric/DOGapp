@@ -284,13 +284,14 @@ table.nested-result-table {
 table.nested-result-table td {
     background: transparent !important;
     border-bottom: 1px solid #ddd !important;
-    padding: 0 !important;
+    padding: 0 8px !important;
 }
 
 #dog_result_inner_header th {
     background: transparent !important;
     border: none !important;
-    padding: 0 !important;
+    border-top: 1px solid #ddd !important;
+    padding: 4px 8px !important;
 }
 
 #dog_result_inner_header th:first-child,
