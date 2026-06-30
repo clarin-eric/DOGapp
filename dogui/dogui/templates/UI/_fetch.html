@@ -1,7 +1,7 @@
 {% extends 'UI/_content.html' %}
 {% load dogui_extras %}
 {% block result %}
-    <div id='fetch_result_table'>
+    <div id='dog_result_table'>
         <table>
             <thead>
                 <tr>
@@ -10,7 +10,7 @@
                     <th>License</th>
                     <th>Description</th>
                     <th colspan="2">Referenced Resources<br>
-                        <table id="fetch_result_inner_header"
+                        <table id="dog_result_inner_header"
                                class="table table-borderless table-sm bg-transparent m-0 align-middle">
                             <thead>
                                 <tr>
@@ -62,7 +62,7 @@
                                         Resources
                                     {% endcomment %}
                                     <td>
-                                        <table id="fetch_result_inner_body"
+                                        <table id="dog_result_inner_body"
                                                class="table table-borderless table-sm bg-transparent m-0 align-middle">
                                             <thead>
                                                 <tr>
