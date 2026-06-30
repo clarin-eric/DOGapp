@@ -224,6 +224,7 @@ a {
 
 #dog_result_table > table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     box-shadow: 2px 2px 5px #ccc;
 }
@@ -233,7 +234,15 @@ a {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
 }
+
+#dog_result_table > table > thead > tr > th:nth-child(1) { width: 12%; }
+#dog_result_table > table > thead > tr > th:nth-child(2) { width: 22%; }
+#dog_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+#dog_result_table > table > thead > tr > th:nth-child(4) { width: 21%; }
+#dog_result_table > table > thead > tr > th:nth-child(5) { width: 35%; }
 
 #dog_result_table > table > thead > tr > th {
     background-color: #f3f9fc;
@@ -266,8 +275,8 @@ a {
 .nested-result-table td {
     background: transparent !important;
     border: none !important;
-    padding: 4px !important; /* adjust to taste */
-    /* Add any other reset properties here */
+    padding: 4px !important;
+    table-layout: auto !important;
 }
 
 .highlight {
