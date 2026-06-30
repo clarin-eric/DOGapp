@@ -10,7 +10,7 @@
                     <th>License</th>
                     <th>Description</th>
                     <th colspan="2">Referenced Resources<br>
-                        <table>
+                        <table id="fetch_result_inner_header">
                             <thead>
                                 <tr>
                                     <th>Resource type</th>
@@ -44,14 +44,24 @@
                                     {% endcomment %}
                                     <td>{{ fetch_result.license }}</td>
                                     {% comment %}
-                                        Description
+                                        Description (Truncated with Bootstrap 5 Expand/Collapse)
                                     {% endcomment %}
-                                    <td>{{ fetch_result.description }}</td>
+                                    <td>
+                                    {% if fetch_result.description|length > 120 %}
+                                        <span>{{ fetch_result.description|slice:":120" }}</span>
+                                        <span class="collapse" id="desc-{{ forloop.counter }}">{{ fetch_result.description|slice:"120:" }}</span>
+                                        <button class="btn btn-link p-0 border-0 ms-1 align-baseline text-decoration-none btn-sm"
+                                                type="button" data-bs-toggle="collapse" data-bs-target="#desc-{{ forloop.counter }}" aria-expanded="false"
+                                                onclick="this.textContent = this.textContent === '... [more]' ? '[less]' : '... [more]'">... [more]</button>
+                                    {% else %}
+                                        {{ fetch_result.description }}
+                                    {% endif %}
+                                    </td>
                                     {% comment %}
                                         Resources
                                     {% endcomment %}
                                     <td>
-                                        <table>
+                                        <table id="fetch_result_inner_body">
                                             <thead>
                                                 <tr>
                                                     <th>Resource type</th>
