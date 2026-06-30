@@ -228,23 +228,23 @@ a {
     box-shadow: 2px 2px 5px #ccc;
 }
 
-#dog_result_table > table > th,
-#dog_result_table > table > td {
+#dog_result_table > table > thead > tr > th,
+#dog_result_table > table > tbody > tr > td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
 }
 
-#dog_result_table > table > th {
+#dog_result_table > table > thead > tr > th {
     background-color: #f3f9fc;
     color: #033d71;
 }
 
-#dog_result_table > table > tr:nth-child(even) {
+#dog_result_table > table > tbody > tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-#dog_result_table > table > span.positive {
+#dog_result_table > table > tbody > tr > td span.positive {
     color: #31708f;
     background-color: #d9edf7;
     padding: 2px 6px;
@@ -252,7 +252,7 @@ a {
     font-weight: bold;
 }
 
-#dog_result_table > table > span.negative {
+#dog_result_table > table > tbody > tr > td span.negative {
     color: #a94442;
     background-color: #f2dede;
     padding: 2px 6px;
