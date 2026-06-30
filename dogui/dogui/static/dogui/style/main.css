@@ -172,6 +172,7 @@ a {
 }
 
 /* Table elements style rules */
+/* Registered repositories table */
 #registered_repos_table {
     padding: 0;
     margin-top: 15px;
@@ -208,6 +209,50 @@ a {
 }
 
 #registered_repos_table table span.negative {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Fetch result table */
+#fetch_result_table {
+    padding: 0;
+    margin-top: 15px;
+}
+
+#fetch_result_table table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px #ccc;
+}
+
+#fetch_result_table table th,
+#fetch_result_table table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#fetch_result_table table th {
+    background-color: #f3f9fc;
+    color: #033d71;
+}
+
+#fetch_result_table table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#fetch_result_table table span.positive {
+    color: #31708f;
+    background-color: #d9edf7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#fetch_result_table table span.negative {
     color: #a94442;
     background-color: #f2dede;
     padding: 2px 6px;
