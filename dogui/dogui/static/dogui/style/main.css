@@ -276,20 +276,27 @@ a {
     background: transparent !important;
     border: none !important;
     padding: 4px !important;
-    table-layout: auto !important;
 }
 
-/* Force the first column of ANY inner table (header or body) to take up 35% */
-#dog_result_inner_header th:nth-child(1),
-#dog_result_inner_body td:nth-child(1) {
+/* 1. FORCE fixed layout on the inner tables to respect explicit percentages */
+#dog_result_inner_header,
+#dog_result_inner_body {
+    table-layout: fixed !important;
+    width: 100% !important;
+}
+
+/* 2. Target columns using structural pseudo-classes instead of row child numbering */
+#dog_result_inner_header th:first-child,
+#dog_result_inner_body td:first-child {
     width: 35% !important;
+    max-width: 35% !important;
 }
 
-/* Force the second column of ANY inner table (header or body) to take up 65% */
-#dog_result_inner_header th:nth-child(2),
-#dog_result_inner_body td:nth-child(2) {
+#dog_result_inner_header th:last-child,
+#dog_result_inner_body td:last-child {
     width: 65% !important;
-
+    max-width: 65% !important;
+}
 .highlight {
     background-color: #ff0;
 }
