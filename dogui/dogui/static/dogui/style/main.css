@@ -260,6 +260,16 @@ a {
     font-weight: bold;
 }
 
+/* Nested result table */
+.nested-result-table,
+.nested-result-table th,
+.nested-result-table td {
+    background: transparent !important;
+    border: none !important;
+    padding: 4px !important; /* adjust to taste */
+    /* Add any other reset properties here */
+}
+
 .highlight {
     background-color: #ff0;
 }
