@@ -270,30 +270,29 @@ a {
 }
 
 /* Nested result table */
-.nested-result-table,
-.nested-result-table th,
-.nested-result-table td {
+/* Nested result table styling reset */
+table.nested-result-table,
+table.nested-result-table th,
+table.nested-result-table td {
     background: transparent !important;
     border: none !important;
     padding: 4px !important;
 }
 
-/* 1. FORCE fixed layout on the inner tables to respect explicit percentages */
 #dog_result_inner_header,
-#dog_result_inner_body {
+table.nested-result-table {
     table-layout: fixed !important;
     width: 100% !important;
 }
 
-/* 2. Target columns using structural pseudo-classes instead of row child numbering */
 #dog_result_inner_header th:first-child,
-#dog_result_inner_body td:first-child {
+#dog_result_table table.nested-result-table td:first-child {
     width: 35% !important;
     max-width: 35% !important;
 }
 
 #dog_result_inner_header th:last-child,
-#dog_result_inner_body td:last-child {
+#dog_result_table table.nested-result-table td:last-child {
     width: 65% !important;
     max-width: 65% !important;
 }
