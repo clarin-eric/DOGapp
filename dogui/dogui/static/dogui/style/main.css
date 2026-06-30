@@ -276,11 +276,16 @@ table.nested-result-table {
     margin: 0 !important;
 }
 
-#dog_result_inner_header th,
 table.nested-result-table td {
     background: transparent !important;
     border-bottom: 1px solid #ddd !important;
-    padding: 6px 4px !important;
+    padding: 0 !important;
+}
+
+#dog_result_inner_header th {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
 }
 
 #dog_result_inner_header th:first-child,
@@ -309,6 +314,7 @@ table.nested-result-table {
     width: 65% !important;
     max-width: 65% !important;
 }
+
 .highlight {
     background-color: #ff0;
 }
