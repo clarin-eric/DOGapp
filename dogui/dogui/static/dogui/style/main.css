@@ -343,12 +343,12 @@ table.nested-result-table {
 #dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
 #dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
 
-#dog_fetch_result_table {
+#dog_sniff_result_table {
     padding: 0;
     margin-top: 15px;
 }
 
-#dog_fetch_result_table > table {
+#dog_sniff_result_table > table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
