@@ -425,7 +425,7 @@ body .navbar .navbar-nav .nav-item {
     align-items: stretch !important;
 }
 
-body nav.navbar ul.navbar-nav li.nav-item a.nav-link {
+body .navbar .navbar-nav .nav-link {
     display: flex !important;
     color: #000000 !important;
     align-items: center !important;
@@ -433,7 +433,9 @@ body nav.navbar ul.navbar-nav li.nav-item a.nav-link {
     padding: 0 20px !important;
 }
 
-body nav.navbar ul.navbar-nav li.nav-item a.nav-link.active {
+body .navbar .navbar-nav .nav-link.active,
+body .navbar .navbar-nav .nav-link.active:hover,
+body .navbar .navbar-nav .nav-link.active:focus {
     background-color: #0080aa !important;
     color: #ffffff !important;
     border-radius: 0 !important;
