@@ -425,22 +425,21 @@ body .navbar .navbar-nav .nav-item {
     align-items: stretch !important;
 }
 
-body .navbar .navbar-nav .nav-link {
+/* Custom layout for navbar links */
+.navbar-nav .nav-link {
     display: flex !important;
-    color: #000000 !important;
+    color: #000000 !important; /* Forces inactive links to black */
     align-items: center !important;
     height: 100% !important;
     padding: 0 20px !important;
 }
 
-body .navbar .navbar-nav .nav-link.active,
-body .navbar .navbar-nav .nav-link.active:hover,
-body .navbar .navbar-nav .nav-link.active:focus {
-    background-color: #0080aa !important;
-    color: #ffffff !important;
+/* Active state */
+.navbar-nav .nav-link.active {
+    background-color: #0080aa !important; /* Blue background */
+    color: #ffffff !important;           /* White text */
     border-radius: 0 !important;
     font-weight: normal !important;
-}
 
 body .navbar .ms-auto .nav-item {
     align-self: center !important;
