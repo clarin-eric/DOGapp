@@ -235,20 +235,20 @@ a {
 }
 
 /* Fetch result table */
-#dog_result_table {
+#dog_fetch_result_table {
     padding: 0;
     margin-top: 15px;
 }
 
-#dog_result_table > table {
+#dog_fetch_result_table > table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     box-shadow: 2px 2px 5px #ccc;
 }
 
-#dog_result_table > table > thead > tr > th,
-#dog_result_table > table > tbody > tr > td {
+#dog_fetch_result_table > table > thead > tr > th,
+#dog_fetch_result_table > table > tbody > tr > td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
@@ -256,27 +256,33 @@ a {
     word-wrap: break-word;
 }
 
-#dog_result_table > table > thead > tr > th:nth-child(1) { width: 12%; }
-#dog_result_table > table > thead > tr > th:nth-child(2) { width: 22%; }
-#dog_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
-#dog_result_table > table > thead > tr > th:nth-child(4) { width: 21%; }
-#dog_result_table > table > thead > tr > th:nth-child(5) { width: 35%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(1) { width: 12%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(2) { width: 22%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(4) { width: 21%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(5) { width: 35%; }
 
-#dog_result_table > table > thead > tr > th:nth-child(5),
-#dog_result_table > table > tbody > tr > td:nth-child(5) {
+#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 60%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+
+
+
+#dog_fetch_result_table > table > thead > tr > th:nth-child(5),
+#dog_fetch_result_table > table > tbody > tr > td:nth-child(5) {
     padding: 0 !important;
 }
 
-#dog_result_table > table > thead > tr > th {
+#dog_fetch_result_table > table > thead > tr > th {
     background-color: #f3f9fc;
     color: #033d71;
 }
 
-#dog_result_table > table > tbody > tr:nth-child(even) {
+#dog_fetch_result_table > table > tbody > tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-#dog_result_table > table > tbody > tr > td span.positive {
+#dog_fetch_result_table > table > tbody > tr > td span.positive {
     color: #31708f;
     background-color: #d9edf7;
     padding: 2px 6px;
@@ -284,7 +290,7 @@ a {
     font-weight: bold;
 }
 
-#dog_result_table > table > tbody > tr > td span.negative {
+#dog_fetch_result_table > table > tbody > tr > td span.negative {
     color: #a94442;
     background-color: #f2dede;
     padding: 2px 6px;
@@ -305,15 +311,15 @@ table.nested-result-table td {
     padding: 0 8px !important;
 }
 
-#dog_result_inner_header th {
+#dog_fetch_result_inner_header th {
     background: transparent !important;
     border: none !important;
     border-top: 1px solid #ddd !important;
     padding: 4px 8px !important;
 }
 
-#dog_result_inner_header th:first-child,
-#dog_result_table table.nested-result-table td:first-child {
+#dog_fetch_result_inner_header th:first-child,
+#dog_fetch_result_table table.nested-result-table td:first-child {
     border-right: 1px solid #ddd !important;
 }
 
@@ -321,20 +327,20 @@ table.nested-result-table tr:last-child td {
     border-bottom: none !important;
 }
 
-#dog_result_inner_header,
+#dog_fetch_result_inner_header,
 table.nested-result-table {
     table-layout: fixed !important;
     width: 100% !important;
 }
 
-#dog_result_inner_header th:first-child,
-#dog_result_table table.nested-result-table td:first-child {
+#dog_fetch_result_inner_header th:first-child,
+#dog_fetch_result_table table.nested-result-table td:first-child {
     width: 35% !important;
     max-width: 35% !important;
 }
 
-#dog_result_inner_header th:last-child,
-#dog_result_table table.nested-result-table td:last-child {
+#dog_fetch_result_inner_header th:last-child,
+#dog_fetch_result_table table.nested-result-table td:last-child {
     width: 65% !important;
     max-width: 65% !important;
 }
@@ -450,28 +456,25 @@ body .navbar .ms-auto .nav-item {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Radio group container -> Keep options side-by-side (horizontally) */
 #pid_form .form-check-inline {
     margin-bottom: 15px;
     display: flex !important;
     flex-direction: row !important;
     justify-content: flex-start !important;
-    gap: 20px !important; /* Space between each radio option group */
+    gap: 20px !important;
 }
 
-/* Individual option wrapper */
 #pid_form .form-check-inline div {
     display: inline-flex !important;
     align-items: center !important;
     margin-right: 0 !important;
 }
 
-/* Labels: Place text to the LEFT of the radio button */
 #pid_form .form-check-inline label {
     display: inline-flex !important;
-    flex-direction: row-reverse !important; /* Reverses order: puts text left, input right */
+    flex-direction: row-reverse !important;
     align-items: center !important;
-    gap: 6px !important;                   /* Gap between text and radio dot */
+    gap: 6px !important;
     cursor: pointer;
 }
 
