@@ -449,3 +449,32 @@ body .navbar .ms-auto .nav-item {
 .navbar-nav .nav-link {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+/* Radio group container -> Stack items vertically aligned left */
+#pid_form .form-check-inline {
+    margin-bottom: 15px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+/* Individual radio item wrappers */
+#pid_form .form-check-inline div {
+    display: flex !important;
+    align-items: center !important;
+    margin-right: 0 !important;
+    margin-bottom: 5px;
+    text-align: left !important;
+}
+
+/* Ensure radio input and text align vertically */
+#pid_form .form-check-inline label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px; /* Adds consistent spacing between the radio circle and text */
+    cursor: pointer;
+}
+
+#pid_form .form-check-inline input[type="radio"] {
+    margin: 0 !important;
+}
