@@ -437,9 +437,10 @@ body .navbar .navbar-nav .nav-item {
 /* Active state */
 .navbar-nav .nav-link.active {
     background-color: #0080aa !important; /* Blue background */
-    color: #ffffff !important;           /* White text */
+    color: #ffffff !important; /* White text */
     border-radius: 0 !important;
     font-weight: normal !important;
+}
 
 body .navbar .ms-auto .nav-item {
     align-self: center !important;
@@ -448,5 +449,3 @@ body .navbar .ms-auto .nav-item {
 .navbar-nav .nav-link {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
-
-
