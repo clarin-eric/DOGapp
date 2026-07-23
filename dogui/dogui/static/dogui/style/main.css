@@ -416,9 +416,7 @@ body .navbar .navbar-nav .nav-link {
     padding: 0 20px !important;
 }
 
-/* 1. Base / Inactive Nav Links -> FORCE BLACK TEXT */
-body .navbar-light .navbar-nav .nav-link,
-body .navbar .navbar-nav .nav-link {
+#navbarNav .nav-link {
     display: flex !important;
     color: #000000 !important;
     align-items: center !important;
@@ -426,14 +424,17 @@ body .navbar .navbar-nav .nav-link {
     padding: 0 20px !important;
 }
 
-/* 2. Active Nav Link -> FORCE WHITE TEXT & BLUE BG */
-body .navbar-light .navbar-nav .nav-link.active,
-body .navbar-light .navbar-nav .nav-link.active:hover,
-body .navbar-light .navbar-nav .nav-link.active:focus {
+#navbarNav .nav-link * {
+    color: #000000 !important;
+}
+
+#navbarNav .nav-link.active,
+#navbarNav .nav-link.active * {
     background-color: #0080aa !important;
     color: #ffffff !important;
     border-radius: 0 !important;
     font-weight: normal !important;
+}
 
 body .navbar .ms-auto .nav-item {
     align-self: center !important;
