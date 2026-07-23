@@ -339,10 +339,6 @@ table.nested-result-table {
     max-width: 65% !important;
 }
 
-#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 60%; }
-#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
-#dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
-
 #dog_sniff_result_table {
     padding: 0;
     margin-top: 15px;
@@ -354,6 +350,21 @@ table.nested-result-table {
     border-collapse: collapse;
     box-shadow: 2px 2px 5px #ccc;
 }
+
+/* ADD THIS BLOCK to render borders and padding on table cells */
+#dog_sniff_result_table > table > thead > tr > th,
+#dog_sniff_result_table > table > tbody > tr > td {
+    border: 1px solid #ddd !important;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+/* Width column definitions */
+#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 60%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
 
 #dog_sniff_result_table > table > thead > tr > th {
     background-color: #f3f9fc;
