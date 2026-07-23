@@ -234,7 +234,6 @@ a {
     font-weight: bold;
 }
 
-/* Fetch result table */
 #dog_fetch_result_table {
     padding: 0;
     margin-top: 15px;
@@ -343,6 +342,18 @@ table.nested-result-table {
 #dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 60%; }
 #dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
 #dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+
+#dog_fetch_result_table {
+    padding: 0;
+    margin-top: 15px;
+}
+
+#dog_fetch_result_table > table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px #ccc;
+}
 
 #dog_sniff_result_table > table > thead > tr > th {
     background-color: #f3f9fc;
