@@ -15,6 +15,25 @@
        url('../fonts/SourceSans3-Italic-VariableFont_wght.ttf') format('truetype-variations');
 }
 
+
+b, strong {
+  font-weight: 700;
+}
+
+a {
+  color: #0080aa;
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  color: #00465e;
+  text-decoration: underline;
+}
+
+a:active, a:hover {
+  outline: 0;
+}
+
 /* Base structural setup */
 html {
     height: 100%;
@@ -430,21 +449,4 @@ body .navbar .ms-auto .nav-item {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-b, strong {
-  font-weight: 700;
-}
-
-a {
-  color: #0080aa;
-  text-decoration: none;
-}
-
-a:focus, a:hover {
-  color: #00465e;
-  text-decoration: underline;
-}
-
-a:active, a:hover {
-  outline: 0;
-}
 
