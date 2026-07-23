@@ -416,23 +416,24 @@ body .navbar .navbar-nav .nav-link {
     padding: 0 20px !important;
 }
 
-body .navbar .navbar-nav .nav-link,
-body .navbar .navbar-nav .nav-link * {
+/* 1. Base / Inactive Nav Links -> FORCE BLACK TEXT */
+body .navbar-light .navbar-nav .nav-link,
+body .navbar .navbar-nav .nav-link {
     display: flex !important;
     color: #000000 !important;
     align-items: center !important;
     height: 100% !important;
+    padding: 0 20px !important;
 }
 
-body .navbar .navbar-nav .nav-link.active,
-body .navbar .navbar-nav .nav-link.active *,
-body .navbar .navbar-nav .nav-link.active:hover,
-body .navbar .navbar-nav .nav-link.active:hover * {
+/* 2. Active Nav Link -> FORCE WHITE TEXT & BLUE BG */
+body .navbar-light .navbar-nav .nav-link.active,
+body .navbar-light .navbar-nav .nav-link.active:hover,
+body .navbar-light .navbar-nav .nav-link.active:focus {
     background-color: #0080aa !important;
     color: #ffffff !important;
     border-radius: 0 !important;
-    font-weight: normal;
-}
+    font-weight: normal !important;
 
 body .navbar .ms-auto .nav-item {
     align-self: center !important;
