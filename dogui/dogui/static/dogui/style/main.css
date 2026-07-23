@@ -408,14 +408,14 @@ body .navbar .navbar-nav .nav-item {
 }
 
 
-.navbar-nav .nav-link.active {
+body .navbar .navbar-nav .nav-link.active {
     background-color: #0080aa !important;
     color: #ffffff !important;
     border-radius: 0 !important;
     font-weight: normal;
 }
 
-.navbar-nav .nav-link:not(.active) {
+body .navbar.navbar-nav .nav-link:not(.active) {
     color: #000000 !important;
 }
 
