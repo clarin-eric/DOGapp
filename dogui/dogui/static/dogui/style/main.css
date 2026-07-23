@@ -450,31 +450,32 @@ body .navbar .ms-auto .nav-item {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Radio group container -> Stack items vertically aligned left */
+/* Radio group container -> Keep options side-by-side (horizontally) */
 #pid_form .form-check-inline {
     margin-bottom: 15px;
     display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 20px !important; /* Space between each radio option group */
 }
 
-/* Individual radio item wrappers */
+/* Individual option wrapper */
 #pid_form .form-check-inline div {
-    display: flex !important;
+    display: inline-flex !important;
     align-items: center !important;
     margin-right: 0 !important;
-    margin-bottom: 5px;
-    text-align: left !important;
 }
 
-/* Ensure radio input and text align vertically */
+/* Labels: Place text to the LEFT of the radio button */
 #pid_form .form-check-inline label {
-    display: flex !important;
+    display: inline-flex !important;
+    flex-direction: row-reverse !important; /* Reverses order: puts text left, input right */
     align-items: center !important;
-    gap: 6px; /* Adds consistent spacing between the radio circle and text */
+    gap: 6px !important;                   /* Gap between text and radio dot */
     cursor: pointer;
 }
 
+/* Ensure margins on radio inputs don't push things out of alignment */
 #pid_form .form-check-inline input[type="radio"] {
     margin: 0 !important;
 }
