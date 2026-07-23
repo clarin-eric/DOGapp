@@ -415,6 +415,10 @@ body .navbar .navbar-nav .nav-item {
     font-weight: normal;
 }
 
+.navbar-nav .nav-link:not(.active) {
+    color: #000000 !important;
+}
+
 body .navbar .navbar-nav .nav-link {
     display: flex !important;
     color: #000000 !important;
