@@ -407,8 +407,7 @@ body .navbar .navbar-nav .nav-item {
     align-items: stretch !important;
 }
 
-
-body .navbar .navbar-nav .nav-link {
+body nav.navbar ul.navbar-nav li.nav-item a.nav-link {
     display: flex !important;
     color: #000000 !important;
     align-items: center !important;
@@ -416,20 +415,7 @@ body .navbar .navbar-nav .nav-link {
     padding: 0 20px !important;
 }
 
-#navbarNav .nav-link {
-    display: flex !important;
-    color: #000000 !important;
-    align-items: center !important;
-    height: 100% !important;
-    padding: 0 20px !important;
-}
-
-#navbarNav .nav-link * {
-    color: #000000 !important;
-}
-
-#navbarNav .nav-link.active,
-#navbarNav .nav-link.active * {
+body nav.navbar ul.navbar-nav li.nav-item a.nav-link.active {
     background-color: #0080aa !important;
     color: #ffffff !important;
     border-radius: 0 !important;
