@@ -176,7 +176,8 @@ a {
     margin-right: 15px;
 }
 
-#pid_form button {
+#pid_form button,
+#dog_sniff_result_table button {
     background-color: #006d91;
     color: white;
     border: none;
@@ -185,7 +186,8 @@ a {
     cursor: pointer;
 }
 
-#pid_form button:hover {
+#pid_form button:hover,
+#dog_sniff_result_table button:hover {
     background-color: #0080aa;
 }
 
@@ -234,12 +236,14 @@ a {
     font-weight: bold;
 }
 
-#dog_fetch_result_table {
+#dog_fetch_result_table,
+#dog_sniff_result_table {
     padding: 0;
     margin-top: 15px;
 }
 
-#dog_fetch_result_table > table {
+#dog_fetch_result_table,
+#dog_sniff_result_table > table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
@@ -247,7 +251,9 @@ a {
 }
 
 #dog_fetch_result_table > table > thead > tr > th,
-#dog_fetch_result_table > table > tbody > tr > td {
+#dog_fetch_result_table > table > tbody > tr > td,
+#dog_sniff_result_table > table > thead > tr > th,
+#dog_sniff_result_table > table > tbody > tr > td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
@@ -261,22 +267,29 @@ a {
 #dog_fetch_result_table > table > thead > tr > th:nth-child(4) { width: 21%; }
 #dog_fetch_result_table > table > thead > tr > th:nth-child(5) { width: 35%; }
 
+#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 60%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+
 
 #dog_fetch_result_table > table > thead > tr > th:nth-child(5),
 #dog_fetch_result_table > table > tbody > tr > td:nth-child(5) {
     padding: 0 !important;
 }
 
-#dog_fetch_result_table > table > thead > tr > th {
+#dog_fetch_result_table > table > thead > tr > th,
+#dog_sniff_result_table > table > thead > tr > th {
     background-color: #f3f9fc;
     color: #033d71;
 }
 
-#dog_fetch_result_table > table > tbody > tr:nth-child(even) {
+#dog_fetch_result_table > table > tbody > tr:nth-child(even),
+#dog_sniff_result_table > table > tbody > tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-#dog_fetch_result_table > table > tbody > tr > td span.positive {
+#dog_fetch_result_table > table > tbody > tr > td span.positive,
+#dog_sniff_result_table > table > tbody > tr > td span.positive {
     color: #31708f;
     background-color: #d9edf7;
     padding: 2px 6px;
@@ -284,7 +297,8 @@ a {
     font-weight: bold;
 }
 
-#dog_fetch_result_table > table > tbody > tr > td span.negative {
+#dog_fetch_result_table > table > tbody > tr > td span.negative,
+#dog_sniff_result_table > table > tbody > tr > td span.negative {
     color: #a94442;
     background-color: #f2dede;
     padding: 2px 6px;
@@ -337,58 +351,6 @@ table.nested-result-table {
 #dog_fetch_result_table table.nested-result-table td:last-child {
     width: 65% !important;
     max-width: 65% !important;
-}
-
-#dog_sniff_result_table {
-    padding: 0;
-    margin-top: 15px;
-}
-
-#dog_sniff_result_table > table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    box-shadow: 2px 2px 5px #ccc;
-}
-
-/* ADD THIS BLOCK to render borders and padding on table cells */
-#dog_sniff_result_table > table > thead > tr > th,
-#dog_sniff_result_table > table > tbody > tr > td {
-    border: 1px solid #ddd !important;
-    padding: 10px;
-    text-align: left;
-    vertical-align: top;
-    word-wrap: break-word;
-}
-
-/* Width column definitions */
-#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 60%; }
-#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
-#dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
-
-#dog_sniff_result_table > table > thead > tr > th {
-    background-color: #f3f9fc;
-    color: #033d71;
-}
-
-#dog_sniff_result_table > table > tbody > tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-#dog_sniff_result_table > table > tbody > tr > td span.positive {
-    color: #31708f;
-    background-color: #d9edf7;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-weight: bold;
-}
-
-#dog_sniff_result_table > table > tbody > tr > td span.negative {
-    color: #a94442;
-    background-color: #f2dede;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-weight: bold;
 }
 
 .highlight {
