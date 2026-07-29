@@ -267,9 +267,12 @@ a {
 #dog_fetch_result_table > table > thead > tr > th:nth-child(4) { width: 21%; }
 #dog_fetch_result_table > table > thead > tr > th:nth-child(5) { width: 35%; }
 
-#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 60%; }
-#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 30%; }
-#dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 65%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 35%; }
+
+#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 65%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 35%; }
+
 
 
 #dog_fetch_result_table > table > thead > tr > th:nth-child(5),

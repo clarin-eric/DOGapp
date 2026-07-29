@@ -13,23 +13,19 @@
                 <tbody>
                     {% for pid, sniff_res in sniff_response.items %}
                         <tr>
-                            <td>{{ pid }}</td>
-                            {% if sniff_res %}
-                                <td><a href={{ sniff_res.host_netloc }}>{{ sniff_res.name }}</a></td>
-                                {% if not forloop.last %}
-                                    <br>
+                            <td>
+                                {% if sniff_res %}
+                                    <input type="checkbox" name="pid_field" value="{{ pid }}">
                                 {% endif %}
-                            {% else %}
-                                <td>NA</td>
-                                {% if not forloop.last %}
-                                    <br>
-                                {% endif %}
-                            {% endif %}
-                            <td><input type="checkbox" name="pid_field" value="{{ pid }}">
-                            {% if not forloop.last %}
-                                <br>
-                            {% endif %}
+                                {{ pid }}
                             </td>
+                            <td>
+                                {% if sniff_res %}
+                                    <a href={{ sniff_res.host_netloc }}>{{ sniff_res.name }}</a></td>
+                                {% else %}
+                                    NA</td>
+                                {% endif %}
+                            <td>
                         </tr>
                     {% endfor %}
                 </tbody>
