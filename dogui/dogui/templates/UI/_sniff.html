@@ -14,11 +14,13 @@
                 <tbody>
                     {% for pid, sniff_res in sniff_response.items %}
                         <tr>
-                            <td>
+                            <td class="flex-container">
                                 {% if sniff_res %}
-                                    <input type="checkbox" class="centered-checkbox" name="pid_field" value="{{ pid }}">
+                                    <div class="flex-cell">
+                                        <input type="checkbox" class="centered-checkbox" name="pid_field" value="{{ pid }}">
+                                    </div>
                                 {% endif %}
-                                {{ pid }}
+                                <span class="left-text"> {{ pid }}</span>
                             </td>
                             <td>
                                 {% if sniff_res %}
