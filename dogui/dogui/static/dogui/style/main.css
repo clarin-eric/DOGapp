@@ -323,7 +323,6 @@ table.nested-result-table td {
 
 .centered-checkbox {
   position: absolute;
-  left: 50%;
   transform: translateX(-50%); /* Centers horizontally only */
   margin-left: 0;
   margin-right: 0;
