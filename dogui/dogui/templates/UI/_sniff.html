@@ -18,9 +18,11 @@
                                 {% if sniff_res %}
                                     <div class="flex-cell">
                                         <input type="checkbox" class="centered-checkbox" name="pid_field" value="{{ pid }}">
+                                        <span class="left-text"> {{ pid }}</span>
                                     </div>
+                                {% else %}
+                                    <span class="left-text"> {{ pid }}</span>
                                 {% endif %}
-                                <span class="left-text"> {{ pid }}</span>
                             </td>
                             <td>
                                 {% if sniff_res %}
