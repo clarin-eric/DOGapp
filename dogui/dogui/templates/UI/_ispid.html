@@ -6,16 +6,14 @@
                 <thead>
                     <tr>
                         <th>PID</th>
-                        <th>Is DOG parsable</th>
-                        <th></th>
+                        <th>Is DOG parseable</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for pid, ispid_res in ispid_response.items %}
                         <tr>
-                            <td>{{ pid }}</td>
+                            <td><input type="checkbox" name="pid_field" value="{{ pid }}"> {{ pid }}</td>
                             <td>{{ ispid_res }}</td>
-                            <td><input type="checkbox" name="pid_field" value="{{ pid }}"></td>
                         </tr>
                     {% endfor %}
                 </tbody>
