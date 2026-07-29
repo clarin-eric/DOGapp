@@ -12,7 +12,7 @@
                 <tbody>
                     {% for pid, ispid_res in ispid_response.items %}
                         <tr>
-                            <td><input type="checkbox" name="pid_field" value="{{ pid }}"> {{ pid }}</td>
+                            <td><input type="checkbox" class="centered-checkbox" name="pid_field" value="{{ pid }}"> {{ pid }}</td>
                             <td>{{ ispid_res }}</td>
                         </tr>
                     {% endfor %}
