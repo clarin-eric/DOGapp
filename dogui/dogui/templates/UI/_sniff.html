@@ -6,18 +6,18 @@
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>PID</th>
                         <th>Recognised host</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for pid, sniff_res in sniff_response.items %}
                         <tr>
+                            <td><input type="checkbox" class="centered-checkbox" name="pid_field" value="{{ pid }}"></td>
                             <td class="flex-container">
                                 {% if sniff_res %}
                                     <div class="flex-cell">
-                                        <input type="checkbox" class="centered-checkbox" name="pid_field" value="{{ pid }}">
                                         <span class="left-text"> {{ pid }}</span>
                                     </div>
                                 {% else %}
