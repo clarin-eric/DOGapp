@@ -14,7 +14,8 @@
                 <tbody>
                     {% for pid, ispid_res in ispid_response.items %}
                         <tr>
-                            <td class="d-flex justify-content-center align-items-center py-4"><input type="checkbox" name="pid_field" value="{{ pid }}"></td>
+                            <td class="text-center align-middle">
+                                <input type="checkbox" name="pid_field" value="{{ pid }}"></td>
                             <td> {{ pid }}</td>
                             <td>{{ ispid_res }}</td>
                         </tr>
