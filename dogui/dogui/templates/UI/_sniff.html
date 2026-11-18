@@ -14,7 +14,7 @@
                 <tbody>
                     {% for pid, sniff_res in sniff_response.items %}
                         <tr>
-                            <td><input type="checkbox" class="centered-checkbox" name="pid_field" value="{{ pid }}"></td>
+                            <td><input type="checkbox" name="pid_field" value="{{ pid }}"></td>
                             <td class="flex-container">
                                 {% if sniff_res %}
                                     <div class="flex-cell">
