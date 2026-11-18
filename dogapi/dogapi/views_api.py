@@ -31,6 +31,7 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
     return param_candidates
 
 
+@api_view(['GET'])
 @extend_schema(parameters=[pid_queryparam, use_dtr_queryparam],
                description="Fetches all PIDs referenced in the metadata by resource type. For response object \
                            specification please consult examples.",
@@ -121,7 +122,6 @@ def parse_queryparam(request: Request, param_name: str) -> List[str]:
                    )
                ])
 @permission_classes([AllowAny])
-@api_view(['GET'])
 def fetch(request: Request, use_dtr: bool = False) -> Response:
     """
     Fetches all PIDs referenced in the metadata, supports PID and list of PIDs to metadata in formats:
@@ -148,6 +148,7 @@ def fetch(request: Request, use_dtr: bool = False) -> Response:
     return ret
 
 
+@api_view(['GET'])
 @extend_schema(parameters=[pid_queryparam],
                description="Identifies collection with its title and description, functionality requested for "
                            "Virtual Content Registry. For response object specification please consult examples.",
@@ -183,7 +184,6 @@ def fetch(request: Request, use_dtr: bool = False) -> Response:
                    )
                ])
 @permission_classes([AllowAny])
-@api_view(['GET'])
 def identify(request: Request) -> Response:
     """
     Identifies PID:
@@ -210,6 +210,7 @@ def identify(request: Request) -> Response:
     return ret
 
 
+@api_view(['GET'])
 @extend_schema(parameters=[pid_queryparam],
                description="Checks if PIDs points to a metadata referencing another resource(s). For response object \
                            specification please consult examples.",
@@ -239,7 +240,6 @@ def identify(request: Request) -> Response:
                    )
                ])
 @permission_classes([AllowAny])
-@api_view(['GET'])
 def is_collection(request: Request) -> Response:
     """
     Checks whether PID points to a collection:
@@ -265,6 +265,7 @@ def is_collection(request: Request) -> Response:
     return ret
 
 
+@api_view(['GET'])
 @extend_schema(parameters=[pid_queryparam],
                description="Checks whether input PIDs points to a resource hosted by Registered Repository",
                responses={
@@ -304,7 +305,6 @@ def is_collection(request: Request) -> Response:
                ]
                )
 @permission_classes([AllowAny])
-@api_view(['GET'])
 def sniff(request: Request) -> Response:
     """
     Checks whether PID points to a resources in a Registered Repository:
@@ -332,6 +332,7 @@ def sniff(request: Request) -> Response:
     return ret
 
 
+@api_view(['GET'])
 @extend_schema(parameters=[pid_queryparam],
                description="Checks whether input is a PID that can be parsed by DOG. Does only string parsing. "
                            "Any valid string in a format of URL, DOI or HDL will be accepted. "
@@ -373,7 +374,6 @@ def sniff(request: Request) -> Response:
                ]
                )
 @permission_classes([AllowAny])
-@api_view(['GET'])
 def is_pid(request: Request) -> Response:
     ret: Response
     try:
@@ -385,14 +385,14 @@ def is_pid(request: Request) -> Response:
     return ret
 
 
-@permission_classes([AllowAny])
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_all_repositories(request: Request) -> Response:
     return Response(dog.get_all_repositories(), status=200)
 
 
-@permission_classes([AllowAny])
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_repositories_status(request: Request) -> Response:
     repositories_status = cache.get('repositories_status')
 
