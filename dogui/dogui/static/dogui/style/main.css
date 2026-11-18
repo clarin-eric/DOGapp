@@ -1,0 +1,529 @@
+/* Font definitions and base typography configuration */
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  src: local('Source Sans 3 Variable'),
+       local("SourceSans3Variable-Roman"),
+       url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype-variations');
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: italic;
+  src: local('Source Sans 3 Variable Italic'),
+       local('SourceSans3Variable-Italic'),
+       url('../fonts/SourceSans3-Italic-VariableFont_wght.ttf') format('truetype-variations');
+}
+
+
+b, strong {
+  font-weight: 700;
+}
+
+a {
+  color: #0080aa;
+  text-decoration: none;
+}
+
+a:focus, a:hover {
+  color: #00465e;
+  text-decoration: underline;
+}
+
+a:active, a:hover {
+  outline: 0;
+}
+
+/* Base structural setup */
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    overflow-x: hidden;
+    font-family: "Source Sans 3",Calibri,Arial,Helvetica,sans-serif;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.42857143;
+    color: #333;
+}
+
+body *, body *::before, body *::after {
+    font-family: inherit;
+    line-height: inherit;
+}
+
+/* Force Bs3/4 10px block spacing */
+body p,
+body ul,
+body ol,
+body dl {
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
+}
+
+em {
+    font-style: italic;
+}
+
+pre {
+    background-color: transparent;
+    border: 0 none;
+    margin: 0;
+}
+
+/* Header layout rules */
+#header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header #brand a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+#header #menu a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #666;
+}
+
+#header #menu a.active {
+    color: #000;
+    font-weight: bold;
+}
+
+/* Page content and footer alignment */
+#content {
+    flex: 1 0 auto;
+    padding: 20px;
+}
+
+#footer {
+    background-color: #eee;
+    border-top: 1px solid #d5d5d5;
+    color: #777;
+    height: 80px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#footer a {
+    color: #777;
+    text-decoration: none;
+}
+
+#footer a img {
+    max-height: 40px;
+}
+
+nav *,
+#footer * {
+    font-size: 14px;
+}
+
+/* Global elements styling */
+h1, h2, h3, h4, h5, h6 {
+    color: #000;
+}
+
+a {
+    cursor: pointer;
+}
+
+/* Form block style rules */
+#pid_form {
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px #ccc;
+    padding: 15px;
+    background: #fff;
+    border-radius: 0px;
+    display: inline-block;
+}
+
+#pid_form input[type="text"] {
+    border: 1px solid #ccc;
+    color: #000;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#pid_form .form-check-inline {
+    margin-bottom: 15px;
+}
+
+#pid_form .form-check-inline div {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#pid_form button,
+#dog_sniff_result_table button,
+#dog_ispid_result_table button,
+.button-submit {
+    background-color: #006d91;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#pid_form button:hover,
+#dog_sniff_result_table button:hover,
+#dog_ispid_result_table button:hover,
+.button-submit {
+    background-color: #0080aa;
+}
+
+/* Table rules */
+#registered_repos_table {
+    padding: 0;
+    margin-top: 15px;
+}
+
+#registered_repos_table table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px #ccc;
+}
+
+#registered_repos_table table th,
+#registered_repos_table table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#registered_repos_table table th {
+    background-color: #f3f9fc;
+    color: #033d71;
+}
+
+#registered_repos_table table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#registered_repos_table table span.positive {
+    color: #31708f;
+    background-color: #d9edf7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#registered_repos_table table span.negative {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#dog_fetch_result_table,
+#dog_sniff_result_table,
+#dog_ispid_result_table {
+    padding: 0;
+    margin-top: 15px;
+}
+
+#dog_fetch_result_table,
+#dog_sniff_result_table > table,
+#dog_ispid_result_table > table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-shadow: 2px 2px 5px #ccc;
+}
+
+#dog_fetch_result_table > table > thead > tr > th,
+#dog_fetch_result_table > table > tbody > tr > td,
+#dog_sniff_result_table > table > thead > tr > th,
+#dog_sniff_result_table > table > tbody > tr > td,
+#dog_ispid_result_table > table > thead > tr > th,
+#dog_ispid_result_table > table > tbody > tr > td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+#dog_fetch_result_table > table > thead > tr > th:nth-child(1) { width: 12%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(2) { width: 22%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(4) { width: 21%; }
+#dog_fetch_result_table > table > thead > tr > th:nth-child(5) { width: 35%; }
+
+#dog_sniff_result_table > table > thead > tr > th:nth-child(1) { width: 5%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(2) { width: 55%; }
+#dog_sniff_result_table > table > thead > tr > th:nth-child(3) { width: 40%; }
+
+#dog_ispid_result_table > table > thead > tr > th:nth-child(1) { width: 5%; }
+#dog_ispid_result_table > table > thead > tr > th:nth-child(2) { width: 85%; }
+#dog_ispid_result_table > table > thead > tr > th:nth-child(3) { width: 10%; }
+
+
+#dog_fetch_result_table > table > thead > tr > th:nth-child(5),
+#dog_fetch_result_table > table > tbody > tr > td:nth-child(5) {
+    padding: 0 !important;
+}
+
+#dog_fetch_result_table > table > thead > tr > th,
+#dog_sniff_result_table > table > thead > tr > th,
+#dog_ispid_result_table > table > thead > tr > th {
+    background-color: #f3f9fc;
+    color: #033d71;
+}
+
+#dog_fetch_result_table > table > tbody > tr:nth-child(even),
+#dog_sniff_result_table > table > tbody > tr:nth-child(even),
+#dog_ispid_result_table > table > tbody > tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#dog_fetch_result_table > table > tbody > tr > td span.positive,
+#dog_sniff_result_table > table > tbody > tr > td span.positive,
+#dog_ispid_result_table > table > tbody > tr > td span.positive {
+    color: #31708f;
+    background-color: #d9edf7;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#dog_fetch_result_table > table > tbody > tr > td span.negative,
+#dog_sniff_result_table > table > tbody > tr > td span.negative,
+#dog_ispid_result_table > table > tbody > tr > td span.negative {
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Nested result table */
+table.nested-result-table {
+    background: transparent !important;
+    border-collapse: collapse !important;
+    margin: 0 !important;
+}
+
+table.nested-result-table td {
+    background: transparent !important;
+    border-bottom: 1px solid #ddd !important;
+    padding: 0 8px !important;
+}
+
+td.flex-container {
+  width: 100%;
+  padding: 12px 16px;
+  position: relative;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+/* 3. Keep text fixed on the left */
+.left-text {
+  z-index: 1; /* Keeps text clickable/selectable */
+}
+
+/* 4. Force checkbox to true horizontal center without pushing text */
+.centered-checkbox {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;   /* Removes default browser checkbox offset */
+  z-index: 2;  /* Keeps checkbox clickable on top */
+}
+
+#dog_fetch_result_inner_header th {
+    background: transparent !important;
+    border: none !important;
+    border-top: 1px solid #ddd !important;
+    padding: 4px 8px !important;
+}
+
+#dog_fetch_result_inner_header th:first-child,
+#dog_fetch_result_table table.nested-result-table td:first-child {
+    border-right: 1px solid #ddd !important;
+}
+
+table.nested-result-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+#dog_fetch_result_inner_header,
+table.nested-result-table {
+    table-layout: fixed !important;
+    width: 100% !important;
+}
+
+#dog_fetch_result_inner_header th:first-child,
+#dog_fetch_result_table table.nested-result-table td:first-child {
+    width: 35% !important;
+    max-width: 35% !important;
+}
+
+#dog_fetch_result_inner_header th:last-child,
+#dog_fetch_result_table table.nested-result-table td:last-child {
+    width: 65% !important;
+    max-width: 65% !important;
+}
+
+.highlight {
+    background-color: #ff0;
+}
+
+@media (max-width: 768px) {
+    #header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #header #menu {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    #header #menu a {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+
+    #footer {
+        flex-direction: column;
+        height: auto;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1170px !important;
+  }
+}
+
+/* Neutralize 1400px breakpoint completely to match Bootstrap 3/4 */
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 1170px !important;
+  }
+}
+
+
+/* Force bs5 rows to use legacy 30px gutters to match bs3/4 */
+body .row {
+  --bs-gutter-x: 30px !important;
+}
+
+/* Make columns inside the row adjust padding to match bs3/4 */
+body .row > * {
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+
+.bg-jumbotron-classic {
+  background-color: #e9ecef !important;
+}
+
+/* Override default Bootstrap5 navbar class*/
+body .navbar {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+    margin-bottom: 20px !important; /* ONLY push down from the absolute outside edge */
+}
+
+body .navbar,
+body .navbar .container {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+body .navbar .navbar-collapse,
+body .navbar .navbar-nav {
+    height: 100% !important;
+    align-items: stretch !important;
+}
+
+body .navbar .navbar-nav .nav-item {
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+/* Custom layout for navbar links */
+.navbar-nav .nav-link {
+    display: flex !important;
+    color: #000000 !important; /* Forces inactive links to black */
+    align-items: center !important;
+    height: 100% !important;
+    padding: 0 20px !important;
+}
+
+/* Active state */
+.navbar-nav .nav-link.active {
+    background-color: #0080aa !important; /* Blue background */
+    color: #ffffff !important; /* White text */
+    border-radius: 0 !important;
+    font-weight: normal !important;
+}
+
+body .navbar .ms-auto .nav-item {
+    align-self: center !important;
+}
+
+.navbar-nav .nav-link {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#pid_form .form-check-inline {
+    margin-bottom: 15px;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 20px !important;
+}
+
+#pid_form .form-check-inline div {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-right: 0 !important;
+}
+
+#pid_form .form-check-inline label {
+    display: inline-flex !important;
+    flex-direction: row-reverse !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer;
+}
+
+/* Ensure margins on radio inputs don't push things out of alignment */
+#pid_form .form-check-inline input[type="radio"] {
+    margin: 0 !important;
+}
