@@ -1,4 +1,9 @@
 # Changelog
+## [1.0.11] - TBD
+- New UI following standard CLARIN ERIC services styling
+- Django 6.0.2 -> Django 6.1.3
+- minor dependency bumps
+
 
 ## [1.0.10] - 24.03.2026
 - DOGlib 1.0.13 (pass upstream HTTP response code to output, `FetchResult.recognised: bool`)
