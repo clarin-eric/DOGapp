@@ -177,8 +177,9 @@ a {
 }
 
 #pid_form button,
-#dog_sniff_result_table button
-#dog_ispid_result_table {
+#dog_sniff_result_table button,
+#dog_ispid_result_table button,
+.button-submit {
     background-color: #006d91;
     color: white;
     border: none;
@@ -188,8 +189,9 @@ a {
 }
 
 #pid_form button:hover,
-#dog_sniff_result_table button:hover
-#dog_ispid_result_table button:hover {
+#dog_sniff_result_table button:hover,
+#dog_ispid_result_table button:hover,
+.button-submit {
     background-color: #0080aa;
 }
 
