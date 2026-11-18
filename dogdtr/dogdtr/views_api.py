@@ -14,6 +14,7 @@ from .schemas import mimetype_parameter
 from .utils import parse_queryparam
 
 
+@api_view(['GET'])
 @extend_schema(parameters=[mimetype_parameter],
                description="Returns taxonomy of a MIME type according to Data Type Registry",
                responses={
@@ -25,7 +26,6 @@ from .utils import parse_queryparam
                ]
                )
 @permission_classes([AllowAny])
-@api_view(['GET'])
 def expand_datatype_view(request: Request) -> Response:
     mime_types = parse_queryparam(request, 'mimetype')
     expanded_datatypes: dict = {}
